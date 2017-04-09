@@ -96,14 +96,24 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <img src="/2017/04/08/Angular2-Module学习笔记/angular.jpg" alt="This is an example image" title="This is an example image">
+        <img src="/2017/04/08/Angular2-Module学习笔记/angular.jpg" alt="angular" title="angular">
+<h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><p>Angular 模块能帮你把应用组织成多个内聚的功能块，可以类比java的package</p>
+<h1 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">@NgModule(&#123;</div><div class="line">  imports:      [ CommonModule ],</div><div class="line">  declarations: [ TitleComponent ],</div><div class="line">  exports:      [ TitleComponent ],</div><div class="line">  providers:    [ UserService ],</div><div class="line">  &lt;!--bootstrap:    [ AppComponent ]--&gt;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>Angular 模块是一个由@NgModule装饰器提供元数据的类，元数据包括：</p>
+<ul>
+<li>imports: 导入其它模块，从其它模块中获得本模块所需的组件、指令和管道</li>
+<li>declarations: 声明哪些组件、指令、管道属于该模块</li>
+<li>exports: 公开某些类，以便其它的组件模板可以使用它们</li>
+<li>provider: 在应用程序级提供服务，以便应用中的任何组件都能使用它</li>
+<li>bootstrap: 把指定组件标记为引导 (bootstrap) 组件。当 Angular 引导应用时，它会在 DOM 中渲染AppComponent，并把结果放进index.html的<my-app>元素标记内部。这个元数据只有根模块有。</my-app></li>
+</ul>
 
 
       
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://songbingjia.com/2017/04/08/Angular2-Module学习笔记/" data-id="cj1a2hrzl0001fxspozprqa2g" class="article-share-link" data-share="baidu" data-title="Angular2 Module学习笔记">分享到</a>
+        <a data-url="http://songbingjia.com/2017/04/08/Angular2-Module学习笔记/" data-id="cj1a4qhkq0000x7sp6nudnfml" class="article-share-link" data-share="baidu" data-title="Angular2 Module学习笔记">分享到</a>
       
 
       
