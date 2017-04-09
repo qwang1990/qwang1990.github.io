@@ -4,9 +4,9 @@
   
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://songbingjia.com/"/>
+  <link href="http://songbingjia.cn/"/>
   <updated>2017-04-09T02:55:57.000Z</updated>
-  <id>http://songbingjia.com/</id>
+  <id>http://songbingjia.cn/</id>
   
   <author>
     <name>宋兵甲</name>
@@ -17,8 +17,8 @@
   
   <entry>
     <title>Angular2 Module学习笔记</title>
-    <link href="http://songbingjia.com/2017/04/08/Angular2-Module%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-    <id>http://songbingjia.com/2017/04/08/Angular2-Module学习笔记/</id>
+    <link href="http://songbingjia.cn/2017/04/08/Angular2-Module%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    <id>http://songbingjia.cn/2017/04/08/Angular2-Module学习笔记/</id>
     <published>2017-04-08T13:36:19.000Z</published>
     <updated>2017-04-09T02:55:57.000Z</updated>
     
@@ -43,10 +43,10 @@
     
     </summary>
     
-      <category term="前端" scheme="http://songbingjia.com/categories/%E5%89%8D%E7%AB%AF/"/>
+      <category term="前端" scheme="http://songbingjia.cn/categories/%E5%89%8D%E7%AB%AF/"/>
     
     
-      <category term="angular" scheme="http://songbingjia.com/tags/angular/"/>
+      <category term="angular" scheme="http://songbingjia.cn/tags/angular/"/>
     
   </entry>
   
