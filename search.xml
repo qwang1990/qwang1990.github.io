@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  
+    
+    <entry>
+      <title><![CDATA[Angular2 Module学习笔记]]></title>
+      <url>%2F2017%2F04%2F08%2FAngular2-Module%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%2F</url>
+      <content type="text"><![CDATA[概念Angular 模块能帮你把应用组织成多个内聚的功能块，可以类比java的package 定义1234567@NgModule(&#123; imports: [ CommonModule ], declarations: [ TitleComponent ], exports: [ TitleComponent ], providers: [ UserService ], &lt;!--bootstrap: [ AppComponent ]--&gt;&#125;) Angular 模块是一个由@NgModule装饰器提供元数据的类，元数据包括： imports: 导入其它模块，从其它模块中获得本模块所需的组件、指令和管道 declarations: 声明哪些组件、指令、管道属于该模块 exports: 公开某些类，以便其它的组件模板可以使用它们 provider: 在应用程序级提供服务，以便应用中的任何组件都能使用它 bootstrap: 把指定组件标记为引导 (bootstrap) 组件。当 Angular 引导应用时，它会在 DOM 中渲染AppComponent，并把结果放进index.html的元素标记内部。这个元数据只有根模块有。]]></content>
+    </entry>
+
+    
+  
+  
+</search>
