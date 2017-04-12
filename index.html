@@ -424,6 +424,33 @@
 <li>provider: 在应用程序级提供服务，以便应用中的任何组件都能使用它</li>
 <li>bootstrap: 把指定组件标记为引导 (bootstrap) 组件。当 Angular 引导应用时，它会在 DOM 中渲染AppComponent，并把结果放进index.html的<my-app>元素标记内部。这个元数据只有根模块有。</my-app></li>
 </ul>
+<h1 id="模块基本使用"><a href="#模块基本使用" class="headerlink" title="模块基本使用"></a>模块基本使用</h1><ul>
+<li><p>声明组件和指令: 定义的组件和指令必须在模块中声明了，模板才能识别组件和指令对应的标签</p>
+<pre><code class="angular2html">例如我们定义指令HighlightDirective：
+  import { Directive, ElementRef } from &apos;@angular/core&apos;;
+
+  @Directive({ selector: &apos;[highlight]&apos; })
+  /** Highlight the attached element in gold */
+  export class HighlightDirective {
+    constructor(el: ElementRef) {
+      el.nativeElement.style.backgroundColor = &apos;gold&apos;;
+      console.log(
+        `* AppRoot highlight called for ${el.nativeElement.tagName}`);
+    }
+  }
+
+  在使用 &lt;h1 highlight&gt;{{title}}&lt;/h1&gt; 前必须要在我们的module的declaration中加入如下定义：
+  declarations: [
+    ... 
+    HighlightDirective,
+    ...
+  ],
+</code></pre>
+</li>
+<li><p>服务提供商<br>模块可以往应用的“根依赖注入器”中添加提供商，让那些服务在应用中到处可用,这个和在组件中提供服务不同。<font color="#ff0000">组件中提供的服务是分层级的。</font>这个在多级注入的时候会讲到。</p>
+</li>
+</ul>
+<h1 id="为什么要有多个模块"><a href="#为什么要有多个模块" class="headerlink" title="为什么要有多个模块"></a>为什么要有多个模块</h1><p>&emsp;&emsp;随着应用越来越大，如果只是用一个根模块就会出现很多问题。 比如指令冲突，我们在一个类中定义了ADirective，然后再另一个类中定义了同名的ADirective，并且他们的selector一样都是’sameName’.当我们在别处使用这个&lt;sameName … &gt;时就会出现，后一个declaration的指令会覆盖前一个declaration的指令。</p>
 
 
           
