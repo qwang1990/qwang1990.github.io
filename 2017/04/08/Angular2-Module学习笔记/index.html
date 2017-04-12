@@ -77,8 +77,6 @@
 
 
 
-  <link rel="alternate" href="/atom.xml" title="宋兵甲的博客" type="application/atom+xml" />
-
 
 
 
@@ -96,12 +94,10 @@
 <meta property="og:url" content="http://songbingjia.cn/2017/04/08/Angular2-Module学习笔记/index.html">
 <meta property="og:site_name" content="宋兵甲的博客">
 <meta property="og:description" content="概念Angular 模块能帮你把应用组织成多个内聚的功能块，可以类比java的package 定义1234567@NgModule(&amp;#123;  imports:      [ CommonModule ],  declarations: [ TitleComponent ],  exports:      [ TitleComponent ],  providers:    [ UserSe">
-<meta property="og:image" content="http://songbingjia.cn/2017/04/08/Angular2-Module学习笔记/angular.jpg">
-<meta property="og:updated_time" content="2017-04-09T02:55:57.000Z">
+<meta property="og:updated_time" content="2017-04-11T13:39:35.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Angular2 Module学习笔记">
 <meta name="twitter:description" content="概念Angular 模块能帮你把应用组织成多个内聚的功能块，可以类比java的package 定义1234567@NgModule(&amp;#123;  imports:      [ CommonModule ],  declarations: [ TitleComponent ],  exports:      [ TitleComponent ],  providers:    [ UserSe">
-<meta name="twitter:image" content="http://songbingjia.cn/2017/04/08/Angular2-Module学习笔记/angular.jpg">
 
 
 
@@ -110,7 +106,7 @@
   var CONFIG = {
     root: '/',
     scheme: 'Pisces',
-    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":true,"scrollpercent":true},
     fancybox: true,
     motion: true,
     duoshuo: {
@@ -422,7 +418,7 @@
       
 
       
-        <img src="/2017/04/08/Angular2-Module学习笔记/angular.jpg" alt="angular" title="angular">
+        
 <h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><p>Angular 模块能帮你把应用组织成多个内聚的功能块，可以类比java的package</p>
 <h1 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">@NgModule(&#123;</div><div class="line">  imports:      [ CommonModule ],</div><div class="line">  declarations: [ TitleComponent ],</div><div class="line">  exports:      [ TitleComponent ],</div><div class="line">  providers:    [ UserService ],</div><div class="line">  &lt;!--bootstrap:    [ AppComponent ]--&gt;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
 <p>Angular 模块是一个由@NgModule装饰器提供元数据的类，元数据包括：</p>
@@ -573,15 +569,19 @@
         </nav>
 
         
-          <div class="feed-link motion-element">
-            <a href="/atom.xml" rel="alternate">
-              <i class="fa fa-rss"></i>
-              RSS
-            </a>
-          </div>
-        
 
         <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/qwang1990" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
           
         </div>
 
@@ -614,6 +614,13 @@
       <!--/noindex-->
       
 
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
       
 
     </div>
@@ -656,11 +663,6 @@
     </footer>
 
     
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
 
   </div>
 
@@ -687,8 +689,6 @@
 
 
 
-  
-
 
 
   
@@ -708,9 +708,6 @@
 
   
   <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-  
-  <script type="text/javascript" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
 
 
   
