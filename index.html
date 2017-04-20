@@ -430,9 +430,22 @@
 <p><em>简单来说就是HTML attribute是html元素定义的时候，定义完以后angular中操作改变的都是DOM property的值，所以除了插值表达式之外的绑定类型，在等号左边是目标名， 无论是包在括号中 ([]、()) 还是用前缀形式 (bind-、on-、bindon-)，这个目标名就是属性（Property）的名字。</em></p>
 <h2 id="插值表达式"><a href="#插值表达式" class="headerlink" title="插值表达式"></a>插值表达式</h2><p>插值表达式是绑定中最简单的一种，就是把{ { } }中的计算结果插入到HTML标签内的文本上，或给标签的属性赋值。<br>&lt;h3&gt;<br>  { { title } }<br>  &lt;img src=&quot;{ {heroImageUrl} }&quot; style=&quot;height:30px&quot;&gt;<br>  &lt;p&gt;The sum of 1 + 1 is { {1 + 1} }&lt;/p&gt;<br>&lt;/h3&gt;</p>
 <p>第一处是直接插入到HTML标签内的文本，第二处是给标签的属性赋值，第三处是也是给HTML标签内的文本插值，但是值是经过计算得来的</p>
+<h2 id="绑定到Property"><a href="#绑定到Property" class="headerlink" title="绑定到Property"></a>绑定到Property</h2><p>绑定到property分为两类:</p>
+<ul>
+<li>元素的property<br>  &lt;button [disabled]=&quot;isUnchanged&quot;&gt;Cancel is disabled&lt;/button&gt;</li>
+<li><p>指令(组件)的property</p>
+<ul>
+<li>设置angular自带指令的属性(这个在属性型指令和结构型指令中会细讲)<br> &lt;div [ngClass]=&quot;classes&quot;&gt;[ngClass] binding to the classes property&lt;/div&gt;</li>
+<li><p>设置自定义的组件(指令)的属性<br>  &lt;hero-detail [heroName]=&quot;hero&quot;  &gt;&lt;/hero-detail&gt;<br>  此时hero-detail的代码如下:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">@Component(&#123;</div><div class="line">  selector: &apos;hero-detail&apos;,</div><div class="line">  template: `</div><div class="line">  &lt;h1&gt;heroName: &#123;&#123;heroName&#125;&#125;&lt;/h1&gt;</div><div class="line">`,</div><div class="line">&#125;)</div><div class="line">export class HeroDetailComponent  &#123;</div><div class="line">  @Input() heroName:string;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>   即[heroName]就是组件中的待输入的property，类似java中的一个类的构造参数</p>
 <blockquote>
-<p>#未完待续</p>
+<p>绑定到property的过程是单向的，即从组件的数据流向目标属性的数据，如果必须读取目标元素上的属性或调用它的某个方法，<br>得用另一种技术 — ViewChild 和 ContentChild。</p>
 </blockquote>
+</li>
+</ul>
+</li>
+</ul>
 
           
         
