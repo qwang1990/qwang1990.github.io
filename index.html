@@ -477,8 +477,19 @@
 <li>在SizerComponent组件内通过点击按钮更新size的大小会影响fontSizePx的大小，最终会改变Resizable Text的显示</li>
 </ul>
 <p>双向绑定语法实际上是属性绑定和事件绑定的语法糖。 Angular将SizerComponent的绑定分解成这样：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;my-sizer [size]=&quot;fontSizePx&quot; (sizeChange)=&quot;fontSizePx=$event&quot;&gt;&lt;/my-sizer&gt;</div></pre></td></tr></table></figure></p>
-<p>我们希望能在像<input>和<select>这样的 HTML 元素上使用双向数据绑定。 可惜，原生 HTML 元素不遵循x值和xChange事件的模式。</select></p>
+<p>我们希望能在像&lt;input&gt;和&lt;select&gt;这样的 HTML 元素上使用双向数据绑定。 可惜，原生 HTML 元素不遵循x值和xChange事件的模式。</p>
 <p>幸运的是，Angular 以 NgModel 指令为桥梁，允许在表单元素上使用双向数据绑定。</p>
+<blockquote>
+<p>在使用ngModel指令之前需要先引入FormsModule</p>
+</blockquote>
+<p>现在假设我们需要把一个input的value属性和输入变更都绑定到组件的myName属性。 使用以下方式也可以满足这个需求:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;input [value]=&quot;myName&quot;</div><div class="line">       (input)=&quot;myName&quot; &gt;</div></pre></td></tr></table></figure></p>
+<p>但是这个很不好用，因为你需要记住每一个标签的设置值得属性和变更时需要绑定的事件<br>使用ngModel你可以用下面的方式完成同样的功能,它使用ngModel这个指令屏蔽了不同标签的设置属性和变更事件。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;input</div><div class="line">  [ngModel]=&quot;myName&quot;</div><div class="line">  (ngModelChange)=&quot;myName&quot;&gt;</div></pre></td></tr></table></figure></p>
+<p>上面代码可以简写为:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;input [(ngModel)]=&quot;myName&quot;&gt;</div></pre></td></tr></table></figure></p>
+<p>使用第二种方法比较简单，但是它的局限是只能完成属性值的绑定，如果想要实现更复杂的功能还是需要使用第一种写法。</p>
+<p>因为HTML的元素实现细节不同，所以angular2只对基本的HTML Form元素提供了支持。</p>
+<blockquote>
+<p>源码<a href="https://github.com/qwang1990/angular2/tree/master/angular_binding" target="_blank" rel="external">https://github.com/qwang1990/angular2/tree/master/angular_binding</a></p>
+</blockquote>
 
           
         
