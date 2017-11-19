@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="angular," />
+  <meta name="keywords" content="java,spring," />
 
 
 
@@ -87,19 +87,17 @@
 
 
 
-<meta name="description" content="概念Angular 模块能帮你把应用组织成多个内聚的功能块，可以类比java的package 定义1234567@NgModule(&amp;#123;  imports:      [ CommonModule ],  declarations: [ TitleComponent ],  exports:      [ TitleComponent ],  providers:    [ UserSe">
-<meta name="keywords" content="angular">
+<meta name="description" content="背景最近看dubbo源码，其中使用spring加载配置的时候用到了自定义xml标签的功能。所以就看了一下。其实从spring2.0开始就已经有该功能了。 步骤其实自定义xml标签十分简单，只需要一下四步  描述自定义元素的xml schema NamespaceHandler BeanDefinitionParse 在spring上注册上面这些元素  编写xml schema创建文件myns.xs">
+<meta name="keywords" content="java,spring">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Angular2 Module学习笔记">
-<meta property="og:url" content="http://songbingjia.cn/2017/04/08/Angular2-Module学习笔记/index.html">
+<meta property="og:title" content="spring XML extensions">
+<meta property="og:url" content="http://songbingjia.cn/2017/11/19/spring-XML-extensions/index.html">
 <meta property="og:site_name" content="宋兵甲的博客">
-<meta property="og:description" content="概念Angular 模块能帮你把应用组织成多个内聚的功能块，可以类比java的package 定义1234567@NgModule(&amp;#123;  imports:      [ CommonModule ],  declarations: [ TitleComponent ],  exports:      [ TitleComponent ],  providers:    [ UserSe">
-<meta property="og:image" content="https://cloud.githubusercontent.com/assets/13915081/25060334/0efbeb14-21cd-11e7-87af-9a08a372952d.png">
-<meta property="og:updated_time" content="2017-04-15T04:07:32.000Z">
+<meta property="og:description" content="背景最近看dubbo源码，其中使用spring加载配置的时候用到了自定义xml标签的功能。所以就看了一下。其实从spring2.0开始就已经有该功能了。 步骤其实自定义xml标签十分简单，只需要一下四步  描述自定义元素的xml schema NamespaceHandler BeanDefinitionParse 在spring上注册上面这些元素  编写xml schema创建文件myns.xs">
+<meta property="og:updated_time" content="2017-11-19T10:16:00.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Angular2 Module学习笔记">
-<meta name="twitter:description" content="概念Angular 模块能帮你把应用组织成多个内聚的功能块，可以类比java的package 定义1234567@NgModule(&amp;#123;  imports:      [ CommonModule ],  declarations: [ TitleComponent ],  exports:      [ TitleComponent ],  providers:    [ UserSe">
-<meta name="twitter:image" content="https://cloud.githubusercontent.com/assets/13915081/25060334/0efbeb14-21cd-11e7-87af-9a08a372952d.png">
+<meta name="twitter:title" content="spring XML extensions">
+<meta name="twitter:description" content="背景最近看dubbo源码，其中使用spring加载配置的时候用到了自定义xml标签的功能。所以就看了一下。其实从spring2.0开始就已经有该功能了。 步骤其实自定义xml标签十分简单，只需要一下四步  描述自定义元素的xml schema NamespaceHandler BeanDefinitionParse 在spring上注册上面这些元素  编写xml schema创建文件myns.xs">
 
 
 
@@ -127,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="http://songbingjia.cn/2017/04/08/Angular2-Module学习笔记/"/>
+  <link rel="canonical" href="http://songbingjia.cn/2017/11/19/spring-XML-extensions/"/>
 
 
 
 
 
-  <title> Angular2 Module学习笔记 | 宋兵甲的博客 </title>
+  <title> spring XML extensions | 宋兵甲的博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -316,7 +314,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://songbingjia.cn/2017/04/08/Angular2-Module学习笔记/">
+    <link itemprop="mainEntityOfPage" href="http://songbingjia.cn/2017/11/19/spring-XML-extensions/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="宋兵甲">
@@ -337,7 +335,7 @@
             
             
               
-                Angular2 Module学习笔记
+                spring XML extensions
               
             
           </h1>
@@ -352,8 +350,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-08T21:36:19+08:00">
-                2017-04-08
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-19T17:27:56+08:00">
+                2017-11-19
               </time>
             
 
@@ -375,8 +373,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/前端/" itemprop="url" rel="index">
-                    <span itemprop="name">前端</span>
+                  <a href="/categories/后端/" itemprop="url" rel="index">
+                    <span itemprop="name">后端</span>
                   </a>
                 </span>
 
@@ -393,7 +391,7 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a class="cloud-tie-join-count" href="/2017/04/08/Angular2-Module学习笔记/#comments" itemprop="discussionUrl">
+                <a class="cloud-tie-join-count" href="/2017/11/19/spring-XML-extensions/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count join-count" itemprop="commentCount"></span>
                 </a>
               </span>
@@ -420,65 +418,39 @@
       
 
       
-        
-<h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><p>Angular 模块能帮你把应用组织成多个内聚的功能块，可以类比java的package</p>
-<h1 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">@NgModule(&#123;</div><div class="line">  imports:      [ CommonModule ],</div><div class="line">  declarations: [ TitleComponent ],</div><div class="line">  exports:      [ TitleComponent ],</div><div class="line">  providers:    [ UserService ],</div><div class="line">  &lt;!--bootstrap:    [ AppComponent ]--&gt;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
-<p>Angular 模块是一个由@NgModule装饰器提供元数据的类，元数据包括：</p>
+        <h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>最近看dubbo源码，其中使用spring加载配置的时候用到了自定义xml标签的功能。所以就看了一下。其实从spring2.0开始就已经有该功能了。</p>
+<h1 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h1><p>其实自定义xml标签十分简单，只需要一下四步</p>
 <ul>
-<li>imports: 导入其它模块，从其它模块中获得本模块所需的组件、指令和管道</li>
-<li>declarations: 声明哪些组件、指令、管道属于该模块</li>
-<li>exports: 公开某些类，以便其它的组件模板可以使用它们</li>
-<li>provider: 在应用程序级提供服务，以便应用中的任何组件都能使用它</li>
-<li>bootstrap: 把指定组件标记为引导 (bootstrap) 组件。当 Angular 引导应用时，它会在 DOM 中渲染AppComponent，并把结果放进index.html的<my-app>元素标记内部。这个元数据只有根模块有。</my-app></li>
+<li>描述自定义元素的xml schema</li>
+<li>NamespaceHandler</li>
+<li>BeanDefinitionParse</li>
+<li>在spring上注册上面这些元素</li>
 </ul>
-<h1 id="模块基本使用"><a href="#模块基本使用" class="headerlink" title="模块基本使用"></a>模块基本使用</h1><ul>
-<li><p>声明组件和指令: 定义的组件和指令必须在模块中声明了，模板才能识别组件和指令对应的标签</p>
-<pre><code class="angular2html">例如我们定义指令HighlightDirective：
-  import { Directive, ElementRef } from &apos;@angular/core&apos;;
-
-  @Directive({ selector: &apos;[highlight]&apos; })
-  /** Highlight the attached element in gold */
-  export class HighlightDirective {
-    constructor(el: ElementRef) {
-      el.nativeElement.style.backgroundColor = &apos;gold&apos;;
-      console.log(
-        `* AppRoot highlight called for ${el.nativeElement.tagName}`);
-    }
-  }
-
-  在使用 &lt;h1 highlight&gt;{{title}}&lt;/h1&gt; 前必须要在我们的module的declaration中加入如下定义：
-  declarations: [
-    ... 
-    HighlightDirective,
-    ...
-  ],
-</code></pre>
-</li>
-<li><p>服务提供商<br>模块可以往应用的“根依赖注入器”中添加提供商，让那些服务在应用中到处可用,这个和在组件中提供服务不同。<font color="#ff0000">组件中提供的服务是分层级的。</font>这个在多级注入的时候会讲到。</p>
-</li>
-</ul>
-<h1 id="特性模块"><a href="#特性模块" class="headerlink" title="特性模块"></a>特性模块</h1><ul>
-<li><p>为什么要有多个模块<br>&emsp;&emsp;随着应用越来越大，如果只是用一个根模块就会出现很多问题。 比如指令冲突，我们在一个类中定义了ADirective，然后再另一个类中定义了同名的ADirective，并且他们的selector一样都是’sameName’.当我们在别处使用这个&lt;sameName … &gt;时就会出现，后一个declaration的指令会覆盖前一个declaration的指令。</p>
-</li>
-<li><p>什么是特性模块<br>特性模块和根模块一样都是是带有@NgModule装饰器及其元数据的类，它和根模块有着同一个依赖注入器。不同点是: </p>
-<pre><code>1.我们引导根模块来启动应用，但导入特性模块来扩展应用。
-2.特性模块可以对其它模块暴露或隐藏自己的实现。(通过exports来控制)
-</code></pre></li>
-<li><p>一个使用特性模块的小技巧—重新导出<br>场景如下:<br>&emsp;&emsp;  你有一个特性模块A, 它引入了CommonModule和FormsModule在自身模块内使用, 这时另一个模块B导入模块A, 而且B也需要使用CommonModule和FormsModule, 正常情况下B还需要导入CommonModule和FormsModule这两个模块,<br>但如果模块A将CommonModule和FormsModule export出去, 这时B就只需导入A模块即可。</p>
-</li>
-</ul>
-<h1 id="没图说个XX"><a href="#没图说个XX" class="headerlink" title="没图说个XX"></a>没图说个XX</h1><p><img src="https://cloud.githubusercontent.com/assets/13915081/25060334/0efbeb14-21cd-11e7-87af-9a08a372952d.png" alt="angular_module 001"></p>
-<p>本例中RootModule分别引入了ModuleM和ModuleW</p>
+<h1 id="编写xml-schema"><a href="#编写xml-schema" class="headerlink" title="编写xml schema"></a>编写xml schema</h1><p>创建文件myns.xsd<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</div><div class="line"><span class="tag">&lt;<span class="name">xsd:schema</span> <span class="attr">xmlns</span>=<span class="string">"http://www.mycompany.com/schema/myns"</span></span></div><div class="line">        <span class="attr">xmlns:xsd</span>=<span class="string">"http://www.w3.org/2001/XMLSchema"</span></div><div class="line">        <span class="attr">xmlns:beans</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></div><div class="line">        <span class="attr">targetNamespace</span>=<span class="string">"http://www.mycompany.com/schema/myns"</span></div><div class="line">        <span class="attr">elementFormDefault</span>=<span class="string">"qualified"</span></div><div class="line">        <span class="attr">attributeFormDefault</span>=<span class="string">"unqualified"</span>&gt;</div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">xsd:import</span> <span class="attr">namespace</span>=<span class="string">"http://www.springframework.org/schema/beans"</span>/&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">xsd:element</span> <span class="attr">name</span>=<span class="string">"dateformat"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">xsd:complexType</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">xsd:complexContent</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">xsd:extension</span> <span class="attr">base</span>=<span class="string">"beans:identifiedType"</span>&gt;</span></div><div class="line">                    <span class="tag">&lt;<span class="name">xsd:attribute</span> <span class="attr">name</span>=<span class="string">"lenient"</span> <span class="attr">type</span>=<span class="string">"xsd:boolean"</span>/&gt;</span></div><div class="line">                    <span class="tag">&lt;<span class="name">xsd:attribute</span> <span class="attr">name</span>=<span class="string">"pattern"</span> <span class="attr">type</span>=<span class="string">"xsd:string"</span> <span class="attr">use</span>=<span class="string">"required"</span>/&gt;</span></div><div class="line">                <span class="tag">&lt;/<span class="name">xsd:extension</span>&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">xsd:complexContent</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">xsd:complexType</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">xsd:element</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">xsd:schema</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p><a href="https://docs.spring.io/spring/docs/4.3.13.BUILD-SNAPSHOT/spring-framework-reference/htmlsingle/#xsd-configuration" target="_blank" rel="external">具体语法</a></p>
+<h1 id="NamespaceHandler"><a href="#NamespaceHandler" class="headerlink" title="NamespaceHandler"></a>NamespaceHandler</h1><p>用于解析我们上面定义的命名空间<br>常规用法为每一个顶级的xml元素定义一个bean definition，比如上面的xml schema中dateformat就对应一个bean definition<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> org.springframework.samples.xml;</div><div class="line"></div><div class="line"><span class="keyword">import</span> org.springframework.beans.factory.xml.NamespaceHandlerSupport;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyNamespaceHandler</span> <span class="keyword">extends</span> <span class="title">NamespaceHandlerSupport</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="comment">//在handler被调用前调用</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="comment">//此处为xml顶级元素dateformat注册了一个bean definition</span></div><div class="line">        registerBeanDefinitionParser(<span class="string">"dateformat"</span>, <span class="keyword">new</span> SimpleDateFormatBeanDefinitionParser());</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>在这个例子中NamespaceHandler中并没有太多逻辑，它其实就是一个分发作用，可以在其上注册很多的bean definition，对应每一个自定义标签。具体的处理逻辑在bean definition中。</p>
+<h1 id="BeanDefinitionParse"><a href="#BeanDefinitionParse" class="headerlink" title="BeanDefinitionParse"></a>BeanDefinitionParse</h1><p>BeanDefinitionParse用于解析一个自定义schema中单独的顶级xml元素。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> org.springframework.samples.xml;</div><div class="line"></div><div class="line"><span class="keyword">import</span> org.springframework.beans.factory.support.BeanDefinitionBuilder;</div><div class="line"><span class="keyword">import</span> org.springframework.beans.factory.xml.AbstractSingleBeanDefinitionParser;</div><div class="line"><span class="keyword">import</span> org.springframework.util.StringUtils;</div><div class="line"><span class="keyword">import</span> org.w3c.dom.Element;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.text.SimpleDateFormat;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SimpleDateFormatBeanDefinitionParser</span> <span class="keyword">extends</span> <span class="title">AbstractSingleBeanDefinitionParser</span> </span>&#123; </div><div class="line"></div><div class="line">    <span class="comment">//解析后的目标class</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> Class <span class="title">getBeanClass</span><span class="params">(Element element)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> SimpleDateFormat.class; </div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">//如何解析xml</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doParse</span><span class="params">(Element element, BeanDefinitionBuilder bean)</span> </span>&#123;</div><div class="line">        <span class="comment">// this will never be null since the schema explicitly requires that a value be supplied</span></div><div class="line">        String pattern = element.getAttribute(<span class="string">"pattern"</span>);</div><div class="line">        bean.addConstructorArg(pattern);</div><div class="line"></div><div class="line">        <span class="comment">// this however is an optional property</span></div><div class="line">        String lenient = element.getAttribute(<span class="string">"lenient"</span>);</div><div class="line">        <span class="keyword">if</span> (StringUtils.hasText(lenient)) &#123;</div><div class="line">            bean.addPropertyValue(<span class="string">"lenient"</span>, Boolean.valueOf(lenient));</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h1 id="在spring上注册上面这些元素"><a href="#在spring上注册上面这些元素" class="headerlink" title="在spring上注册上面这些元素"></a>在spring上注册上面这些元素</h1><p>这一步是最后一步，就是把前面的工作串起来，其实就是配置两个文件: </p>
 <ul>
-<li>ModuleM 声明了两个组件, 导入了FormModule, 并提供了ServiceMA服务,最后它导出了自己的其中一个组件ComponentMA和ForModule</li>
-<li>ModuleW 声明了两个组件, 导入了RouterModule, 并提供了ServiceWA服务,最后它只导出了自己的其中一个组件ComponentMA</li>
+<li><p>META-INF/spring.handlers</p>
+<p>  配置xml schema 和 namespace handler class的关系，本例中配置如下：</p>
+<p>  http\://www.mycompany.com/schema/myns=org.springframework.samples.xml.MyNamespaceHandler</p>
+<blockquote>
+<ol>
+<li>‘:’在java的properties文件中是关键字，所以要转移</li>
+<li>key值http\://www.mycompany.com/schema/myns 对应schema，value就是namespace handler的实现类</li>
+</ol>
+</blockquote>
+</li>
 </ul>
-<p>此时会有以下结果:</p>
-<pre><code>1. ModuleM 中可以使用自己声明的组件(即在自己的模板中使用组件的selector标签)和FormModule中的功能。
-2. ModuleW 中可以使用自己声明的组件(即在自己的模板中使用组件的selector标签)和RouterModule中的功能。
-3. 全局中都能使用 serviceA,ServiceMA,serviceWA。以为模块级别的依赖注入器是同一个。
-4. 在RootModule中可以使用FormModule,ComponentMA和ComponentWB。
-</code></pre><p>源码：<a href="https://github.com/qwang1990/angular2/tree/master/angular_module" target="_blank" rel="external">https://github.com/qwang1990/angular2/tree/master/angular_module</a></p>
+<ul>
+<li><p>META-INF/spring.schemas </p>
+<p>  指定xml schema文件的位置，本例中配置如下：<br>  http\://www.mycompany.com/schema/myns/myns.xsd=org/springframework/samples/xml/myns.xsd</p>
+</li>
+</ul>
+<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><p>经过上面4步以后，在程序就就可以使用自定义的标签了，用法如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</div><div class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></div><div class="line">    <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></div><div class="line">    <span class="attr">xmlns:myns</span>=<span class="string">"http://www.mycompany.com/schema/myns"</span></div><div class="line">    <span class="attr">xsi:schemaLocation</span>=<span class="string">"</span></div><div class="line">        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd</div><div class="line">        http://www.mycompany.com/schema/myns http://www.mycompany.com/schema/myns/myns.xsd"&gt;</div><div class="line"></div><div class="line">    <span class="comment">&lt;!--注意这里需要引用标签 xmlns:myns="http://www.mycompany.com/schema/myns"--&gt;</span></div><div class="line">    <span class="comment">&lt;!--并且在schemaLocation中加入自定义标签的文职--&gt;</span></div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">&lt;!-- as a top-level bean --&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">myns:dateformat</span> <span class="attr">id</span>=<span class="string">"defaultDateFormat"</span> <span class="attr">pattern</span>=<span class="string">"yyyy-MM-dd HH:mm"</span> <span class="attr">lenient</span>=<span class="string">"true"</span>/&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></div></pre></td></tr></table></figure>
 
       
     </div>
@@ -508,7 +480,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/angular/" rel="tag"># angular</a>
+            <a href="/tags/java/" rel="tag"># java</a>
+          
+            <a href="/tags/spring/" rel="tag"># spring</a>
           
         </div>
       
@@ -521,15 +495,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/04/17/Angular2-Binding学习笔记/" rel="next" title="Angular2-Binding学习笔记">
-                <i class="fa fa-chevron-left"></i> Angular2-Binding学习笔记
-              </a>
-            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/07/23/java-序列化-一/" rel="prev" title="java 序列化(一)">
+                java 序列化(一) <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -671,7 +645,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概念"><span class="nav-number">1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#定义"><span class="nav-number">2.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#模块基本使用"><span class="nav-number">3.</span> <span class="nav-text">模块基本使用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#特性模块"><span class="nav-number">4.</span> <span class="nav-text">特性模块</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#没图说个XX"><span class="nav-number">5.</span> <span class="nav-text">没图说个XX</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#步骤"><span class="nav-number">2.</span> <span class="nav-text">步骤</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#编写xml-schema"><span class="nav-number">3.</span> <span class="nav-text">编写xml schema</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#NamespaceHandler"><span class="nav-number">4.</span> <span class="nav-text">NamespaceHandler</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#BeanDefinitionParse"><span class="nav-number">5.</span> <span class="nav-text">BeanDefinitionParse</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#在spring上注册上面这些元素"><span class="nav-number">6.</span> <span class="nav-text">在spring上注册上面这些元素</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用"><span class="nav-number">7.</span> <span class="nav-text">使用</span></a></li></ol></div>
             
 
           </div>

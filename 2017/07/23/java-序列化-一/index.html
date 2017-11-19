@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="java," />
 
 
 
@@ -87,16 +87,17 @@
 
 
 
-<meta name="description" content="小菜鸟的技术博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="tags">
-<meta property="og:url" content="http://songbingjia.cn/tags/index.html">
+<meta name="description" content="java序列化废话序列化就是为了保存在内存中的各种对象的状态，并且可以把保存的对象状态再读出来。虽然你可以用你自己的各种各样的方法来保存Object States，但是Java给你提供一种应该比你自己好的保存对象状态的机制,那就是序列化。在java中实现Serializable接口就说明该类可以被序列化。一般用于:  把内存中对象保存在文件或数据库中 网络传输  几个问题1.静态成员变量可以被序列">
+<meta name="keywords" content="java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java 序列化(一)">
+<meta property="og:url" content="http://songbingjia.cn/2017/07/23/java-序列化-一/index.html">
 <meta property="og:site_name" content="宋兵甲的博客">
-<meta property="og:description" content="小菜鸟的技术博客">
-<meta property="og:updated_time" content="2017-04-10T15:19:49.000Z">
+<meta property="og:description" content="java序列化废话序列化就是为了保存在内存中的各种对象的状态，并且可以把保存的对象状态再读出来。虽然你可以用你自己的各种各样的方法来保存Object States，但是Java给你提供一种应该比你自己好的保存对象状态的机制,那就是序列化。在java中实现Serializable接口就说明该类可以被序列化。一般用于:  把内存中对象保存在文件或数据库中 网络传输  几个问题1.静态成员变量可以被序列">
+<meta property="og:updated_time" content="2017-07-23T14:23:03.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="tags">
-<meta name="twitter:description" content="小菜鸟的技术博客">
+<meta name="twitter:title" content="java 序列化(一)">
+<meta name="twitter:description" content="java序列化废话序列化就是为了保存在内存中的各种对象的状态，并且可以把保存的对象状态再读出来。虽然你可以用你自己的各种各样的方法来保存Object States，但是Java给你提供一种应该比你自己好的保存对象状态的机制,那就是序列化。在java中实现Serializable接口就说明该类可以被序列化。一般用于:  把内存中对象保存在文件或数据库中 网络传输  几个问题1.静态成员变量可以被序列">
 
 
 
@@ -124,19 +125,13 @@
 
 
 
-  <link rel="canonical" href="http://songbingjia.cn/tags/"/>
+  <link rel="canonical" href="http://songbingjia.cn/2017/07/23/java-序列化-一/"/>
 
 
 
 
 
-  <title>
-  
-
-  
-    tags | 宋兵甲的博客
-  
-</title>
+  <title> java 序列化(一) | 宋兵甲的博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -171,7 +166,7 @@
     
   
 
-  <div class="container sidebar-position-left  ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -310,25 +305,199 @@
             
 
   <div id="posts" class="posts-expand">
-  <header class="post-header">
+    
 
-	<h1 class="post-title" itemprop="name headline">tags</h1>
+  
 
+  
+  
+  
 
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://songbingjia.cn/2017/07/23/java-序列化-一/">
 
-</header>
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="宋兵甲">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://cloud.githubusercontent.com/assets/13915081/24868296/3248ddcc-1e42-11e7-857a-0e4b4cebb75e.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="宋兵甲的博客">
+    </span>
 
     
-    
-      <div class="tag-cloud">
-        <div class="tag-cloud-title">
-            目前共计 3 个标签
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                java 序列化(一)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-23T19:37:19+08:00">
+                2017-07-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/后端/" itemprop="url" rel="index">
+                    <span itemprop="name">后端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/2017/07/23/java-序列化-一/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
         </div>
-        <div class="tag-cloud-tags">
-          <a href="/tags/angular/" style="font-size: 30px; color: #111">angular</a> <a href="/tags/java/" style="font-size: 30px; color: #111">java</a> <a href="/tags/spring/" style="font-size: 12px; color: #ccc">spring</a>
-        </div>
-      </div>
+      </header>
     
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="java序列化"><a href="#java序列化" class="headerlink" title="java序列化"></a>java序列化</h1><h2 id="废话"><a href="#废话" class="headerlink" title="废话"></a>废话</h2><p>序列化就是为了保存在内存中的各种对象的状态，并且可以把保存的对象状态再读出来。虽然你可以用你自己的各种各样的方法来保存Object States，<br>但是Java给你提供一种应该比你自己好的保存对象状态的机制,那就是序列化。在java中实现Serializable接口就说明该类可以被序列化。<br>一般用于:</p>
+<ul>
+<li>把内存中对象保存在文件或数据库中</li>
+<li>网络传输</li>
+</ul>
+<h2 id="几个问题"><a href="#几个问题" class="headerlink" title="几个问题"></a>几个问题</h2><p>1.静态成员变量可以被序列化么？<br> 不行的。<br> <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Foo</span> <span class="keyword">implements</span> <span class="title">Serializable</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = -<span class="number">3450064362986273896L</span>;</div><div class="line">       <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> a = <span class="number">1</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SerialMain</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] arg)</span> <span class="keyword">throws</span> IOException, ClassNotFoundException </span>&#123;</div><div class="line">        Foo myFoo = <span class="keyword">new</span> Foo(); </div><div class="line">        Foo.a = <span class="number">100</span>;</div><div class="line"></div><div class="line">        FileOutputStream fs = <span class="keyword">new</span> FileOutputStream(<span class="string">"foo.ser"</span>);</div><div class="line">        ObjectOutputStream os = <span class="keyword">new</span> ObjectOutputStream(fs);</div><div class="line">        os.writeObject(myFoo);</div><div class="line">        os.close();</div><div class="line"></div><div class="line">        Foo.setA(<span class="number">10000</span>);</div><div class="line"></div><div class="line">        FileInputStream fi=<span class="keyword">new</span> FileInputStream(<span class="string">"foo.ser"</span>);</div><div class="line">        ObjectInputStream oi=<span class="keyword">new</span> ObjectInputStream(fi);</div><div class="line">        Foo box=(Foo)oi.readObject();</div><div class="line">        oi.close();</div><div class="line">        System.out.println(box);</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>结果为 a=10000<br>因为序列化是记录对象的状态，并不记录类的状态。</p>
+<p>2.serialVersionUID的作用<br>serialVersionUID可以理解为可序列化对象的一个运行时版本号，当反序列化时jvm会对比目标对象和源数据之间的版本号是否一致，如果不一致会<br>报InvalidClassException。导致serialVersionUID不一致的可能有很多，比如对象属性的变化，环境的不同等，所以为了兼容性，建议Serializable对象<br>都定义一个serialVersionUID成员变量，格式如上代码所示。这样既能避免环境问题，又能当对象版本变化时不报错（此时只序列化能识别的对象，但是我感觉这<br>并不是一个好的现象，这样会不能及时发现升级，有可能造成更大的错误。）</p>
+<p>3.enum序列化<br>enum序列化其实被序列化的是名字，反序列化时用valueof方法来匹配，这个比较坑，特别是系统升级时，所以使用时一定要谨慎。</p>
+<h1 id="protobuff"><a href="#protobuff" class="headerlink" title="protobuff"></a>protobuff</h1><h2 id="什么是protobuf"><a href="#什么是protobuf" class="headerlink" title="什么是protobuf"></a>什么是protobuf</h2><p>protobuff是google开源的语言无关，平台无关的可扩展的序列化结构（就像xml一样，不过更简单，更高效）。用户可以通过一次定义如何构建数据，然后可以使用<br>不同的语言方便的读写这些数据。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/java/" rel="tag"># java</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/19/spring-XML-extensions/" rel="next" title="spring XML extensions">
+                <i class="fa fa-chevron-left"></i> spring XML extensions
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/04/17/Angular2-Binding学习笔记/" rel="prev" title="Angular2-Binding学习笔记">
+                Angular2-Binding学习笔记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
@@ -337,6 +506,12 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
 
         </div>
         
@@ -356,8 +531,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="https://cloud.githubusercontent.com/assets/13915081/24868296/3248ddcc-1e42-11e7-857a-0e4b4cebb75e.jpg"
@@ -430,6 +614,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#java序列化"><span class="nav-number">1.</span> <span class="nav-text">java序列化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#废话"><span class="nav-number">1.1.</span> <span class="nav-text">废话</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#几个问题"><span class="nav-number">1.2.</span> <span class="nav-text">几个问题</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#protobuff"><span class="nav-number">2.</span> <span class="nav-text">protobuff</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是protobuf"><span class="nav-number">2.1.</span> <span class="nav-text">什么是protobuf</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -548,6 +748,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
 
   
 
