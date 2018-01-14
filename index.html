@@ -478,7 +478,95 @@
 <h3 id="共享的common切点定义"><a href="#共享的common切点定义" class="headerlink" title="共享的common切点定义"></a>共享的common切点定义</h3><p>在一个企业级的应用中，建议定义一个SystemArchitecture切面来声明共享的pointcut<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.xyz.someapp;</div><div class="line"></div><div class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.Aspect;</div><div class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.Pointcut;</div><div class="line"></div><div class="line"><span class="meta">@Aspect</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SystemArchitecture</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * join point是web层，定义在com.xyz.someapp.web或其子package下的方法</div><div class="line">     */</div><div class="line">    <span class="meta">@Pointcut</span>(<span class="string">"within(com.xyz.someapp.web..*)"</span>)</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">inWebLayer</span><span class="params">()</span> </span>&#123;&#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * join point是服务层，定义在com.xyz.someapp.service或其子packege下的方法</div><div class="line">     */</div><div class="line">    <span class="meta">@Pointcut</span>(<span class="string">"within(com.xyz.someapp.service..*)"</span>)</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">inServiceLayer</span><span class="params">()</span> </span>&#123;&#125;</div><div class="line"></div><div class="line">    <span class="meta">@Pointcut</span>(<span class="string">"within(com.xyz.someapp.dao..*)"</span>)</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">inDataAccessLayer</span><span class="params">()</span> </span>&#123;&#125;</div><div class="line"></div><div class="line">    <span class="meta">@Pointcut</span>(<span class="string">"execution(* com.xyz.someapp..service.*.*(..))"</span>)</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">businessService</span><span class="params">()</span> </span>&#123;&#125;</div><div class="line"></div><div class="line">    <span class="meta">@Pointcut</span>(<span class="string">"execution(* com.xyz.someapp.dao.*.*(..))"</span>)</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">dataAccessOperation</span><span class="params">()</span> </span>&#123;&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>定义在上述切面中的切点可以在任何地方被访问到。比如想在服务层做一个事物管理，可以这么写:<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">aop:config&gt;</div><div class="line">    <span class="tag">&lt;<span class="name">aop:advisor</span></span></div><div class="line">        <span class="attr">pointcut</span>=<span class="string">"com.xyz.someapp.SystemArchitecture.businessService()"</span></div><div class="line">        <span class="attr">advice-ref</span>=<span class="string">"tx-advice"</span>/&gt;</div><div class="line"><span class="tag">&lt;/<span class="name">aop:config</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">tx:advice</span> <span class="attr">id</span>=<span class="string">"tx-advice"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">tx:attributes</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">tx:method</span> <span class="attr">name</span>=<span class="string">"*"</span> <span class="attr">propagation</span>=<span class="string">"REQUIRED"</span>/&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">tx:attributes</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">tx:advice</span>&gt;</span></div></pre></td></tr></table></figure></p>
 <p>&lt;aop:config&gt; 和 &lt;aop:advisor&gt;元素，transaction元素会在后面讲到。</p>
-<h3 id="举例"><a href="#举例" class="headerlink" title="举例"></a>举例</h3>
+<h3 id="举例"><a href="#举例" class="headerlink" title="举例"></a>举例</h3><p>Spring AOP用户最常用的就是execution切点选择器。格式如下:</p>
+<blockquote>
+<p>execution(modifiers-pattern? ret-type-pattern declaring-type-pattern?name-pattern(param-pattern)<br>              throws-pattern?)</p>
+</blockquote>
+<p>上面例子中，除了ret-type-pattern,name-pattern,param-pattern外其余都是可选的。你经会用<em>来表示return type，它可以匹配所以返回类型。<br>name-pattern用来匹配方法名。param-pattern稍微有点复杂:()匹配无参数,(..)匹配任意数量的参数(0或很多),(\</em>)表示有一个任意类型的参数,<br>(*,String)匹配两个参数，第一个是任意类型，第二个是String。</p>
+<p>下面看一些常见的例子:</p>
+<ul>
+<li><p>所有public方法</p>
+<blockquote>
+<p>execution(public <em> </em>(..))</p>
+</blockquote>
+</li>
+<li><p>所有已set开头的方法</p>
+<blockquote>
+<p>execution(<em> set</em>(..))</p>
+</blockquote>
+</li>
+<li><p>所有AccountService接口里的方法</p>
+<blockquote>
+<p>execution(<em> com.xyz.service.AccountService.</em>(..))</p>
+</blockquote>
+</li>
+<li><p>所有定义在service包下的方法</p>
+<blockquote>
+<p>execution(<em> com.xyz.service.\</em>.*(..))</p>
+</blockquote>
+</li>
+<li><p>所有service包和其子包的方法</p>
+<blockquote>
+<p>execution(<em> com.xyz.service..\</em>.*(..))</p>
+</blockquote>
+</li>
+<li><p>在service包下的所有join point(在Spring AOP中只有方法)</p>
+<blockquote>
+<p>within(com.xyz.service.*)</p>
+</blockquote>
+</li>
+<li><p>在service包及其子包下的所有join point(在Spring AOP中只有方法)</p>
+<blockquote>
+<p>within(com.xyz.service..*) </p>
+</blockquote>
+</li>
+<li><p>所有代理实现AccountService接口的join point</p>
+<blockquote>
+<p>this(com.xyz.service.AccountService)</p>
+</blockquote>
+</li>
+<li><p>所有目标对象实现AccountService接口的</p>
+<blockquote>
+<p>target(com.xyz.service.AccountService)</p>
+</blockquote>
+</li>
+<li><p>匹配一个参数，并且运行时参数实现Serializable</p>
+<blockquote>
+<p>args(java.io.Serializable)<br>注意：改切点和execution(<em> </em>(java.io.Serializable))是不同的，args匹配运行时传入的是Serializable的，execution匹配的是声明为Serializable的</p>
+</blockquote>
+</li>
+<li><p>目标对象有@Transaction注解</p>
+<blockquote>
+<p>@target(org.springframework.transaction.annotation.Transactional)</p>
+</blockquote>
+</li>
+<li><p>对象声明了@Transaction注解</p>
+<blockquote>
+<p>@within(org.springframework.transaction.annotation.Transactional)</p>
+</blockquote>
+</li>
+<li><p>方法有@Transaction注解</p>
+<blockquote>
+<p>@annotation(org.springframework.transaction.annotation.Transactional)</p>
+</blockquote>
+</li>
+<li><p>方法带有一个参数，并且运行时传入的参数带有@Classified注解</p>
+<blockquote>
+<p>@args(com.xyz.security.Classified)</p>
+</blockquote>
+</li>
+<li><p>Spring bean名为tradeService的所有方法</p>
+<blockquote>
+<p>bean(tradeService)</p>
+</blockquote>
+</li>
+<li><p>所有匹配通配符表达式的bean的方法</p>
+<blockquote>
+<p>bean(*Service)</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="写一个好的切点"><a href="#写一个好的切点" class="headerlink" title="写一个好的切点"></a>写一个好的切点</h3>
           
         
       
