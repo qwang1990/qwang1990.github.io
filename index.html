@@ -612,7 +612,25 @@
 <p>上述方法不能用在泛型集合上。比如下面这种写法就是<font color="#dc143c" size="3">错的！</font><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Before</span>(<span class="string">"execution(* ..Sample+.sampleGenericCollectionMethod(*)) &amp;&amp; args(param)"</span>)</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">beforeSampleMethod</span><span class="params">(Collection&lt;MyType&gt; param)</span> </span>&#123;</div><div class="line">    <span class="comment">// Advice implementation</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>为了使上面工作，我们必须检查集合中的每一个元素，这个是不合理的就像在泛型中出现null一样。为了达到类似的效果，你可以使用参数Collection&lt;?&gt;，然后<br>手动的一个个的检查参数类型。</p>
 <ul>
-<li>确定参数名称</li>
+<li><p>决定参数名字<br>advice触发时的参数依赖于pointcut表达式中的参数名和声明在(advice和pointcut)方法签名中参数名的匹配。但是参数名在java反射中是无法获取的，所以Spring AOP用了下面机制来确定方法名。</p>
+<ol>
+<li><p>用户显示声明参数值，advice和pointcut注解都有一个可选的”argNames”属性，这些参数运行时可用。比如</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Before</span>(value=<span class="string">"com.xyz.lib.Pointcuts.anyPublicMethod() &amp;&amp; target(bean) &amp;&amp; @annotation(auditable)"</span>,</div><div class="line">        argNames=<span class="string">"bean,auditable"</span>)</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">audit</span><span class="params">(Object bean, Auditable auditable)</span> </span>&#123;</div><div class="line">    AuditCode code = auditable.value();</div><div class="line">    <span class="comment">// ... use code and bean</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>如果第一个参数是JoinPoint, ProceedingJoinPoint, 或 JoinPoint.StaticPart类型，你可以在argNames属性中省略改名字。比如如果上面的例子接收一个<br>join point对象。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Before</span>(value=<span class="string">"com.xyz.lib.Pointcuts.anyPublicMethod() &amp;&amp; target(bean) &amp;&amp; @annotation(auditable)"</span>,</div><div class="line">        argNames=<span class="string">"bean,auditable"</span>)</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">audit</span><span class="params">(JoinPoint jp, Object bean, Auditable auditable)</span> </span>&#123;</div><div class="line">    AuditCode code = auditable.value();</div><div class="line">    <span class="comment">// ... use code, bean, and jp</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这种方式对那些不需要其他join point上下文的增强特别方便，就不必写argNames属性了。</p>
+</li>
+<li><p>使用’argNames’属性有点笨拙，所以如果’argNames’属性没有声明，Spring AOP会看debug信息，从本地变量表中决定参数名称。这个信息只要class编译时<br>加参数’-g:vars’就可以了。加这个参数会有如下3个影响:(1)你的代码会更容易理解。(2)class文件会稍微大点。(3)去除无用本地变量的优化将不会开启。总而言之，<br>这个对你没啥影响。</p>
+<blockquote>
+<p>如果@AspectJ被AspectJ编译器(ajc)编译，这不需要debug information。</p>
+</blockquote>
+</li>
+<li><p>如果代码编译没有debug信息，Spring AOP会尝试着推断(比如，如果切点表达式只有一个参数，增强方法也只有一个参数，显然就是它)。如果参数绑定是模棱两可的，<br>者会抛出AmbiguousBindingException异常。</p>
+</li>
+<li><p>如果上述机制全都失败，者会抛出IllegalArgumentException异常。</p>
+</li>
+</ol>
+</li>
 </ul>
 
           
