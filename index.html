@@ -431,7 +431,7 @@
 <li>Around advice:在方法执行的前后来增强。这种类型的增强是能力最大的，它可以在方法执行的前或后加入自定义的行为。它也可以是否继续执行或直接<br>返回或抛出异常。</li>
 </ul>
 <h2 id="Spring-AOP的能力和目标"><a href="#Spring-AOP的能力和目标" class="headerlink" title="Spring AOP的能力和目标"></a>Spring AOP的能力和目标</h2><p>Spring AOP是用纯java实现的，不需要其他的特别编译，不用控制类加载机制，所以适合用在servlet容器和应用中。</p>
-<p>Spring AOP暂时只支持方法类型join point(建议是spring beans中的方法)。字段interception暂时不支持，虽然它可以在不破坏Spring AOP核心api<br>的基础上添加。如果你想增强字段，可以考虑使用AspectJ。</p>
+<p>Spring AOP暂时只支持方法类型join point(建议是spring beans中的方法)。字段interception暂时不支持，虽然它可以在不破坏Spring AOP核心api的基础上添加。如果你想增强字段，可以考虑使用AspectJ。</p>
 <p>Spring AOP的实现和其他大多AOP框架不尽相同。它致力于更紧密的结合AOP实现和Spring IoC，而不是提供最完成的AOP实现。</p>
 <p>因此Spring AOP通常用于结合Spring IoC。切面可以使用普通的bean的语法。这是Spring AOP和其他AOP最大的不同。当然也有很多事情使用不适合使用<br>Spring AOP，比如增强一个细粒度的对象（例如domain object），这时使用AspectJ是一个更好的选择。</p>
 <p>Spring AOP从来不在提供完备的AOP功能上和AspectJ竞争。我相信每种proxy-based框架如Spring AOP和成熟的(type-based)框架如AspectJ都是有价值的。它们的关系应该是互相协作<br>而不是竞争。Spring为了能使所有的AOP用户无缝集成了Spring AOP，IoC和AspectJ。</p>
