@@ -314,6 +314,349 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://songbingjia.cn/2018/02/12/设计模式系列-结构型模式1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="宋兵甲">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://cloud.githubusercontent.com/assets/13915081/24868296/3248ddcc-1e42-11e7-857a-0e4b4cebb75e.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="宋兵甲的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2018/02/12/设计模式系列-结构型模式1/" itemprop="url">
+                  设计模式系列---结构型模式1
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-12T22:10:28+08:00">
+                2018-02-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/后端/" itemprop="url" rel="index">
+                    <span itemprop="name">后端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="结构型模式"><a href="#结构型模式" class="headerlink" title="结构型模式"></a>结构型模式</h1><h2 id="适配器模式"><a href="#适配器模式" class="headerlink" title="适配器模式"></a>适配器模式</h2><p>将一个类的接口转换成客户希望的另外一个接口。适配器模式使得原本由于接口不兼容而不能一起工作的那些类可以一起工作。<br>假设船长想使用RowingBoat出海<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Captain</span> </span>&#123;</div><div class="line">  <span class="keyword">private</span> RowingBoat rowingBoat;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="title">Captain</span><span class="params">()</span> </span>&#123;&#125;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="title">Captain</span><span class="params">(RowingBoat rowingBoat)</span> </span>&#123;</div><div class="line">    <span class="keyword">this</span>.rowingBoat = rowingBoat;</div><div class="line">  &#125;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setRowingBoat</span><span class="params">(RowingBoat rowingBoat)</span> </span>&#123;</div><div class="line">    <span class="keyword">this</span>.rowingBoat = rowingBoat;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">row</span><span class="params">()</span> </span>&#123;</div><div class="line">    rowingBoat.row();</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>RowingBoat的接口如下:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">RowingBoat</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">row</span><span class="params">()</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>此时你只有一个FishingBoat，实现如下:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FishingBoat</span> </span>&#123;</div><div class="line">      <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger LOGGER = LoggerFactory.getLogger(FishingBoat.class);</div><div class="line"></div><div class="line">      <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sail</span><span class="params">()</span> </span>&#123;</div><div class="line">        LOGGER.info(<span class="string">"The fishing boat is sailing"</span>);</div><div class="line">      &#125;</div><div class="line">&#125;r</div></pre></td></tr></table></figure></p>
+<p>为了能出海，我们需要有一个adapter，把FishingBoat适配成RowingBoat:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FishingBoatAdapter</span> <span class="keyword">implements</span> <span class="title">RowingBoat</span> </span>&#123;</div><div class="line">  <span class="keyword">private</span> FishingBoat boat;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="title">FishingBoatAdapter</span><span class="params">()</span> </span>&#123;</div><div class="line">    boat = <span class="keyword">new</span> FishingBoat();</div><div class="line">  &#125;</div><div class="line">  <span class="meta">@Override</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">row</span><span class="params">()</span> </span>&#123;</div><div class="line">    boat.sail();</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="装饰器模式"><a href="#装饰器模式" class="headerlink" title="装饰器模式"></a>装饰器模式</h2><p>允许向一个现有的对象添加新的功能，同时又不改变其结构。使用装饰比使用子类要灵活，而且不会造成子类膨胀的问题。<br>例如有一个接口Troll:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Troll</span> </span>&#123;</div><div class="line">  <span class="function"><span class="keyword">void</span> <span class="title">attack</span><span class="params">()</span></span>;</div><div class="line">  <span class="function"><span class="keyword">int</span> <span class="title">getAttackPower</span><span class="params">()</span></span>;</div><div class="line">  <span class="function"><span class="keyword">void</span> <span class="title">fleeBattle</span><span class="params">()</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>他有一个简单的实现:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SimpleTroll</span> <span class="keyword">implements</span> <span class="title">Troll</span> </span>&#123;</div><div class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger LOGGER = LoggerFactory.getLogger(SimpleTroll.class);</div><div class="line">  <span class="meta">@Override</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">attack</span><span class="params">()</span> </span>&#123;</div><div class="line">    LOGGER.info(<span class="string">"The troll tries to grab you!"</span>);</div><div class="line">  &#125;</div><div class="line">  <span class="meta">@Override</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getAttackPower</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="number">10</span>;</div><div class="line">  &#125;</div><div class="line">  <span class="meta">@Override</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fleeBattle</span><span class="params">()</span> </span>&#123;</div><div class="line">    LOGGER.info(<span class="string">"The troll shrieks in horror and runs away!"</span>);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>这时我们想给这个实现增加一点其他的功能，比如给这个巨人配备一个棒子:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ClubbedTroll</span> <span class="keyword">implements</span> <span class="title">Troll</span> </span>&#123;</div><div class="line"></div><div class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger LOGGER = LoggerFactory.getLogger(ClubbedTroll.class);</div><div class="line"></div><div class="line">  <span class="keyword">private</span> Troll decorated;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="title">ClubbedTroll</span><span class="params">(Troll decorated)</span> </span>&#123;</div><div class="line">    <span class="keyword">this</span>.decorated = decorated;</div><div class="line">  &#125;</div><div class="line">  <span class="meta">@Override</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">attack</span><span class="params">()</span> </span>&#123;</div><div class="line">    decorated.attack();</div><div class="line">    LOGGER.info(<span class="string">"The troll swings at you with a club!"</span>);</div><div class="line">  &#125;</div><div class="line">  <span class="meta">@Override</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getAttackPower</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="comment">//哈哈哈，我的攻击+10了</span></div><div class="line">    <span class="keyword">return</span> decorated.getAttackPower() + <span class="number">10</span>;</div><div class="line">  &#125;</div><div class="line">  <span class="meta">@Override</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fleeBattle</span><span class="params">()</span> </span>&#123;</div><div class="line">    decorated.fleeBattle();</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>我们会发现装饰器依旧实现了原接口，因为它不改变结构。大多情况下装饰器会有一个以接口为参数的构造函数，因为它只是对原来的某种实现的一种装饰。适配器是改变接口的，这就是最大的区别。</p>
+<p>为什么要把它俩放在一起讲呢？因为在java I/O的实现中使用到了它俩。<br>首先 java I/O 从方向上可分为输入/输出，从数据上可分为byte/char。<br>InputStream和OutputStream对Byte字节流的输入和输出，而Reader和Writer各自占据Char字符流的输入和输出。</p>
+<ul>
+<li>装饰器的使用<br>因为java I/O库里有各种各样的组合的实现，如果用继承的话那就太庞大了。Java I/O是由一些原始流(Original Stream)和一些装饰流(Wrapper Stream)组成的。以输入流为类:</li>
+</ul>
+<ul>
+<li><p>原始流处理器</p>
+<pre><code>原始流处理器接收一个Byte数组对象，String对象，FileDiscriptor对象或者不同类型的流源对象，原始流处理器包括以下四种：
+
+- ByteArrayInputStream：接收一个Byte数组作为流的源。
+- FileInputStream:建立一个与文件有关的输入流。接收一个File对象作为流的源。
+- PipedInputStream：可以与PipedOutputStream配合使用，用于读入一个数据管道的数据，接收一个PipedOutputStream作为源。
+- StringBufferInputStream：将一个字符串缓冲区转换为一个输入流。(废弃)  
+</code></pre></li>
+<li><p>链接流处理器</p>
+<pre><code>所谓链接流处理器，就是可以接收另一个流对象作为源，并对之进行功能扩展的类。InputStream类型的链接处理接收另一个InputStream对象作为流源。
+以FilterInputStream过滤输入流的子类为例。它将另一个输入流作为流源。这个类的子类包括以下几种：
+
+- BufferedInputStream：用来从硬盘将数据读入到一个内存缓冲区中，并从缓冲区提供数据。
+- DataInputStream：提供基于多字节的读取方法，可以读取原始类型的数据。
+- LineNumberInputStream：提供带有行计数功能的过滤输入流。
+- PushbackInputStream：提供特殊的功能，可以将已经读取的字节“推回”到输入流中。
+</code></pre></li>
+</ul>
+<p>这里原始流就是被装饰者，装饰流是装饰器，它一般有以原始流为参数的构造函数，并且实现了共有的基类InputStream。</p>
+<ul>
+<li>适配器的应用<br>StringBufferInputStream就是一个适配器类，它继承了InputStream，同时持有一个对String的引用，它将String适配成一个InputSteam。</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://songbingjia.cn/2018/02/12/设计模式系列-创建型模式/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="宋兵甲">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://cloud.githubusercontent.com/assets/13915081/24868296/3248ddcc-1e42-11e7-857a-0e4b4cebb75e.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="宋兵甲的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2018/02/12/设计模式系列-创建型模式/" itemprop="url">
+                  设计模式系列---创建型模式
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-12T22:05:50+08:00">
+                2018-02-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/后端/" itemprop="url" rel="index">
+                    <span itemprop="name">后端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="创建型模式"><a href="#创建型模式" class="headerlink" title="创建型模式"></a>创建型模式</h1><h2 id="简单工厂"><a href="#简单工厂" class="headerlink" title="简单工厂"></a>简单工厂</h2><p>不多解释，太简单了。就是用一个工厂决定要产生的类。比如Shape是一个基类，它有很多子类Circle，Rectangle，Square。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ShapeFactory</span> </span>&#123;</div><div class="line">   <span class="comment">//使用 getShape 方法获取形状类型的对象</span></div><div class="line">   <span class="function"><span class="keyword">public</span> Shape <span class="title">getShape</span><span class="params">(String shapeType)</span></span>&#123;</div><div class="line">      <span class="keyword">if</span>(shapeType == <span class="keyword">null</span>)&#123;</div><div class="line">         <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">      &#125;        </div><div class="line">      <span class="keyword">if</span>(shapeType.equalsIgnoreCase(<span class="string">"CIRCLE"</span>))&#123;</div><div class="line">         <span class="keyword">return</span> <span class="keyword">new</span> Circle();</div><div class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span>(shapeType.equalsIgnoreCase(<span class="string">"RECTANGLE"</span>))&#123;</div><div class="line">         <span class="keyword">return</span> <span class="keyword">new</span> Rectangle();</div><div class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span>(shapeType.equalsIgnoreCase(<span class="string">"SQUARE"</span>))&#123;</div><div class="line">         <span class="keyword">return</span> <span class="keyword">new</span> Square();</div><div class="line">      &#125;</div><div class="line">      <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>缺点明显，加一个子类就要改一下工厂。</p>
+<h2 id="抽象工厂"><a href="#抽象工厂" class="headerlink" title="抽象工厂"></a>抽象工厂</h2><p>一个中心工厂创建其他的工厂。其他的工厂可以理解为一个产品系列，它可以生产很多的产品。<br>优点：因为中心工厂是创建工厂的，所以用户拿到工厂后产生的产品是一个系列的。<br>如下面这个例子：<br>我们有一个王国的工厂接口：KingdomFactory，它可以生产士兵，就是我们说的产品。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">KingdomFactory</span> </span>&#123;</div><div class="line">  <span class="function">Army <span class="title">createArmy</span><span class="params">()</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>这时我们对该工厂有两个实现：精灵王国和兽人王国，它们分别生产自己的士兵，它们就是两个系列。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//这里ElfArmy 和 OrcArmy都是Army的子类</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ElfKingdomFactory</span> <span class="keyword">implements</span> <span class="title">KingdomFactory</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> Army <span class="title">createArmy</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ElfArmy();</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">OrcKingdomFactory</span> <span class="keyword">implements</span> <span class="title">KingdomFactory</span> </span>&#123;</div><div class="line">  <span class="function"><span class="keyword">public</span> Army <span class="title">createArmy</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> OrcArmy();</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>中心工厂的核心方法定义如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">public static KingdomFactory makeFactory(KingdomType type) &#123;</div><div class="line">      switch (type) &#123;</div><div class="line">        case ELF:</div><div class="line">          return new ElfKingdomFactory();</div><div class="line">        case ORC:</div><div class="line">          return new OrcKingdomFactory();</div><div class="line">        default:</div><div class="line">          throw new IllegalArgumentException(&quot;KingdomType not supported.&quot;);</div><div class="line">      &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<p>缺点也很明显：增加产品系列比较麻烦。</p>
+<h2 id="建造者模式-builder"><a href="#建造者模式-builder" class="headerlink" title="建造者模式(builder)"></a>建造者模式(builder)</h2><p>这个可以类比JAVA中的StringBuilder。用于对象比较复杂，使用构造函数比较麻烦&amp;难以形象表达。这时可以一步一步的build它。</p>
+<h2 id="原型模式-Prototype-Pattern"><a href="#原型模式-Prototype-Pattern" class="headerlink" title="原型模式(Prototype Pattern)"></a>原型模式(Prototype Pattern)</h2><p>这种模式是实现了一个原型接口，该接口用于创建当前对象的克隆。其实就是用来克隆对象的。</p>
+<h2 id="单类-Singleton-Pattern"><a href="#单类-Singleton-Pattern" class="headerlink" title="单类(Singleton Pattern)"></a>单类(Singleton Pattern)</h2><p>保证一个在类在全局中只有一个实例。<br>下面直接讲在java中单类的5中实现方式：</p>
+<ul>
+<li><p>饿汉模式</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line">    <span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">IvoryTower</span> </span>&#123;</div><div class="line">      <span class="comment">/**</span></div><div class="line">       * 私有构造函数</div><div class="line">       */</div><div class="line">      <span class="function"><span class="keyword">private</span> <span class="title">IvoryTower</span><span class="params">()</span> </span>&#123;&#125;</div><div class="line">      <span class="comment">/**</span></div><div class="line">       * 静态变量，为该对象</div><div class="line">       */</div><div class="line">      <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> IvoryTower INSTANCE = <span class="keyword">new</span> IvoryTower();</div><div class="line">      <span class="comment">/**</span></div><div class="line">       * 这里是获取对象的方法。</div><div class="line">       * <span class="doctag">@return</span> instance of the singleton.</div><div class="line">       */</div><div class="line">      <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> IvoryTower <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> INSTANCE;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">```  </div><div class="line"></div><div class="line">- 饱汉模式</div><div class="line">```java </div><div class="line">    <span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">ThreadSafeLazyLoadedIvoryTower</span> </span>&#123;</div><div class="line">      <span class="keyword">private</span> <span class="keyword">static</span> ThreadSafeLazyLoadedIvoryTower instance;</div><div class="line">      <span class="function"><span class="keyword">private</span> <span class="title">ThreadSafeLazyLoadedIvoryTower</span><span class="params">()</span> </span>&#123;</div><div class="line">      <span class="comment">// 这里是为了防止反射导致的多个实例的问题</span></div><div class="line">        <span class="keyword">if</span> (instance != <span class="keyword">null</span>) &#123;</div><div class="line">          <span class="keyword">throw</span> <span class="keyword">new</span> IllegalStateException(<span class="string">"Already initialized."</span>);</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">      <span class="comment">/**</span></div><div class="line">       - 唯一实例在第一次调用的时候才会产生。此处使用synchronized字段来防止并发的问题</div><div class="line">       */</div><div class="line">      <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">synchronized</span> ThreadSafeLazyLoadedIvoryTower <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (instance == <span class="keyword">null</span>) &#123;</div><div class="line">          instance = <span class="keyword">new</span> ThreadSafeLazyLoadedIvoryTower();</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> instance;</div><div class="line">      &#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>饿汉模式</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">ThreadSafeDoubleCheckLocking</span> </span>&#123;</div><div class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">volatile</span> ThreadSafeDoubleCheckLocking instance;</div><div class="line">  <span class="comment">/**</span></div><div class="line">   * 这里是为了防止反射导致的多个实例的问题</div><div class="line">   */</div><div class="line">  <span class="function"><span class="keyword">private</span> <span class="title">ThreadSafeDoubleCheckLocking</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (instance != <span class="keyword">null</span>) &#123;</div><div class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> IllegalStateException(<span class="string">"Already initialized."</span>);</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ThreadSafeDoubleCheckLocking <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="comment">// 本地变量能增加25%的效率</span></div><div class="line">    <span class="comment">// Joshua Bloch "Effective Java, Second Edition", p. 283-284</span></div><div class="line">    ThreadSafeDoubleCheckLocking result = instance;</div><div class="line">    <span class="comment">// 检查result是否已经创建了，如果是，就返回</span></div><div class="line">    <span class="keyword">if</span> (result == <span class="keyword">null</span>) &#123;</div><div class="line">      <span class="comment">// 虽然没有初始化，但是我哦们不能确定没有别的线程初始化它，所以这是使用排它锁。</span></div><div class="line">      <span class="keyword">synchronized</span> (ThreadSafeDoubleCheckLocking.class) &#123;</div><div class="line">        <span class="comment">//再次把实例赋值给本地变量，来看它是否被其他线程初始化。</span></div><div class="line">        result = instance;</div><div class="line">        <span class="keyword">if</span> (result == <span class="keyword">null</span>) &#123;</div><div class="line">          <span class="comment">// 当result依然没有初始化，就直接初始化。这里是线程安全的</span></div><div class="line">          <span class="comment">// 并且因为实例使用了volatile修饰，所以也不会有指令重排和可见性的问题。</span></div><div class="line">          instance = result = <span class="keyword">new</span> ThreadSafeDoubleCheckLocking();</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> result;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>静态内部类实现</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//即使饿汉模式加载，又使用了静态内部类的特性保证了只初始化一个对象。</span></div><div class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">InitializingOnDemandHolderIdiom</span> </span>&#123;</div><div class="line">  <span class="function"><span class="keyword">private</span> <span class="title">InitializingOnDemandHolderIdiom</span><span class="params">()</span> </span>&#123;&#125;</div><div class="line">  <span class="comment">/**</span></div><div class="line">   */</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> InitializingOnDemandHolderIdiom <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> HelperHolder.INSTANCE;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="comment">/**</span></div><div class="line">   */</div><div class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">HelperHolder</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> InitializingOnDemandHolderIdiom INSTANCE =</div><div class="line">        <span class="keyword">new</span> InitializingOnDemandHolderIdiom();</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>枚举</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//无话可说。。。。</span></div><div class="line"><span class="keyword">public</span> <span class="keyword">enum</span> EnumIvoryTower &#123;</div><div class="line">  INSTANCE;</div><div class="line">  <span class="meta">@Override</span></div><div class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> getDeclaringClass().getCanonicalName() + <span class="string">"@"</span> + hashCode();</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://songbingjia.cn/2018/01/13/spring-AOP/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1565,7 +1908,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1587,7 +1930,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

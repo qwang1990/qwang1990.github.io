@@ -1,0 +1,956 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="设计模式," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="创建型模式简单工厂不多解释，太简单了。就是用一个工厂决定要产生的类。比如Shape是一个基类，它有很多子类Circle，Rectangle，Square。 12345678910111213141516public class ShapeFactory &amp;#123;   //使用 getShape 方法获取形状类型的对象   public Shape getShape(String shapeTy">
+<meta name="keywords" content="设计模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="设计模式系列---创建型模式">
+<meta property="og:url" content="http://songbingjia.cn/2018/02/12/设计模式系列-创建型模式/index.html">
+<meta property="og:site_name" content="宋兵甲的博客">
+<meta property="og:description" content="创建型模式简单工厂不多解释，太简单了。就是用一个工厂决定要产生的类。比如Shape是一个基类，它有很多子类Circle，Rectangle，Square。 12345678910111213141516public class ShapeFactory &amp;#123;   //使用 getShape 方法获取形状类型的对象   public Shape getShape(String shapeTy">
+<meta property="og:updated_time" content="2018-02-12T14:09:25.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="设计模式系列---创建型模式">
+<meta name="twitter:description" content="创建型模式简单工厂不多解释，太简单了。就是用一个工厂决定要产生的类。比如Shape是一个基类，它有很多子类Circle，Rectangle，Square。 12345678910111213141516public class ShapeFactory &amp;#123;   //使用 getShape 方法获取形状类型的对象   public Shape getShape(String shapeTy">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":true,"scrollpercent":true},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://songbingjia.cn/2018/02/12/设计模式系列-创建型模式/"/>
+
+
+
+
+
+  <title> 设计模式系列---创建型模式 | 宋兵甲的博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?f54c00299f1d17b46920c8eb3478dcd9";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">宋兵甲的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://songbingjia.cn/2018/02/12/设计模式系列-创建型模式/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="宋兵甲">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://cloud.githubusercontent.com/assets/13915081/24868296/3248ddcc-1e42-11e7-857a-0e4b4cebb75e.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="宋兵甲的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                设计模式系列---创建型模式
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-12T22:05:50+08:00">
+                2018-02-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/后端/" itemprop="url" rel="index">
+                    <span itemprop="name">后端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/2018/02/12/设计模式系列-创建型模式/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="创建型模式"><a href="#创建型模式" class="headerlink" title="创建型模式"></a>创建型模式</h1><h2 id="简单工厂"><a href="#简单工厂" class="headerlink" title="简单工厂"></a>简单工厂</h2><p>不多解释，太简单了。就是用一个工厂决定要产生的类。比如Shape是一个基类，它有很多子类Circle，Rectangle，Square。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ShapeFactory</span> </span>&#123;</div><div class="line">   <span class="comment">//使用 getShape 方法获取形状类型的对象</span></div><div class="line">   <span class="function"><span class="keyword">public</span> Shape <span class="title">getShape</span><span class="params">(String shapeType)</span></span>&#123;</div><div class="line">      <span class="keyword">if</span>(shapeType == <span class="keyword">null</span>)&#123;</div><div class="line">         <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">      &#125;        </div><div class="line">      <span class="keyword">if</span>(shapeType.equalsIgnoreCase(<span class="string">"CIRCLE"</span>))&#123;</div><div class="line">         <span class="keyword">return</span> <span class="keyword">new</span> Circle();</div><div class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span>(shapeType.equalsIgnoreCase(<span class="string">"RECTANGLE"</span>))&#123;</div><div class="line">         <span class="keyword">return</span> <span class="keyword">new</span> Rectangle();</div><div class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span>(shapeType.equalsIgnoreCase(<span class="string">"SQUARE"</span>))&#123;</div><div class="line">         <span class="keyword">return</span> <span class="keyword">new</span> Square();</div><div class="line">      &#125;</div><div class="line">      <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>缺点明显，加一个子类就要改一下工厂。</p>
+<h2 id="抽象工厂"><a href="#抽象工厂" class="headerlink" title="抽象工厂"></a>抽象工厂</h2><p>一个中心工厂创建其他的工厂。其他的工厂可以理解为一个产品系列，它可以生产很多的产品。<br>优点：因为中心工厂是创建工厂的，所以用户拿到工厂后产生的产品是一个系列的。<br>如下面这个例子：<br>我们有一个王国的工厂接口：KingdomFactory，它可以生产士兵，就是我们说的产品。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">KingdomFactory</span> </span>&#123;</div><div class="line">  <span class="function">Army <span class="title">createArmy</span><span class="params">()</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>这时我们对该工厂有两个实现：精灵王国和兽人王国，它们分别生产自己的士兵，它们就是两个系列。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//这里ElfArmy 和 OrcArmy都是Army的子类</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ElfKingdomFactory</span> <span class="keyword">implements</span> <span class="title">KingdomFactory</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> Army <span class="title">createArmy</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ElfArmy();</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">OrcKingdomFactory</span> <span class="keyword">implements</span> <span class="title">KingdomFactory</span> </span>&#123;</div><div class="line">  <span class="function"><span class="keyword">public</span> Army <span class="title">createArmy</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> OrcArmy();</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>中心工厂的核心方法定义如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">public static KingdomFactory makeFactory(KingdomType type) &#123;</div><div class="line">      switch (type) &#123;</div><div class="line">        case ELF:</div><div class="line">          return new ElfKingdomFactory();</div><div class="line">        case ORC:</div><div class="line">          return new OrcKingdomFactory();</div><div class="line">        default:</div><div class="line">          throw new IllegalArgumentException(&quot;KingdomType not supported.&quot;);</div><div class="line">      &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<p>缺点也很明显：增加产品系列比较麻烦。</p>
+<h2 id="建造者模式-builder"><a href="#建造者模式-builder" class="headerlink" title="建造者模式(builder)"></a>建造者模式(builder)</h2><p>这个可以类比JAVA中的StringBuilder。用于对象比较复杂，使用构造函数比较麻烦&amp;难以形象表达。这时可以一步一步的build它。</p>
+<h2 id="原型模式-Prototype-Pattern"><a href="#原型模式-Prototype-Pattern" class="headerlink" title="原型模式(Prototype Pattern)"></a>原型模式(Prototype Pattern)</h2><p>这种模式是实现了一个原型接口，该接口用于创建当前对象的克隆。其实就是用来克隆对象的。</p>
+<h2 id="单类-Singleton-Pattern"><a href="#单类-Singleton-Pattern" class="headerlink" title="单类(Singleton Pattern)"></a>单类(Singleton Pattern)</h2><p>保证一个在类在全局中只有一个实例。<br>下面直接讲在java中单类的5中实现方式：</p>
+<ul>
+<li><p>饿汉模式</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line">    <span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">IvoryTower</span> </span>&#123;</div><div class="line">      <span class="comment">/**</span></div><div class="line">       * 私有构造函数</div><div class="line">       */</div><div class="line">      <span class="function"><span class="keyword">private</span> <span class="title">IvoryTower</span><span class="params">()</span> </span>&#123;&#125;</div><div class="line">      <span class="comment">/**</span></div><div class="line">       * 静态变量，为该对象</div><div class="line">       */</div><div class="line">      <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> IvoryTower INSTANCE = <span class="keyword">new</span> IvoryTower();</div><div class="line">      <span class="comment">/**</span></div><div class="line">       * 这里是获取对象的方法。</div><div class="line">       * <span class="doctag">@return</span> instance of the singleton.</div><div class="line">       */</div><div class="line">      <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> IvoryTower <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> INSTANCE;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">```  </div><div class="line"></div><div class="line">- 饱汉模式</div><div class="line">```java </div><div class="line">    <span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">ThreadSafeLazyLoadedIvoryTower</span> </span>&#123;</div><div class="line">      <span class="keyword">private</span> <span class="keyword">static</span> ThreadSafeLazyLoadedIvoryTower instance;</div><div class="line">      <span class="function"><span class="keyword">private</span> <span class="title">ThreadSafeLazyLoadedIvoryTower</span><span class="params">()</span> </span>&#123;</div><div class="line">      <span class="comment">// 这里是为了防止反射导致的多个实例的问题</span></div><div class="line">        <span class="keyword">if</span> (instance != <span class="keyword">null</span>) &#123;</div><div class="line">          <span class="keyword">throw</span> <span class="keyword">new</span> IllegalStateException(<span class="string">"Already initialized."</span>);</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">      <span class="comment">/**</span></div><div class="line">       - 唯一实例在第一次调用的时候才会产生。此处使用synchronized字段来防止并发的问题</div><div class="line">       */</div><div class="line">      <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">synchronized</span> ThreadSafeLazyLoadedIvoryTower <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (instance == <span class="keyword">null</span>) &#123;</div><div class="line">          instance = <span class="keyword">new</span> ThreadSafeLazyLoadedIvoryTower();</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> instance;</div><div class="line">      &#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>饿汉模式</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">ThreadSafeDoubleCheckLocking</span> </span>&#123;</div><div class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">volatile</span> ThreadSafeDoubleCheckLocking instance;</div><div class="line">  <span class="comment">/**</span></div><div class="line">   * 这里是为了防止反射导致的多个实例的问题</div><div class="line">   */</div><div class="line">  <span class="function"><span class="keyword">private</span> <span class="title">ThreadSafeDoubleCheckLocking</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (instance != <span class="keyword">null</span>) &#123;</div><div class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> IllegalStateException(<span class="string">"Already initialized."</span>);</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ThreadSafeDoubleCheckLocking <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="comment">// 本地变量能增加25%的效率</span></div><div class="line">    <span class="comment">// Joshua Bloch "Effective Java, Second Edition", p. 283-284</span></div><div class="line">    ThreadSafeDoubleCheckLocking result = instance;</div><div class="line">    <span class="comment">// 检查result是否已经创建了，如果是，就返回</span></div><div class="line">    <span class="keyword">if</span> (result == <span class="keyword">null</span>) &#123;</div><div class="line">      <span class="comment">// 虽然没有初始化，但是我哦们不能确定没有别的线程初始化它，所以这是使用排它锁。</span></div><div class="line">      <span class="keyword">synchronized</span> (ThreadSafeDoubleCheckLocking.class) &#123;</div><div class="line">        <span class="comment">//再次把实例赋值给本地变量，来看它是否被其他线程初始化。</span></div><div class="line">        result = instance;</div><div class="line">        <span class="keyword">if</span> (result == <span class="keyword">null</span>) &#123;</div><div class="line">          <span class="comment">// 当result依然没有初始化，就直接初始化。这里是线程安全的</span></div><div class="line">          <span class="comment">// 并且因为实例使用了volatile修饰，所以也不会有指令重排和可见性的问题。</span></div><div class="line">          instance = result = <span class="keyword">new</span> ThreadSafeDoubleCheckLocking();</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> result;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>静态内部类实现</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//即使饿汉模式加载，又使用了静态内部类的特性保证了只初始化一个对象。</span></div><div class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">InitializingOnDemandHolderIdiom</span> </span>&#123;</div><div class="line">  <span class="function"><span class="keyword">private</span> <span class="title">InitializingOnDemandHolderIdiom</span><span class="params">()</span> </span>&#123;&#125;</div><div class="line">  <span class="comment">/**</span></div><div class="line">   */</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> InitializingOnDemandHolderIdiom <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> HelperHolder.INSTANCE;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="comment">/**</span></div><div class="line">   */</div><div class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">HelperHolder</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> InitializingOnDemandHolderIdiom INSTANCE =</div><div class="line">        <span class="keyword">new</span> InitializingOnDemandHolderIdiom();</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>枚举</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//无话可说。。。。</span></div><div class="line"><span class="keyword">public</span> <span class="keyword">enum</span> EnumIvoryTower &#123;</div><div class="line">  INSTANCE;</div><div class="line">  <span class="meta">@Override</span></div><div class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> getDeclaringClass().getCanonicalName() + <span class="string">"@"</span> + hashCode();</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/设计模式/" rel="tag"># 设计模式</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/02/12/设计模式系列-结构型模式1/" rel="next" title="设计模式系列---结构型模式1">
+                <i class="fa fa-chevron-left"></i> 设计模式系列---结构型模式1
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/01/13/spring-AOP/" rel="prev" title="spring AOP">
+                spring AOP <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://cloud.githubusercontent.com/assets/13915081/24868296/3248ddcc-1e42-11e7-857a-0e4b4cebb75e.jpg"
+               alt="宋兵甲" />
+          <p class="site-author-name" itemprop="name">宋兵甲</p>
+           
+              <p class="site-description motion-element" itemprop="description">小菜鸟的技术博客</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/qwang1990" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#创建型模式"><span class="nav-number">1.</span> <span class="nav-text">创建型模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#简单工厂"><span class="nav-number">1.1.</span> <span class="nav-text">简单工厂</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#抽象工厂"><span class="nav-number">1.2.</span> <span class="nav-text">抽象工厂</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#建造者模式-builder"><span class="nav-number">1.3.</span> <span class="nav-text">建造者模式(builder)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原型模式-Prototype-Pattern"><span class="nav-number">1.4.</span> <span class="nav-text">原型模式(Prototype Pattern)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单类-Singleton-Pattern"><span class="nav-number">1.5.</span> <span class="nav-text">单类(Singleton Pattern)</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">宋兵甲</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "be5ebb6ddcb844d8a85f3d397f4cd4bf",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

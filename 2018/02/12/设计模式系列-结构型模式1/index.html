@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="java,spring," />
+  <meta name="keywords" content="设计模式," />
 
 
 
@@ -87,17 +87,17 @@
 
 
 
-<meta name="description" content="背景最近看dubbo源码，其中使用spring加载配置的时候用到了自定义xml标签的功能。所以就看了一下。其实从spring2.0开始就已经有该功能了。 步骤其实自定义xml标签十分简单，只需要一下四步  描述自定义元素的xml schema NamespaceHandler BeanDefinitionParse 在spring上注册上面这些元素  编写xml schema创建文件myns.xs">
-<meta name="keywords" content="java,spring">
+<meta name="description" content="结构型模式适配器模式将一个类的接口转换成客户希望的另外一个接口。适配器模式使得原本由于接口不兼容而不能一起工作的那些类可以一起工作。假设船长想使用RowingBoat出海1234567891011121314public class Captain &amp;#123;  private RowingBoat rowingBoat;  public Captain() &amp;#123;&amp;#125;  publ">
+<meta name="keywords" content="设计模式">
 <meta property="og:type" content="article">
-<meta property="og:title" content="spring XML extensions">
-<meta property="og:url" content="http://songbingjia.cn/2017/11/19/spring-XML-extensions/index.html">
+<meta property="og:title" content="设计模式系列---结构型模式1">
+<meta property="og:url" content="http://songbingjia.cn/2018/02/12/设计模式系列-结构型模式1/index.html">
 <meta property="og:site_name" content="宋兵甲的博客">
-<meta property="og:description" content="背景最近看dubbo源码，其中使用spring加载配置的时候用到了自定义xml标签的功能。所以就看了一下。其实从spring2.0开始就已经有该功能了。 步骤其实自定义xml标签十分简单，只需要一下四步  描述自定义元素的xml schema NamespaceHandler BeanDefinitionParse 在spring上注册上面这些元素  编写xml schema创建文件myns.xs">
-<meta property="og:updated_time" content="2017-11-19T10:16:00.000Z">
+<meta property="og:description" content="结构型模式适配器模式将一个类的接口转换成客户希望的另外一个接口。适配器模式使得原本由于接口不兼容而不能一起工作的那些类可以一起工作。假设船长想使用RowingBoat出海1234567891011121314public class Captain &amp;#123;  private RowingBoat rowingBoat;  public Captain() &amp;#123;&amp;#125;  publ">
+<meta property="og:updated_time" content="2018-02-12T14:10:58.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="spring XML extensions">
-<meta name="twitter:description" content="背景最近看dubbo源码，其中使用spring加载配置的时候用到了自定义xml标签的功能。所以就看了一下。其实从spring2.0开始就已经有该功能了。 步骤其实自定义xml标签十分简单，只需要一下四步  描述自定义元素的xml schema NamespaceHandler BeanDefinitionParse 在spring上注册上面这些元素  编写xml schema创建文件myns.xs">
+<meta name="twitter:title" content="设计模式系列---结构型模式1">
+<meta name="twitter:description" content="结构型模式适配器模式将一个类的接口转换成客户希望的另外一个接口。适配器模式使得原本由于接口不兼容而不能一起工作的那些类可以一起工作。假设船长想使用RowingBoat出海1234567891011121314public class Captain &amp;#123;  private RowingBoat rowingBoat;  public Captain() &amp;#123;&amp;#125;  publ">
 
 
 
@@ -125,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="http://songbingjia.cn/2017/11/19/spring-XML-extensions/"/>
+  <link rel="canonical" href="http://songbingjia.cn/2018/02/12/设计模式系列-结构型模式1/"/>
 
 
 
 
 
-  <title> spring XML extensions | 宋兵甲的博客 </title>
+  <title> 设计模式系列---结构型模式1 | 宋兵甲的博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -314,7 +314,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://songbingjia.cn/2017/11/19/spring-XML-extensions/">
+    <link itemprop="mainEntityOfPage" href="http://songbingjia.cn/2018/02/12/设计模式系列-结构型模式1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="宋兵甲">
@@ -335,7 +335,7 @@
             
             
               
-                spring XML extensions
+                设计模式系列---结构型模式1
               
             
           </h1>
@@ -350,8 +350,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-19T17:27:56+08:00">
-                2017-11-19
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-12T22:10:28+08:00">
+                2018-02-12
               </time>
             
 
@@ -391,7 +391,7 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a class="cloud-tie-join-count" href="/2017/11/19/spring-XML-extensions/#comments" itemprop="discussionUrl">
+                <a class="cloud-tie-join-count" href="/2018/02/12/设计模式系列-结构型模式1/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count join-count" itemprop="commentCount"></span>
                 </a>
               </span>
@@ -418,39 +418,41 @@
       
 
       
-        <h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>最近看dubbo源码，其中使用spring加载配置的时候用到了自定义xml标签的功能。所以就看了一下。其实从spring2.0开始就已经有该功能了。</p>
-<h1 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h1><p>其实自定义xml标签十分简单，只需要一下四步</p>
+        <h1 id="结构型模式"><a href="#结构型模式" class="headerlink" title="结构型模式"></a>结构型模式</h1><h2 id="适配器模式"><a href="#适配器模式" class="headerlink" title="适配器模式"></a>适配器模式</h2><p>将一个类的接口转换成客户希望的另外一个接口。适配器模式使得原本由于接口不兼容而不能一起工作的那些类可以一起工作。<br>假设船长想使用RowingBoat出海<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Captain</span> </span>&#123;</div><div class="line">  <span class="keyword">private</span> RowingBoat rowingBoat;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="title">Captain</span><span class="params">()</span> </span>&#123;&#125;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="title">Captain</span><span class="params">(RowingBoat rowingBoat)</span> </span>&#123;</div><div class="line">    <span class="keyword">this</span>.rowingBoat = rowingBoat;</div><div class="line">  &#125;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setRowingBoat</span><span class="params">(RowingBoat rowingBoat)</span> </span>&#123;</div><div class="line">    <span class="keyword">this</span>.rowingBoat = rowingBoat;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">row</span><span class="params">()</span> </span>&#123;</div><div class="line">    rowingBoat.row();</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>RowingBoat的接口如下:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">RowingBoat</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">row</span><span class="params">()</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>此时你只有一个FishingBoat，实现如下:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FishingBoat</span> </span>&#123;</div><div class="line">      <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger LOGGER = LoggerFactory.getLogger(FishingBoat.class);</div><div class="line"></div><div class="line">      <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sail</span><span class="params">()</span> </span>&#123;</div><div class="line">        LOGGER.info(<span class="string">"The fishing boat is sailing"</span>);</div><div class="line">      &#125;</div><div class="line">&#125;r</div></pre></td></tr></table></figure></p>
+<p>为了能出海，我们需要有一个adapter，把FishingBoat适配成RowingBoat:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FishingBoatAdapter</span> <span class="keyword">implements</span> <span class="title">RowingBoat</span> </span>&#123;</div><div class="line">  <span class="keyword">private</span> FishingBoat boat;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="title">FishingBoatAdapter</span><span class="params">()</span> </span>&#123;</div><div class="line">    boat = <span class="keyword">new</span> FishingBoat();</div><div class="line">  &#125;</div><div class="line">  <span class="meta">@Override</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">row</span><span class="params">()</span> </span>&#123;</div><div class="line">    boat.sail();</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="装饰器模式"><a href="#装饰器模式" class="headerlink" title="装饰器模式"></a>装饰器模式</h2><p>允许向一个现有的对象添加新的功能，同时又不改变其结构。使用装饰比使用子类要灵活，而且不会造成子类膨胀的问题。<br>例如有一个接口Troll:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Troll</span> </span>&#123;</div><div class="line">  <span class="function"><span class="keyword">void</span> <span class="title">attack</span><span class="params">()</span></span>;</div><div class="line">  <span class="function"><span class="keyword">int</span> <span class="title">getAttackPower</span><span class="params">()</span></span>;</div><div class="line">  <span class="function"><span class="keyword">void</span> <span class="title">fleeBattle</span><span class="params">()</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>他有一个简单的实现:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SimpleTroll</span> <span class="keyword">implements</span> <span class="title">Troll</span> </span>&#123;</div><div class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger LOGGER = LoggerFactory.getLogger(SimpleTroll.class);</div><div class="line">  <span class="meta">@Override</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">attack</span><span class="params">()</span> </span>&#123;</div><div class="line">    LOGGER.info(<span class="string">"The troll tries to grab you!"</span>);</div><div class="line">  &#125;</div><div class="line">  <span class="meta">@Override</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getAttackPower</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="number">10</span>;</div><div class="line">  &#125;</div><div class="line">  <span class="meta">@Override</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fleeBattle</span><span class="params">()</span> </span>&#123;</div><div class="line">    LOGGER.info(<span class="string">"The troll shrieks in horror and runs away!"</span>);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>这时我们想给这个实现增加一点其他的功能，比如给这个巨人配备一个棒子:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ClubbedTroll</span> <span class="keyword">implements</span> <span class="title">Troll</span> </span>&#123;</div><div class="line"></div><div class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger LOGGER = LoggerFactory.getLogger(ClubbedTroll.class);</div><div class="line"></div><div class="line">  <span class="keyword">private</span> Troll decorated;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="title">ClubbedTroll</span><span class="params">(Troll decorated)</span> </span>&#123;</div><div class="line">    <span class="keyword">this</span>.decorated = decorated;</div><div class="line">  &#125;</div><div class="line">  <span class="meta">@Override</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">attack</span><span class="params">()</span> </span>&#123;</div><div class="line">    decorated.attack();</div><div class="line">    LOGGER.info(<span class="string">"The troll swings at you with a club!"</span>);</div><div class="line">  &#125;</div><div class="line">  <span class="meta">@Override</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getAttackPower</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="comment">//哈哈哈，我的攻击+10了</span></div><div class="line">    <span class="keyword">return</span> decorated.getAttackPower() + <span class="number">10</span>;</div><div class="line">  &#125;</div><div class="line">  <span class="meta">@Override</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fleeBattle</span><span class="params">()</span> </span>&#123;</div><div class="line">    decorated.fleeBattle();</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>我们会发现装饰器依旧实现了原接口，因为它不改变结构。大多情况下装饰器会有一个以接口为参数的构造函数，因为它只是对原来的某种实现的一种装饰。适配器是改变接口的，这就是最大的区别。</p>
+<p>为什么要把它俩放在一起讲呢？因为在java I/O的实现中使用到了它俩。<br>首先 java I/O 从方向上可分为输入/输出，从数据上可分为byte/char。<br>InputStream和OutputStream对Byte字节流的输入和输出，而Reader和Writer各自占据Char字符流的输入和输出。</p>
 <ul>
-<li>描述自定义元素的xml schema</li>
-<li>NamespaceHandler</li>
-<li>BeanDefinitionParse</li>
-<li>在spring上注册上面这些元素</li>
-</ul>
-<h1 id="编写xml-schema"><a href="#编写xml-schema" class="headerlink" title="编写xml schema"></a>编写xml schema</h1><p>创建文件myns.xsd<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</div><div class="line"><span class="tag">&lt;<span class="name">xsd:schema</span> <span class="attr">xmlns</span>=<span class="string">"http://www.mycompany.com/schema/myns"</span></span></div><div class="line">        <span class="attr">xmlns:xsd</span>=<span class="string">"http://www.w3.org/2001/XMLSchema"</span></div><div class="line">        <span class="attr">xmlns:beans</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></div><div class="line">        <span class="attr">targetNamespace</span>=<span class="string">"http://www.mycompany.com/schema/myns"</span></div><div class="line">        <span class="attr">elementFormDefault</span>=<span class="string">"qualified"</span></div><div class="line">        <span class="attr">attributeFormDefault</span>=<span class="string">"unqualified"</span>&gt;</div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">xsd:import</span> <span class="attr">namespace</span>=<span class="string">"http://www.springframework.org/schema/beans"</span>/&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">xsd:element</span> <span class="attr">name</span>=<span class="string">"dateformat"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">xsd:complexType</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">xsd:complexContent</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">xsd:extension</span> <span class="attr">base</span>=<span class="string">"beans:identifiedType"</span>&gt;</span></div><div class="line">                    <span class="tag">&lt;<span class="name">xsd:attribute</span> <span class="attr">name</span>=<span class="string">"lenient"</span> <span class="attr">type</span>=<span class="string">"xsd:boolean"</span>/&gt;</span></div><div class="line">                    <span class="tag">&lt;<span class="name">xsd:attribute</span> <span class="attr">name</span>=<span class="string">"pattern"</span> <span class="attr">type</span>=<span class="string">"xsd:string"</span> <span class="attr">use</span>=<span class="string">"required"</span>/&gt;</span></div><div class="line">                <span class="tag">&lt;/<span class="name">xsd:extension</span>&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">xsd:complexContent</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">xsd:complexType</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">xsd:element</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">xsd:schema</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<p><a href="https://docs.spring.io/spring/docs/4.3.13.BUILD-SNAPSHOT/spring-framework-reference/htmlsingle/#xsd-configuration" target="_blank" rel="external">具体语法</a></p>
-<h1 id="NamespaceHandler"><a href="#NamespaceHandler" class="headerlink" title="NamespaceHandler"></a>NamespaceHandler</h1><p>用于解析我们上面定义的命名空间<br>常规用法为每一个顶级的xml元素定义一个bean definition，比如上面的xml schema中dateformat就对应一个bean definition<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> org.springframework.samples.xml;</div><div class="line"></div><div class="line"><span class="keyword">import</span> org.springframework.beans.factory.xml.NamespaceHandlerSupport;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyNamespaceHandler</span> <span class="keyword">extends</span> <span class="title">NamespaceHandlerSupport</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="comment">//在handler被调用前调用</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="comment">//此处为xml顶级元素dateformat注册了一个bean definition</span></div><div class="line">        registerBeanDefinitionParser(<span class="string">"dateformat"</span>, <span class="keyword">new</span> SimpleDateFormatBeanDefinitionParser());</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>在这个例子中NamespaceHandler中并没有太多逻辑，它其实就是一个分发作用，可以在其上注册很多的bean definition，对应每一个自定义标签。具体的处理逻辑在bean definition中。</p>
-<h1 id="BeanDefinitionParse"><a href="#BeanDefinitionParse" class="headerlink" title="BeanDefinitionParse"></a>BeanDefinitionParse</h1><p>BeanDefinitionParse用于解析一个自定义schema中单独的顶级xml元素。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> org.springframework.samples.xml;</div><div class="line"></div><div class="line"><span class="keyword">import</span> org.springframework.beans.factory.support.BeanDefinitionBuilder;</div><div class="line"><span class="keyword">import</span> org.springframework.beans.factory.xml.AbstractSingleBeanDefinitionParser;</div><div class="line"><span class="keyword">import</span> org.springframework.util.StringUtils;</div><div class="line"><span class="keyword">import</span> org.w3c.dom.Element;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.text.SimpleDateFormat;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SimpleDateFormatBeanDefinitionParser</span> <span class="keyword">extends</span> <span class="title">AbstractSingleBeanDefinitionParser</span> </span>&#123; </div><div class="line"></div><div class="line">    <span class="comment">//解析后的目标class</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> Class <span class="title">getBeanClass</span><span class="params">(Element element)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> SimpleDateFormat.class; </div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">//如何解析xml</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doParse</span><span class="params">(Element element, BeanDefinitionBuilder bean)</span> </span>&#123;</div><div class="line">        <span class="comment">// this will never be null since the schema explicitly requires that a value be supplied</span></div><div class="line">        String pattern = element.getAttribute(<span class="string">"pattern"</span>);</div><div class="line">        bean.addConstructorArg(pattern);</div><div class="line"></div><div class="line">        <span class="comment">// this however is an optional property</span></div><div class="line">        String lenient = element.getAttribute(<span class="string">"lenient"</span>);</div><div class="line">        <span class="keyword">if</span> (StringUtils.hasText(lenient)) &#123;</div><div class="line">            bean.addPropertyValue(<span class="string">"lenient"</span>, Boolean.valueOf(lenient));</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h1 id="在spring上注册上面这些元素"><a href="#在spring上注册上面这些元素" class="headerlink" title="在spring上注册上面这些元素"></a>在spring上注册上面这些元素</h1><p>这一步是最后一步，就是把前面的工作串起来，其实就是配置两个文件: </p>
-<ul>
-<li><p>META-INF/spring.handlers</p>
-<p>  配置xml schema 和 namespace handler class的关系，本例中配置如下：</p>
-<p>  http\://www.mycompany.com/schema/myns=org.springframework.samples.xml.MyNamespaceHandler</p>
-<blockquote>
-<ol>
-<li>‘:’在java的properties文件中是关键字，所以要转移</li>
-<li>key值http\://www.mycompany.com/schema/myns 对应schema，value就是namespace handler的实现类</li>
-</ol>
-</blockquote>
-</li>
+<li>装饰器的使用<br>因为java I/O库里有各种各样的组合的实现，如果用继承的话那就太庞大了。Java I/O是由一些原始流(Original Stream)和一些装饰流(Wrapper Stream)组成的。以输入流为类:</li>
 </ul>
 <ul>
-<li><p>META-INF/spring.schemas </p>
-<p>  指定xml schema文件的位置，本例中配置如下：<br>  http\://www.mycompany.com/schema/myns/myns.xsd=org/springframework/samples/xml/myns.xsd</p>
-</li>
+<li><p>原始流处理器</p>
+<pre><code>原始流处理器接收一个Byte数组对象，String对象，FileDiscriptor对象或者不同类型的流源对象，原始流处理器包括以下四种：
+
+- ByteArrayInputStream：接收一个Byte数组作为流的源。
+- FileInputStream:建立一个与文件有关的输入流。接收一个File对象作为流的源。
+- PipedInputStream：可以与PipedOutputStream配合使用，用于读入一个数据管道的数据，接收一个PipedOutputStream作为源。
+- StringBufferInputStream：将一个字符串缓冲区转换为一个输入流。(废弃)  
+</code></pre></li>
+<li><p>链接流处理器</p>
+<pre><code>所谓链接流处理器，就是可以接收另一个流对象作为源，并对之进行功能扩展的类。InputStream类型的链接处理接收另一个InputStream对象作为流源。
+以FilterInputStream过滤输入流的子类为例。它将另一个输入流作为流源。这个类的子类包括以下几种：
+
+- BufferedInputStream：用来从硬盘将数据读入到一个内存缓冲区中，并从缓冲区提供数据。
+- DataInputStream：提供基于多字节的读取方法，可以读取原始类型的数据。
+- LineNumberInputStream：提供带有行计数功能的过滤输入流。
+- PushbackInputStream：提供特殊的功能，可以将已经读取的字节“推回”到输入流中。
+</code></pre></li>
 </ul>
-<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><p>经过上面4步以后，在程序就就可以使用自定义的标签了，用法如下：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</div><div class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></div><div class="line">    <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></div><div class="line">    <span class="attr">xmlns:myns</span>=<span class="string">"http://www.mycompany.com/schema/myns"</span></div><div class="line">    <span class="attr">xsi:schemaLocation</span>=<span class="string">"</span></div><div class="line">        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd</div><div class="line">        http://www.mycompany.com/schema/myns http://www.mycompany.com/schema/myns/myns.xsd"&gt;</div><div class="line"></div><div class="line">    <span class="comment">&lt;!--注意这里需要引用标签 xmlns:myns="http://www.mycompany.com/schema/myns"--&gt;</span></div><div class="line">    <span class="comment">&lt;!--并且在schemaLocation中加入自定义标签的文职--&gt;</span></div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">&lt;!-- as a top-level bean --&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">myns:dateformat</span> <span class="attr">id</span>=<span class="string">"defaultDateFormat"</span> <span class="attr">pattern</span>=<span class="string">"yyyy-MM-dd HH:mm"</span> <span class="attr">lenient</span>=<span class="string">"true"</span>/&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>这里原始流就是被装饰者，装饰流是装饰器，它一般有以原始流为参数的构造函数，并且实现了共有的基类InputStream。</p>
+<ul>
+<li>适配器的应用<br>StringBufferInputStream就是一个适配器类，它继承了InputStream，同时持有一个对String的引用，它将String适配成一个InputSteam。</li>
+</ul>
 
       
     </div>
@@ -480,9 +482,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/java/" rel="tag"># java</a>
-          
-            <a href="/tags/spring/" rel="tag"># spring</a>
+            <a href="/tags/设计模式/" rel="tag"># 设计模式</a>
           
         </div>
       
@@ -495,18 +495,14 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/01/13/spring-AOP/" rel="next" title="spring AOP">
-                <i class="fa fa-chevron-left"></i> spring AOP
-              </a>
-            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/07/23/java-序列化-一/" rel="prev" title="java 序列化(一)">
-                java 序列化(一) <i class="fa fa-chevron-right"></i>
+              <a href="/2018/02/12/设计模式系列-创建型模式/" rel="prev" title="设计模式系列---创建型模式">
+                设计模式系列---创建型模式 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -649,7 +645,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#步骤"><span class="nav-number">2.</span> <span class="nav-text">步骤</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#编写xml-schema"><span class="nav-number">3.</span> <span class="nav-text">编写xml schema</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#NamespaceHandler"><span class="nav-number">4.</span> <span class="nav-text">NamespaceHandler</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#BeanDefinitionParse"><span class="nav-number">5.</span> <span class="nav-text">BeanDefinitionParse</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#在spring上注册上面这些元素"><span class="nav-number">6.</span> <span class="nav-text">在spring上注册上面这些元素</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用"><span class="nav-number">7.</span> <span class="nav-text">使用</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#结构型模式"><span class="nav-number">1.</span> <span class="nav-text">结构型模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#适配器模式"><span class="nav-number">1.1.</span> <span class="nav-text">适配器模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#装饰器模式"><span class="nav-number">1.2.</span> <span class="nav-text">装饰器模式</span></a></li></ol></li></ol></div>
             
 
           </div>
