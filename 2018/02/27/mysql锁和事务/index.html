@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="java,spring," />
+  <meta name="keywords" content="数据库," />
 
 
 
@@ -87,17 +87,19 @@
 
 
 
-<meta name="description" content="背景最近看dubbo源码，其中使用spring加载配置的时候用到了自定义xml标签的功能。所以就看了一下。其实从spring2.0开始就已经有该功能了。 步骤其实自定义xml标签十分简单，只需要一下四步  描述自定义元素的xml schema NamespaceHandler BeanDefinitionParse 在spring上注册上面这些元素  编写xml schema创建文件myns.xs">
-<meta name="keywords" content="java,spring">
+<meta name="description" content="InnoDB 锁和事物版本 5.7 共享锁和排它锁InnoDB实现了两种标准的行锁，共享锁(shared lock)和排它锁(exclusive lock)。  共享锁允许持有它的事务读取改行 排它锁允许持有它的事务更新或删除改行  如果事务T1持有行r的共享锁，者别的事务T2对行r的请求会按如下处理:  如果是s锁的请求，者立刻得到授权，并且此时T1和T2都会持有行r的s锁 若果是x锁的请求者不">
+<meta name="keywords" content="数据库">
 <meta property="og:type" content="article">
-<meta property="og:title" content="spring XML extensions">
-<meta property="og:url" content="http://songbingjia.cn/2017/11/19/spring-XML-extensions/index.html">
+<meta property="og:title" content="mysql锁和事务">
+<meta property="og:url" content="http://songbingjia.cn/2018/02/27/mysql锁和事务/index.html">
 <meta property="og:site_name" content="宋兵甲的博客">
-<meta property="og:description" content="背景最近看dubbo源码，其中使用spring加载配置的时候用到了自定义xml标签的功能。所以就看了一下。其实从spring2.0开始就已经有该功能了。 步骤其实自定义xml标签十分简单，只需要一下四步  描述自定义元素的xml schema NamespaceHandler BeanDefinitionParse 在spring上注册上面这些元素  编写xml schema创建文件myns.xs">
-<meta property="og:updated_time" content="2017-11-19T10:16:00.000Z">
+<meta property="og:description" content="InnoDB 锁和事物版本 5.7 共享锁和排它锁InnoDB实现了两种标准的行锁，共享锁(shared lock)和排它锁(exclusive lock)。  共享锁允许持有它的事务读取改行 排它锁允许持有它的事务更新或删除改行  如果事务T1持有行r的共享锁，者别的事务T2对行r的请求会按如下处理:  如果是s锁的请求，者立刻得到授权，并且此时T1和T2都会持有行r的s锁 若果是x锁的请求者不">
+<meta property="og:image" content="https://user-images.githubusercontent.com/13915081/36726906-48ea6232-1bf6-11e8-96fe-8fc465edf17c.png">
+<meta property="og:updated_time" content="2018-02-27T14:32:46.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="spring XML extensions">
-<meta name="twitter:description" content="背景最近看dubbo源码，其中使用spring加载配置的时候用到了自定义xml标签的功能。所以就看了一下。其实从spring2.0开始就已经有该功能了。 步骤其实自定义xml标签十分简单，只需要一下四步  描述自定义元素的xml schema NamespaceHandler BeanDefinitionParse 在spring上注册上面这些元素  编写xml schema创建文件myns.xs">
+<meta name="twitter:title" content="mysql锁和事务">
+<meta name="twitter:description" content="InnoDB 锁和事物版本 5.7 共享锁和排它锁InnoDB实现了两种标准的行锁，共享锁(shared lock)和排它锁(exclusive lock)。  共享锁允许持有它的事务读取改行 排它锁允许持有它的事务更新或删除改行  如果事务T1持有行r的共享锁，者别的事务T2对行r的请求会按如下处理:  如果是s锁的请求，者立刻得到授权，并且此时T1和T2都会持有行r的s锁 若果是x锁的请求者不">
+<meta name="twitter:image" content="https://user-images.githubusercontent.com/13915081/36726906-48ea6232-1bf6-11e8-96fe-8fc465edf17c.png">
 
 
 
@@ -125,13 +127,13 @@
 
 
 
-  <link rel="canonical" href="http://songbingjia.cn/2017/11/19/spring-XML-extensions/"/>
+  <link rel="canonical" href="http://songbingjia.cn/2018/02/27/mysql锁和事务/"/>
 
 
 
 
 
-  <title> spring XML extensions | 宋兵甲的博客 </title>
+  <title> mysql锁和事务 | 宋兵甲的博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -314,7 +316,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://songbingjia.cn/2017/11/19/spring-XML-extensions/">
+    <link itemprop="mainEntityOfPage" href="http://songbingjia.cn/2018/02/27/mysql锁和事务/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="宋兵甲">
@@ -335,7 +337,7 @@
             
             
               
-                spring XML extensions
+                mysql锁和事务
               
             
           </h1>
@@ -350,8 +352,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-19T17:27:56+08:00">
-                2017-11-19
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-27T22:30:13+08:00">
+                2018-02-27
               </time>
             
 
@@ -391,7 +393,7 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a class="cloud-tie-join-count" href="/2017/11/19/spring-XML-extensions/#comments" itemprop="discussionUrl">
+                <a class="cloud-tie-join-count" href="/2018/02/27/mysql锁和事务/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count join-count" itemprop="commentCount"></span>
                 </a>
               </span>
@@ -418,39 +420,54 @@
       
 
       
-        <h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>最近看dubbo源码，其中使用spring加载配置的时候用到了自定义xml标签的功能。所以就看了一下。其实从spring2.0开始就已经有该功能了。</p>
-<h1 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h1><p>其实自定义xml标签十分简单，只需要一下四步</p>
+        <h1 id="InnoDB-锁和事物"><a href="#InnoDB-锁和事物" class="headerlink" title="InnoDB 锁和事物"></a>InnoDB 锁和事物</h1><p>版本 5.7</p>
+<h2 id="共享锁和排它锁"><a href="#共享锁和排它锁" class="headerlink" title="共享锁和排它锁"></a>共享锁和排它锁</h2><p>InnoDB实现了两种标准的行锁，共享锁(shared lock)和排它锁(exclusive lock)。</p>
 <ul>
-<li>描述自定义元素的xml schema</li>
-<li>NamespaceHandler</li>
-<li>BeanDefinitionParse</li>
-<li>在spring上注册上面这些元素</li>
+<li>共享锁允许持有它的事务读取改行</li>
+<li>排它锁允许持有它的事务更新或删除改行</li>
 </ul>
-<h1 id="编写xml-schema"><a href="#编写xml-schema" class="headerlink" title="编写xml schema"></a>编写xml schema</h1><p>创建文件myns.xsd<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</div><div class="line"><span class="tag">&lt;<span class="name">xsd:schema</span> <span class="attr">xmlns</span>=<span class="string">"http://www.mycompany.com/schema/myns"</span></span></div><div class="line">        <span class="attr">xmlns:xsd</span>=<span class="string">"http://www.w3.org/2001/XMLSchema"</span></div><div class="line">        <span class="attr">xmlns:beans</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></div><div class="line">        <span class="attr">targetNamespace</span>=<span class="string">"http://www.mycompany.com/schema/myns"</span></div><div class="line">        <span class="attr">elementFormDefault</span>=<span class="string">"qualified"</span></div><div class="line">        <span class="attr">attributeFormDefault</span>=<span class="string">"unqualified"</span>&gt;</div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">xsd:import</span> <span class="attr">namespace</span>=<span class="string">"http://www.springframework.org/schema/beans"</span>/&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">xsd:element</span> <span class="attr">name</span>=<span class="string">"dateformat"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">xsd:complexType</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">xsd:complexContent</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">xsd:extension</span> <span class="attr">base</span>=<span class="string">"beans:identifiedType"</span>&gt;</span></div><div class="line">                    <span class="tag">&lt;<span class="name">xsd:attribute</span> <span class="attr">name</span>=<span class="string">"lenient"</span> <span class="attr">type</span>=<span class="string">"xsd:boolean"</span>/&gt;</span></div><div class="line">                    <span class="tag">&lt;<span class="name">xsd:attribute</span> <span class="attr">name</span>=<span class="string">"pattern"</span> <span class="attr">type</span>=<span class="string">"xsd:string"</span> <span class="attr">use</span>=<span class="string">"required"</span>/&gt;</span></div><div class="line">                <span class="tag">&lt;/<span class="name">xsd:extension</span>&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">xsd:complexContent</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">xsd:complexType</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">xsd:element</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">xsd:schema</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<p><a href="https://docs.spring.io/spring/docs/4.3.13.BUILD-SNAPSHOT/spring-framework-reference/htmlsingle/#xsd-configuration" target="_blank" rel="external">具体语法</a></p>
-<h1 id="NamespaceHandler"><a href="#NamespaceHandler" class="headerlink" title="NamespaceHandler"></a>NamespaceHandler</h1><p>用于解析我们上面定义的命名空间<br>常规用法为每一个顶级的xml元素定义一个bean definition，比如上面的xml schema中dateformat就对应一个bean definition<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> org.springframework.samples.xml;</div><div class="line"></div><div class="line"><span class="keyword">import</span> org.springframework.beans.factory.xml.NamespaceHandlerSupport;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyNamespaceHandler</span> <span class="keyword">extends</span> <span class="title">NamespaceHandlerSupport</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="comment">//在handler被调用前调用</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="comment">//此处为xml顶级元素dateformat注册了一个bean definition</span></div><div class="line">        registerBeanDefinitionParser(<span class="string">"dateformat"</span>, <span class="keyword">new</span> SimpleDateFormatBeanDefinitionParser());</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>在这个例子中NamespaceHandler中并没有太多逻辑，它其实就是一个分发作用，可以在其上注册很多的bean definition，对应每一个自定义标签。具体的处理逻辑在bean definition中。</p>
-<h1 id="BeanDefinitionParse"><a href="#BeanDefinitionParse" class="headerlink" title="BeanDefinitionParse"></a>BeanDefinitionParse</h1><p>BeanDefinitionParse用于解析一个自定义schema中单独的顶级xml元素。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> org.springframework.samples.xml;</div><div class="line"></div><div class="line"><span class="keyword">import</span> org.springframework.beans.factory.support.BeanDefinitionBuilder;</div><div class="line"><span class="keyword">import</span> org.springframework.beans.factory.xml.AbstractSingleBeanDefinitionParser;</div><div class="line"><span class="keyword">import</span> org.springframework.util.StringUtils;</div><div class="line"><span class="keyword">import</span> org.w3c.dom.Element;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.text.SimpleDateFormat;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SimpleDateFormatBeanDefinitionParser</span> <span class="keyword">extends</span> <span class="title">AbstractSingleBeanDefinitionParser</span> </span>&#123; </div><div class="line"></div><div class="line">    <span class="comment">//解析后的目标class</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> Class <span class="title">getBeanClass</span><span class="params">(Element element)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> SimpleDateFormat.class; </div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">//如何解析xml</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doParse</span><span class="params">(Element element, BeanDefinitionBuilder bean)</span> </span>&#123;</div><div class="line">        <span class="comment">// this will never be null since the schema explicitly requires that a value be supplied</span></div><div class="line">        String pattern = element.getAttribute(<span class="string">"pattern"</span>);</div><div class="line">        bean.addConstructorArg(pattern);</div><div class="line"></div><div class="line">        <span class="comment">// this however is an optional property</span></div><div class="line">        String lenient = element.getAttribute(<span class="string">"lenient"</span>);</div><div class="line">        <span class="keyword">if</span> (StringUtils.hasText(lenient)) &#123;</div><div class="line">            bean.addPropertyValue(<span class="string">"lenient"</span>, Boolean.valueOf(lenient));</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h1 id="在spring上注册上面这些元素"><a href="#在spring上注册上面这些元素" class="headerlink" title="在spring上注册上面这些元素"></a>在spring上注册上面这些元素</h1><p>这一步是最后一步，就是把前面的工作串起来，其实就是配置两个文件: </p>
+<p>如果事务T1持有行r的共享锁，者别的事务T2对行r的请求会按如下处理:</p>
 <ul>
-<li><p>META-INF/spring.handlers</p>
-<p>  配置xml schema 和 namespace handler class的关系，本例中配置如下：</p>
-<p>  http\://www.mycompany.com/schema/myns=org.springframework.samples.xml.MyNamespaceHandler</p>
-<blockquote>
-<ol>
-<li>‘:’在java的properties文件中是关键字，所以要转移</li>
-<li>key值http\://www.mycompany.com/schema/myns 对应schema，value就是namespace handler的实现类</li>
-</ol>
-</blockquote>
-</li>
+<li>如果是s锁的请求，者立刻得到授权，并且此时T1和T2都会持有行r的s锁</li>
+<li>若果是x锁的请求者不能被直接授权</li>
 </ul>
+<p>如果事务T1持有的是行r的排他锁，其他任何事务的任务请求都不会得到授权，其他事务要等待T1释放行r上的锁。</p>
+<h2 id="意向锁-intention-locks"><a href="#意向锁-intention-locks" class="headerlink" title="意向锁(intention locks)"></a>意向锁(intention locks)</h2><p>InnoDB支持多种粒度的锁，它可以让行锁和表锁共存。比如说， LOCK TABLES … WRITE 会对指定表上x锁。InnoDB使用意向锁来实现多个粒度的锁。意向锁是表级别的锁。<br>它代表着事务可能会在后面对表中的行申请s或x锁。我们有两种意向锁:</p>
 <ul>
-<li><p>META-INF/spring.schemas </p>
-<p>  指定xml schema文件的位置，本例中配置如下：<br>  http\://www.mycompany.com/schema/myns/myns.xsd=org/springframework/samples/xml/myns.xsd</p>
-</li>
+<li>意向共享锁(IS) 表明事务有对表中的某一行设置共享锁的意向。</li>
+<li>意向排他锁(IX) 表明事务有队表中的某一行设置排它锁的意向。</li>
 </ul>
-<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><p>经过上面4步以后，在程序就就可以使用自定义的标签了，用法如下：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</div><div class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></div><div class="line">    <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></div><div class="line">    <span class="attr">xmlns:myns</span>=<span class="string">"http://www.mycompany.com/schema/myns"</span></div><div class="line">    <span class="attr">xsi:schemaLocation</span>=<span class="string">"</span></div><div class="line">        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd</div><div class="line">        http://www.mycompany.com/schema/myns http://www.mycompany.com/schema/myns/myns.xsd"&gt;</div><div class="line"></div><div class="line">    <span class="comment">&lt;!--注意这里需要引用标签 xmlns:myns="http://www.mycompany.com/schema/myns"--&gt;</span></div><div class="line">    <span class="comment">&lt;!--并且在schemaLocation中加入自定义标签的文职--&gt;</span></div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">&lt;!-- as a top-level bean --&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">myns:dateformat</span> <span class="attr">id</span>=<span class="string">"defaultDateFormat"</span> <span class="attr">pattern</span>=<span class="string">"yyyy-MM-dd HH:mm"</span> <span class="attr">lenient</span>=<span class="string">"true"</span>/&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>比如 SELECT … LOCK IN SHARE MODE 设置了一个IS锁, SELECT … FOR UPDATE 设置了一个IX锁。</p>
+<p>意向锁的规则如下:</p>
+<ul>
+<li>一个事务想要在表中的某一行获得s锁的前提是，它首先获得IS锁或比IS锁更强的锁。</li>
+<li>一个事务想要在表中的某一行获得x锁的前提是，它首先获得IX锁。</li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/13915081/36726906-48ea6232-1bf6-11e8-96fe-8fc465edf17c.png" alt="image"></p>
+<p>当事务申请的锁和当前锁的关系为compatible时，它可以获得该锁，但如果是conflicts，该事物必须等待当前所释放。如果事务所需的锁和当前锁conflicts，并且因为死锁的原因导致无法获得，就会出错。</p>
+<p>除全表请求(LOCK TABLES … WRITE)外，意向锁不会阻塞任何事。它的主要目的是表明有事务将要锁某行。</p>
+<h2 id="记录锁-Record-Locks"><a href="#记录锁-Record-Locks" class="headerlink" title="记录锁(Record Locks)"></a>记录锁(Record Locks)</h2><p>记录锁会锁定一个索引记录。比如，SELECT c1 FROM t WHERE c1 = 10 FOR UPDATE 会阻止其他任何事务插入，更新或删除t.c1=10的行。<br>记录锁一定会锁住索引记录，即使这个表没有定义索引。这种情况下，InnoDB会创建一个隐含的clustered索引，然后为记录所使用这个索引。</p>
+<h2 id="间隙锁-Gap-Locks"><a href="#间隙锁-Gap-Locks" class="headerlink" title="间隙锁(Gap Locks)"></a>间隙锁(Gap Locks)</h2><p>间隙锁是一个锁住索引之间，或第一个索引之前，或最后一个索引之后的记录。比如 SELECT c1 FROM t WHERE c1 BETWEEN 10 and 20 FOR UPDATE会阻止其他事务插入c1值为15的记录，无论这个值是否存在，因为在间隙内的所有值都被锁了。</p>
+<p>间隙锁可以跨越一个索引值，多个索引值甚至是0个索引值。</p>
+<p>间隙锁是性能和并发性的一个权衡，它用于一些隔离级别上。</p>
+<p>当使用唯一索引来检索唯一行的时候不需要间隙锁。(它不包括检索条件是一个多值唯一索引中的一部分值的情况)比如，如果id是唯一索引，这下面这个语句只会在id为100的记录上加index锁，而不会在它之前的间隙里加间隙锁。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> <span class="keyword">child</span> <span class="keyword">WHERE</span> <span class="keyword">id</span> = <span class="number">100</span>;</div></pre></td></tr></table></figure>
+<p>如果id没有索引或是一个非唯一的索引，上面的语句会锁住之前的间隙。</p>
+<p>值得注意的是不同的事务可以持有冲突的间隙锁。比如，事务A可以持有一个间隙共享锁(gap S-lock),事务B可以在同一个间隙中持有间隙排它锁(gap X-lock)。？？</p>
+<p>在InnoDB中间隙锁是“purely inhibitive”的，它意味着间隙锁只阻止事务插入到该间隙。它不阻止其他事务在同一个gap上获取锁。因此，间隙共享锁和间隙排它锁作用相同。</p>
+<p>间隙锁可以显示的禁止。你可以吧事务隔离级别设为READ COMMITTED或者启用innodb_locks_unsafe_for_binlog变量(这个已经被废弃了)。在这种情况下间隙锁只会被用于外键约束检测和重复key值检测了。</p>
+<h2 id="Next-Key-Locks"><a href="#Next-Key-Locks" class="headerlink" title="Next-Key Locks"></a>Next-Key Locks</h2><p>Next-Key锁是索引记录上的record锁和索引近路之前的gap锁的组合。</p>
+<p>InnoDB是以下面的方式来执行级别的锁，当搜索或扫描一个表的索引时，它会在遇到的索引记录上加s或x锁。所以行锁实际上就是index-record锁。索引记录上的next-key锁也会影响所以记录之前的区间。因此next-key锁是index-record锁加上索引之前的间隙。如果一个会话在索引记录R上有s或x锁，其他会话不能在索引顺序在R之前的区间中插入新的值。</p>
+<p>假设一个索引有值10，11，13，20。可能的next-key如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">(negative infinity, 10]</div><div class="line">(10, 11]</div><div class="line">(11, 13]</div><div class="line">(13, 20]</div><div class="line">(20, positive infinity)</div></pre></td></tr></table></figure>
+<p>最后一种情况下，next-key仅仅锁了一个间隙。默认情况下，InnoDB工作在 REPEATABLE READ 事务隔离级别下，此时它使用next-key来检索和遍历索引。它可以避免phantom行（后面会讲到）。</p>
+<h2 id="插入意向锁-REPEATABLE-READ"><a href="#插入意向锁-REPEATABLE-READ" class="headerlink" title="插入意向锁(REPEATABLE READ)"></a>插入意向锁(REPEATABLE READ)</h2><p>插入意向锁是insert上的gap锁，优先级高于行插入。这个锁标明希望用如下方式插入记录的意向:当多个事务插入同一个索引间隙，如果它们插入的不是同一个位置，它们就不需要等待其他事务。假设在4和7之间个index record， 两个事务尝试插入5和6，在获取x锁之前，它们都会获得4和7间隙中的插入意向锁。</p>
+<p>下面一个例子说明事务获得插入意向锁的优先级高于被插入记录上的排他锁。假设我们有两个客户端A和B。<br>A创建了一个表有两个索引记录 90和102，然后开启了一个事务，获取Id大于100的x锁。这个x锁包含一个小于102的gap锁。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">mysql&gt; CREATE TABLE child (id int(11) NOT NULL, PRIMARY KEY(id)) ENGINE=InnoDB;</div><div class="line">mysql&gt; INSERT INTO child (id) values (90),(102);</div><div class="line"></div><div class="line">mysql&gt; START TRANSACTION;</div><div class="line">mysql&gt; SELECT * FROM child WHERE id &gt; 100 FOR UPDATE;</div><div class="line">+-----+</div><div class="line">| id  |</div><div class="line">+-----+</div><div class="line">| 102 |</div><div class="line">+-----+</div></pre></td></tr></table></figure>
+<p>这时B开启了一个事务，插入一个值到该gap中。这个事务先获得插入意向锁，然后等待获取x锁。<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">mysql&gt; START TRANSACTION;</div><div class="line">mysql&gt; INSERT INTO child (id) VALUES (101);</div></pre></td></tr></table></figure></p>
+<p>插入语句的事务数据如下:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">RECORD LOCKS space id 31 page no 3 n bits 72 index `PRIMARY` of table `test`.`child`</div><div class="line">trx id 8731 lock_mode X locks gap before rec <span class="keyword">insert</span> intention waiting</div><div class="line"><span class="built_in">Record</span> <span class="keyword">lock</span>, <span class="keyword">heap</span> <span class="keyword">no</span> <span class="number">3</span> <span class="keyword">PHYSICAL</span> <span class="built_in">RECORD</span>: n_fields <span class="number">3</span>; compact format; info bits 0</div><div class="line"> 0: len 4; hex 80000066; asc    f;;</div><div class="line"> 1: len 6; hex 000000002215; asc     " ;;</div><div class="line"> 2: len 7; hex 9000000172011c; asc     r  ;;...</div></pre></td></tr></table></figure>
+<p>未完待续。。。。。。</p>
 
       
     </div>
@@ -480,9 +497,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/java/" rel="tag"># java</a>
-          
-            <a href="/tags/spring/" rel="tag"># spring</a>
+            <a href="/tags/数据库/" rel="tag"># 数据库</a>
           
         </div>
       
@@ -495,18 +510,14 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/01/13/spring-AOP/" rel="next" title="spring AOP">
-                <i class="fa fa-chevron-left"></i> spring AOP
-              </a>
-            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/07/23/java-序列化-一/" rel="prev" title="java 序列化(一)">
-                java 序列化(一) <i class="fa fa-chevron-right"></i>
+              <a href="/2018/02/12/设计模式系列-结构型模式1/" rel="prev" title="设计模式系列---结构型模式1">
+                设计模式系列---结构型模式1 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -649,7 +660,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#步骤"><span class="nav-number">2.</span> <span class="nav-text">步骤</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#编写xml-schema"><span class="nav-number">3.</span> <span class="nav-text">编写xml schema</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#NamespaceHandler"><span class="nav-number">4.</span> <span class="nav-text">NamespaceHandler</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#BeanDefinitionParse"><span class="nav-number">5.</span> <span class="nav-text">BeanDefinitionParse</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#在spring上注册上面这些元素"><span class="nav-number">6.</span> <span class="nav-text">在spring上注册上面这些元素</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用"><span class="nav-number">7.</span> <span class="nav-text">使用</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#InnoDB-锁和事物"><span class="nav-number">1.</span> <span class="nav-text">InnoDB 锁和事物</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#共享锁和排它锁"><span class="nav-number">1.1.</span> <span class="nav-text">共享锁和排它锁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#意向锁-intention-locks"><span class="nav-number">1.2.</span> <span class="nav-text">意向锁(intention locks)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#记录锁-Record-Locks"><span class="nav-number">1.3.</span> <span class="nav-text">记录锁(Record Locks)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#间隙锁-Gap-Locks"><span class="nav-number">1.4.</span> <span class="nav-text">间隙锁(Gap Locks)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Next-Key-Locks"><span class="nav-number">1.5.</span> <span class="nav-text">Next-Key Locks</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#插入意向锁-REPEATABLE-READ"><span class="nav-number">1.6.</span> <span class="nav-text">插入意向锁(REPEATABLE READ)</span></a></li></ol></li></ol></div>
             
 
           </div>
