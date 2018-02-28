@@ -87,18 +87,18 @@
 
 
 
-<meta name="description" content="InnoDB 锁和事物版本 5.7 共享锁和排它锁InnoDB实现了两种标准的行锁，共享锁(shared lock)和排它锁(exclusive lock)。  共享锁允许持有它的事务读取改行 排它锁允许持有它的事务更新或删除改行  如果事务T1持有行r的共享锁，者别的事务T2对行r的请求会按如下处理:  如果是s锁的请求，者立刻得到授权，并且此时T1和T2都会持有行r的s锁 若果是x锁的请求者不">
+<meta name="description" content="MySQL InnoDB 锁版本 5.7 共享锁和排它锁InnoDB实现了两种标准的行锁，共享锁(shared lock)和排它锁(exclusive lock)。  共享锁允许持有它的事务读取改行 排它锁允许持有它的事务更新或删除改行  如果事务T1持有行r的共享锁，者别的事务T2对行r的请求会按如下处理:  如果是s锁的请求，者立刻得到授权，并且此时T1和T2都会持有行r的s锁 若果是x锁的请">
 <meta name="keywords" content="数据库">
 <meta property="og:type" content="article">
 <meta property="og:title" content="mysql锁和事务">
 <meta property="og:url" content="http://songbingjia.cn/2018/02/27/mysql锁和事务/index.html">
 <meta property="og:site_name" content="宋兵甲的博客">
-<meta property="og:description" content="InnoDB 锁和事物版本 5.7 共享锁和排它锁InnoDB实现了两种标准的行锁，共享锁(shared lock)和排它锁(exclusive lock)。  共享锁允许持有它的事务读取改行 排它锁允许持有它的事务更新或删除改行  如果事务T1持有行r的共享锁，者别的事务T2对行r的请求会按如下处理:  如果是s锁的请求，者立刻得到授权，并且此时T1和T2都会持有行r的s锁 若果是x锁的请求者不">
+<meta property="og:description" content="MySQL InnoDB 锁版本 5.7 共享锁和排它锁InnoDB实现了两种标准的行锁，共享锁(shared lock)和排它锁(exclusive lock)。  共享锁允许持有它的事务读取改行 排它锁允许持有它的事务更新或删除改行  如果事务T1持有行r的共享锁，者别的事务T2对行r的请求会按如下处理:  如果是s锁的请求，者立刻得到授权，并且此时T1和T2都会持有行r的s锁 若果是x锁的请">
 <meta property="og:image" content="https://user-images.githubusercontent.com/13915081/36726906-48ea6232-1bf6-11e8-96fe-8fc465edf17c.png">
-<meta property="og:updated_time" content="2018-02-27T14:32:46.000Z">
+<meta property="og:updated_time" content="2018-02-28T12:13:20.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mysql锁和事务">
-<meta name="twitter:description" content="InnoDB 锁和事物版本 5.7 共享锁和排它锁InnoDB实现了两种标准的行锁，共享锁(shared lock)和排它锁(exclusive lock)。  共享锁允许持有它的事务读取改行 排它锁允许持有它的事务更新或删除改行  如果事务T1持有行r的共享锁，者别的事务T2对行r的请求会按如下处理:  如果是s锁的请求，者立刻得到授权，并且此时T1和T2都会持有行r的s锁 若果是x锁的请求者不">
+<meta name="twitter:description" content="MySQL InnoDB 锁版本 5.7 共享锁和排它锁InnoDB实现了两种标准的行锁，共享锁(shared lock)和排它锁(exclusive lock)。  共享锁允许持有它的事务读取改行 排它锁允许持有它的事务更新或删除改行  如果事务T1持有行r的共享锁，者别的事务T2对行r的请求会按如下处理:  如果是s锁的请求，者立刻得到授权，并且此时T1和T2都会持有行r的s锁 若果是x锁的请">
 <meta name="twitter:image" content="https://user-images.githubusercontent.com/13915081/36726906-48ea6232-1bf6-11e8-96fe-8fc465edf17c.png">
 
 
@@ -420,7 +420,7 @@
       
 
       
-        <h1 id="InnoDB-锁和事物"><a href="#InnoDB-锁和事物" class="headerlink" title="InnoDB 锁和事物"></a>InnoDB 锁和事物</h1><p>版本 5.7</p>
+        <h1 id="MySQL-InnoDB-锁"><a href="#MySQL-InnoDB-锁" class="headerlink" title="MySQL InnoDB 锁"></a>MySQL InnoDB 锁</h1><p>版本 5.7</p>
 <h2 id="共享锁和排它锁"><a href="#共享锁和排它锁" class="headerlink" title="共享锁和排它锁"></a>共享锁和排它锁</h2><p>InnoDB实现了两种标准的行锁，共享锁(shared lock)和排它锁(exclusive lock)。</p>
 <ul>
 <li>共享锁允许持有它的事务读取改行</li>
@@ -467,7 +467,8 @@
 <p>这时B开启了一个事务，插入一个值到该gap中。这个事务先获得插入意向锁，然后等待获取x锁。<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">mysql&gt; START TRANSACTION;</div><div class="line">mysql&gt; INSERT INTO child (id) VALUES (101);</div></pre></td></tr></table></figure></p>
 <p>插入语句的事务数据如下:</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">RECORD LOCKS space id 31 page no 3 n bits 72 index `PRIMARY` of table `test`.`child`</div><div class="line">trx id 8731 lock_mode X locks gap before rec <span class="keyword">insert</span> intention waiting</div><div class="line"><span class="built_in">Record</span> <span class="keyword">lock</span>, <span class="keyword">heap</span> <span class="keyword">no</span> <span class="number">3</span> <span class="keyword">PHYSICAL</span> <span class="built_in">RECORD</span>: n_fields <span class="number">3</span>; compact format; info bits 0</div><div class="line"> 0: len 4; hex 80000066; asc    f;;</div><div class="line"> 1: len 6; hex 000000002215; asc     " ;;</div><div class="line"> 2: len 7; hex 9000000172011c; asc     r  ;;...</div></pre></td></tr></table></figure>
-<p>未完待续。。。。。。</p>
+<h2 id="自增锁-AUTO-INC-Locks"><a href="#自增锁-AUTO-INC-Locks" class="headerlink" title="自增锁(AUTO-INC Locks)"></a>自增锁(AUTO-INC Locks)</h2><p>自增锁是一个特殊的表级别的锁，它出现在当一个事务想要插入一个有AUTO_INCREMENT列的表的时候。在这种情况下，如果一个事务想要在该表中插入值，其他想插入数据的表必须等待它完成。</p>
+<p> innodb_autoinc_lock_mode可以控制自增锁的算法，它允许你权衡自增值的可以测性和插入操作的并发性。。</p>
 
       
     </div>
@@ -509,6 +510,10 @@
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/02/28/mysql事务隔离级别/" rel="next" title="mysql事务隔离级别">
+                <i class="fa fa-chevron-left"></i> mysql事务隔离级别
+              </a>
             
           </div>
 
@@ -592,7 +597,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -660,7 +665,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#InnoDB-锁和事物"><span class="nav-number">1.</span> <span class="nav-text">InnoDB 锁和事物</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#共享锁和排它锁"><span class="nav-number">1.1.</span> <span class="nav-text">共享锁和排它锁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#意向锁-intention-locks"><span class="nav-number">1.2.</span> <span class="nav-text">意向锁(intention locks)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#记录锁-Record-Locks"><span class="nav-number">1.3.</span> <span class="nav-text">记录锁(Record Locks)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#间隙锁-Gap-Locks"><span class="nav-number">1.4.</span> <span class="nav-text">间隙锁(Gap Locks)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Next-Key-Locks"><span class="nav-number">1.5.</span> <span class="nav-text">Next-Key Locks</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#插入意向锁-REPEATABLE-READ"><span class="nav-number">1.6.</span> <span class="nav-text">插入意向锁(REPEATABLE READ)</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#MySQL-InnoDB-锁"><span class="nav-number">1.</span> <span class="nav-text">MySQL InnoDB 锁</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#共享锁和排它锁"><span class="nav-number">1.1.</span> <span class="nav-text">共享锁和排它锁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#意向锁-intention-locks"><span class="nav-number">1.2.</span> <span class="nav-text">意向锁(intention locks)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#记录锁-Record-Locks"><span class="nav-number">1.3.</span> <span class="nav-text">记录锁(Record Locks)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#间隙锁-Gap-Locks"><span class="nav-number">1.4.</span> <span class="nav-text">间隙锁(Gap Locks)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Next-Key-Locks"><span class="nav-number">1.5.</span> <span class="nav-text">Next-Key Locks</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#插入意向锁-REPEATABLE-READ"><span class="nav-number">1.6.</span> <span class="nav-text">插入意向锁(REPEATABLE READ)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自增锁-AUTO-INC-Locks"><span class="nav-number">1.7.</span> <span class="nav-text">自增锁(AUTO-INC Locks)</span></a></li></ol></li></ol></div>
             
 
           </div>

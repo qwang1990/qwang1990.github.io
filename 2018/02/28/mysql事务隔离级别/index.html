@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="设计模式," />
+  <meta name="keywords" content="数据库," />
 
 
 
@@ -87,17 +87,17 @@
 
 
 
-<meta name="description" content="结构型模式适配器模式将一个类的接口转换成客户希望的另外一个接口。适配器模式使得原本由于接口不兼容而不能一起工作的那些类可以一起工作。假设船长想使用RowingBoat出海1234567891011121314public class Captain &amp;#123;  private RowingBoat rowingBoat;  public Captain() &amp;#123;&amp;#125;  publ">
-<meta name="keywords" content="设计模式">
+<meta name="description" content="InnoDB事务模型事务隔离级别事务隔离是数据库的基础。隔离是ACID中的I，隔离级别是用来调整性能，可靠性，一致性和当多个事务同时改变或查询一个结果时的复现性的。 InnoDB提供了四中隔离级别， READ UNCOMMITTED, READ COMMITTED, REPEATABLE READ, SERIALIZABLE。默认的隔离界别是REPEATABLE READ。 使用 SET TRAN">
+<meta name="keywords" content="数据库">
 <meta property="og:type" content="article">
-<meta property="og:title" content="设计模式系列---结构型模式1">
-<meta property="og:url" content="http://songbingjia.cn/2018/02/12/设计模式系列-结构型模式1/index.html">
+<meta property="og:title" content="mysql事务隔离级别">
+<meta property="og:url" content="http://songbingjia.cn/2018/02/28/mysql事务隔离级别/index.html">
 <meta property="og:site_name" content="宋兵甲的博客">
-<meta property="og:description" content="结构型模式适配器模式将一个类的接口转换成客户希望的另外一个接口。适配器模式使得原本由于接口不兼容而不能一起工作的那些类可以一起工作。假设船长想使用RowingBoat出海1234567891011121314public class Captain &amp;#123;  private RowingBoat rowingBoat;  public Captain() &amp;#123;&amp;#125;  publ">
-<meta property="og:updated_time" content="2018-02-12T14:10:58.000Z">
+<meta property="og:description" content="InnoDB事务模型事务隔离级别事务隔离是数据库的基础。隔离是ACID中的I，隔离级别是用来调整性能，可靠性，一致性和当多个事务同时改变或查询一个结果时的复现性的。 InnoDB提供了四中隔离级别， READ UNCOMMITTED, READ COMMITTED, REPEATABLE READ, SERIALIZABLE。默认的隔离界别是REPEATABLE READ。 使用 SET TRAN">
+<meta property="og:updated_time" content="2018-02-28T12:15:10.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="设计模式系列---结构型模式1">
-<meta name="twitter:description" content="结构型模式适配器模式将一个类的接口转换成客户希望的另外一个接口。适配器模式使得原本由于接口不兼容而不能一起工作的那些类可以一起工作。假设船长想使用RowingBoat出海1234567891011121314public class Captain &amp;#123;  private RowingBoat rowingBoat;  public Captain() &amp;#123;&amp;#125;  publ">
+<meta name="twitter:title" content="mysql事务隔离级别">
+<meta name="twitter:description" content="InnoDB事务模型事务隔离级别事务隔离是数据库的基础。隔离是ACID中的I，隔离级别是用来调整性能，可靠性，一致性和当多个事务同时改变或查询一个结果时的复现性的。 InnoDB提供了四中隔离级别， READ UNCOMMITTED, READ COMMITTED, REPEATABLE READ, SERIALIZABLE。默认的隔离界别是REPEATABLE READ。 使用 SET TRAN">
 
 
 
@@ -125,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="http://songbingjia.cn/2018/02/12/设计模式系列-结构型模式1/"/>
+  <link rel="canonical" href="http://songbingjia.cn/2018/02/28/mysql事务隔离级别/"/>
 
 
 
 
 
-  <title> 设计模式系列---结构型模式1 | 宋兵甲的博客 </title>
+  <title> mysql事务隔离级别 | 宋兵甲的博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -314,7 +314,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://songbingjia.cn/2018/02/12/设计模式系列-结构型模式1/">
+    <link itemprop="mainEntityOfPage" href="http://songbingjia.cn/2018/02/28/mysql事务隔离级别/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="宋兵甲">
@@ -335,7 +335,7 @@
             
             
               
-                设计模式系列---结构型模式1
+                mysql事务隔离级别
               
             
           </h1>
@@ -350,8 +350,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-12T22:10:28+08:00">
-                2018-02-12
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-28T20:14:03+08:00">
+                2018-02-28
               </time>
             
 
@@ -391,7 +391,7 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a class="cloud-tie-join-count" href="/2018/02/12/设计模式系列-结构型模式1/#comments" itemprop="discussionUrl">
+                <a class="cloud-tie-join-count" href="/2018/02/28/mysql事务隔离级别/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count join-count" itemprop="commentCount"></span>
                 </a>
               </span>
@@ -418,41 +418,53 @@
       
 
       
-        <h1 id="结构型模式"><a href="#结构型模式" class="headerlink" title="结构型模式"></a>结构型模式</h1><h2 id="适配器模式"><a href="#适配器模式" class="headerlink" title="适配器模式"></a>适配器模式</h2><p>将一个类的接口转换成客户希望的另外一个接口。适配器模式使得原本由于接口不兼容而不能一起工作的那些类可以一起工作。<br>假设船长想使用RowingBoat出海<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Captain</span> </span>&#123;</div><div class="line">  <span class="keyword">private</span> RowingBoat rowingBoat;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="title">Captain</span><span class="params">()</span> </span>&#123;&#125;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="title">Captain</span><span class="params">(RowingBoat rowingBoat)</span> </span>&#123;</div><div class="line">    <span class="keyword">this</span>.rowingBoat = rowingBoat;</div><div class="line">  &#125;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setRowingBoat</span><span class="params">(RowingBoat rowingBoat)</span> </span>&#123;</div><div class="line">    <span class="keyword">this</span>.rowingBoat = rowingBoat;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">row</span><span class="params">()</span> </span>&#123;</div><div class="line">    rowingBoat.row();</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>RowingBoat的接口如下:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">RowingBoat</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">row</span><span class="params">()</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>此时你只有一个FishingBoat，实现如下:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FishingBoat</span> </span>&#123;</div><div class="line">      <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger LOGGER = LoggerFactory.getLogger(FishingBoat.class);</div><div class="line"></div><div class="line">      <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sail</span><span class="params">()</span> </span>&#123;</div><div class="line">        LOGGER.info(<span class="string">"The fishing boat is sailing"</span>);</div><div class="line">      &#125;</div><div class="line">&#125;r</div></pre></td></tr></table></figure></p>
-<p>为了能出海，我们需要有一个adapter，把FishingBoat适配成RowingBoat:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FishingBoatAdapter</span> <span class="keyword">implements</span> <span class="title">RowingBoat</span> </span>&#123;</div><div class="line">  <span class="keyword">private</span> FishingBoat boat;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="title">FishingBoatAdapter</span><span class="params">()</span> </span>&#123;</div><div class="line">    boat = <span class="keyword">new</span> FishingBoat();</div><div class="line">  &#125;</div><div class="line">  <span class="meta">@Override</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">row</span><span class="params">()</span> </span>&#123;</div><div class="line">    boat.sail();</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h2 id="装饰器模式"><a href="#装饰器模式" class="headerlink" title="装饰器模式"></a>装饰器模式</h2><p>允许向一个现有的对象添加新的功能，同时又不改变其结构。使用装饰比使用子类要灵活，而且不会造成子类膨胀的问题。<br>例如有一个接口Troll:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Troll</span> </span>&#123;</div><div class="line">  <span class="function"><span class="keyword">void</span> <span class="title">attack</span><span class="params">()</span></span>;</div><div class="line">  <span class="function"><span class="keyword">int</span> <span class="title">getAttackPower</span><span class="params">()</span></span>;</div><div class="line">  <span class="function"><span class="keyword">void</span> <span class="title">fleeBattle</span><span class="params">()</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>他有一个简单的实现:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SimpleTroll</span> <span class="keyword">implements</span> <span class="title">Troll</span> </span>&#123;</div><div class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger LOGGER = LoggerFactory.getLogger(SimpleTroll.class);</div><div class="line">  <span class="meta">@Override</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">attack</span><span class="params">()</span> </span>&#123;</div><div class="line">    LOGGER.info(<span class="string">"The troll tries to grab you!"</span>);</div><div class="line">  &#125;</div><div class="line">  <span class="meta">@Override</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getAttackPower</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="number">10</span>;</div><div class="line">  &#125;</div><div class="line">  <span class="meta">@Override</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fleeBattle</span><span class="params">()</span> </span>&#123;</div><div class="line">    LOGGER.info(<span class="string">"The troll shrieks in horror and runs away!"</span>);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>这时我们想给这个实现增加一点其他的功能，比如给这个巨人配备一个棒子:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ClubbedTroll</span> <span class="keyword">implements</span> <span class="title">Troll</span> </span>&#123;</div><div class="line"></div><div class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger LOGGER = LoggerFactory.getLogger(ClubbedTroll.class);</div><div class="line"></div><div class="line">  <span class="keyword">private</span> Troll decorated;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="title">ClubbedTroll</span><span class="params">(Troll decorated)</span> </span>&#123;</div><div class="line">    <span class="keyword">this</span>.decorated = decorated;</div><div class="line">  &#125;</div><div class="line">  <span class="meta">@Override</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">attack</span><span class="params">()</span> </span>&#123;</div><div class="line">    decorated.attack();</div><div class="line">    LOGGER.info(<span class="string">"The troll swings at you with a club!"</span>);</div><div class="line">  &#125;</div><div class="line">  <span class="meta">@Override</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getAttackPower</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="comment">//哈哈哈，我的攻击+10了</span></div><div class="line">    <span class="keyword">return</span> decorated.getAttackPower() + <span class="number">10</span>;</div><div class="line">  &#125;</div><div class="line">  <span class="meta">@Override</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fleeBattle</span><span class="params">()</span> </span>&#123;</div><div class="line">    decorated.fleeBattle();</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>我们会发现装饰器依旧实现了原接口，因为它不改变结构。大多情况下装饰器会有一个以接口为参数的构造函数，因为它只是对原来的某种实现的一种装饰。适配器是改变接口的，这就是最大的区别。</p>
-<p>为什么要把它俩放在一起讲呢？因为在java I/O的实现中使用到了它俩。<br>首先 java I/O 从方向上可分为输入/输出，从数据上可分为byte/char。<br>InputStream和OutputStream对Byte字节流的输入和输出，而Reader和Writer各自占据Char字符流的输入和输出。</p>
+        <h1 id="InnoDB事务模型"><a href="#InnoDB事务模型" class="headerlink" title="InnoDB事务模型"></a>InnoDB事务模型</h1><h2 id="事务隔离级别"><a href="#事务隔离级别" class="headerlink" title="事务隔离级别"></a>事务隔离级别</h2><p>事务隔离是数据库的基础。隔离是ACID中的I，隔离级别是用来调整性能，可靠性，一致性和当多个事务同时改变或查询一个结果时的复现性的。</p>
+<p>InnoDB提供了四中隔离级别， READ UNCOMMITTED, READ COMMITTED, REPEATABLE READ, SERIALIZABLE。默认的隔离界别是REPEATABLE READ。</p>
+<p>使用 SET TRANSACTION 用户可以改变一个回话的隔离级别或全部后续链接的隔离级别。也可以在命令行或option文件中使用 –transaction-isolation 来设置默认的隔离级别。</p>
+<p>InnoDB对每种隔离级别使用不同的锁策略。 REPEATABLE READ 可以给你带来高一致性，你也可以使用 READ COMMITTED，甚至 READ UNCOMMITTED 来放松对一致性的要求。当然你也可以用SERIALIZABLE增强约束，它一般用于特殊场景下，比如<a href="https://dev.mysql.com/doc/refman/5.7/en/glossary.html#glos_xa" target="_blank" rel="external">XA</a>或解决并发死锁问题。</p>
+<p>下面描述了MySQL支持的四种隔离界别，顺序是按照使用频率来的:</p>
 <ul>
-<li>装饰器的使用<br>因为java I/O库里有各种各样的组合的实现，如果用继承的话那就太庞大了。Java I/O是由一些原始流(Original Stream)和一些装饰流(Wrapper Stream)组成的。以输入流为类:</li>
+<li>REPEATABLE READ<br>这个是InnoDB的默认隔离级别。读一致性，在一个事务内每次读的都是第一次读的快照。这意味着如果你在同一个事务里发起多次的普通select操作它们是一致的。</li>
 </ul>
-<ul>
-<li><p>原始流处理器</p>
-<pre><code>原始流处理器接收一个Byte数组对象，String对象，FileDiscriptor对象或者不同类型的流源对象，原始流处理器包括以下四种：
-
-- ByteArrayInputStream：接收一个Byte数组作为流的源。
-- FileInputStream:建立一个与文件有关的输入流。接收一个File对象作为流的源。
-- PipedInputStream：可以与PipedOutputStream配合使用，用于读入一个数据管道的数据，接收一个PipedOutputStream作为源。
-- StringBufferInputStream：将一个字符串缓冲区转换为一个输入流。(废弃)  
-</code></pre></li>
-<li><p>链接流处理器</p>
-<pre><code>所谓链接流处理器，就是可以接收另一个流对象作为源，并对之进行功能扩展的类。InputStream类型的链接处理接收另一个InputStream对象作为流源。
-以FilterInputStream过滤输入流的子类为例。它将另一个输入流作为流源。这个类的子类包括以下几种：
-
-- BufferedInputStream：用来从硬盘将数据读入到一个内存缓冲区中，并从缓冲区提供数据。
-- DataInputStream：提供基于多字节的读取方法，可以读取原始类型的数据。
-- LineNumberInputStream：提供带有行计数功能的过滤输入流。
-- PushbackInputStream：提供特殊的功能，可以将已经读取的字节“推回”到输入流中。
-</code></pre></li>
+<p>对于locking read(SELECT with FOR UPDATE 或 LOCK IN SHARE MODE)，更新，删除，锁依赖于该语句是否是使用唯一检索条件或范围检索条件的唯一索引。</p>
+<pre><code>- 如果是唯一索引并且是唯一的检索条件，InnoDB仅仅使用index record锁，而不用gap锁。
+- 如果是其他检索条件，InnoDB使用index锁，next-key或gap-key来阻塞其他回话对该区间的插入行为。
+</code></pre><ul>
+<li>READ COMMITTED<br>每次读都是设置并且读取自己的快照(即便是在同一个事务内)。</li>
 </ul>
-<p>这里原始流就是被装饰者，装饰流是装饰器，它一般有以原始流为参数的构造函数，并且实现了共有的基类InputStream。</p>
-<ul>
-<li>适配器的应用<br>StringBufferInputStream就是一个适配器类，它继承了InputStream，同时持有一个对String的引用，它将String适配成一个InputSteam。</li>
-</ul>
+<p>对于locking read (SELECT with FOR UPDATE or LOCK IN SHARE MODE)，update，delete，InnoDB仅仅有index锁，不会有gaps锁，所以其他事务可以随意在上锁的索引记录附近插入记录。gap锁仅仅用于外键约束和duplicate-key检查。</p>
+<p>因为gap锁不在了，所以可能会有幻读问题(phantom problems)，因为其他事务可以在区间插入新的记录。</p>
+<p>使用 READ COMMITTED 有如下影响：</p>
+<pre><code>- 对于update或delete，InnoDB仅仅锁住那些它需要update或delete的行。那些没有匹配上的行上的record locks会在where条件计算完后释放。这会大大降低死锁可能，但依然可能发生。
+- 对于update，如果该行已经锁定了，InnoDB执行“semi-consistent”读，它返回最近的一次提交版本给mysql，让mysql确定改行是否符合update的where条件。如果匹配(一定会被更新)，mysql就会再次读取该行，这次InnoDB要么锁住它，要么等待锁住它。
+</code></pre><p>看一下下面一个例子:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">CREATE TABLE t (a INT NOT NULL, b INT) ENGINE = InnoDB;</div><div class="line">INSERT INTO t VALUES (1,2),(2,3),(3,2),(4,3),(5,2);</div><div class="line">COMMIT;</div></pre></td></tr></table></figure>
+<p>在这个例子中，table没有索引，所以检索和扫描用的是隐藏的clustered索引。</p>
+<p>假设有一个回话执行如下update操作:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"># Session A</div><div class="line">START TRANSACTION;</div><div class="line">UPDATE t SET b = 5 WHERE b = 3;</div></pre></td></tr></table></figure>
+<p>假设又有一个回话做下面的update操作:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># Session B</div><div class="line">UPDATE t SET b = 4 WHERE b = 2;</div></pre></td></tr></table></figure>
+<p>当使用默认的REPEATABLE READ隔离级别的时候，第一个update会给它读的每一行上x-lock，并且不会释放它们:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">x-lock(1,2); retain x-lock</div><div class="line">x-lock(2,3); update(2,3) to (2,5); retain x-lock</div><div class="line">x-lock(3,2); retain x-lock</div><div class="line">x-lock(4,3); update(4,3) to (4,5); retain x-lock</div><div class="line">x-lock(5,2); retain x-lock</div></pre></td></tr></table></figure>
+<p>此时第二个update会阻塞，知道第一个结束或回滚:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">x-lock(1,2); block and wait for first UPDATE to commit or roll back</div></pre></td></tr></table></figure>
+<p>如果是READ COMMITTED隔离级别，第一个update会给它读过的每一行上x-lock，但是会释放那些不需要修改的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">x-lock(1,2); unlock(1,2)</div><div class="line">x-lock(2,3); update(2,3) to (2,5); retain x-lock</div><div class="line">x-lock(3,2); unlock(3,2)</div><div class="line">x-lock(4,3); update(4,3) to (4,5); retain x-lock</div><div class="line">x-lock(5,2); unlock(5,2)</div></pre></td></tr></table></figure>
+<p>此时第二个update来了，InnoDB会执行“semi-consistent”读，返回每一行的最后一个提交的版本，然后确定改行是否需要修改:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">x-lock(1,2); update(1,2) to (1,4); retain x-lock</div><div class="line">x-lock(2,3); unlock(2,3)</div><div class="line">x-lock(3,2); update(3,2) to (3,4); retain x-lock</div><div class="line">x-lock(4,3); unlock(4,3)</div><div class="line">x-lock(5,2); update(5,2) to (5,4); retain x-lock</div></pre></td></tr></table></figure>
+<p>使用READ COMMITTED隔离级别和启用 innodb_locks_unsafe_for_binlog 配置的效果一样，除了:</p>
+<pre><code>-  innodb_locks_unsafe_for_binlog是全局设置，而隔离级别可以使全局，全部回话甚至是一个回话。
+-  innodb_locks_unsafe_for_binlog只能服务启动的时候设置，但是隔离界别可以随时更改。
+</code></pre><p>READ UNCOMMITTED<br>随意读，可能会有脏读</p>
+<p>SERIALIZABLE<br>这个级别和REPEATABLE READ很想，只是InnoDB给每个select隐式的加上了 SELECT … LOCK IN SHARE MODE。 其实就是全部事情都线性执行了。</p>
+<p>关于幻读的问题，网上有很多说法，有说RR级别能防止幻读的，有说不行的。但是主要取决于你对幻读的理解，官网上说RR模式下能避免幻读。先看一下官网对幻读的定义:</p>
+<p>幻读是指在一个事务内同样的查询在不同的时间得到不同的结果。</p>
+<p>假设在id列上有索引，你想读取并且锁住全部大于100的记录用于以后更新:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">SELECT * FROM child WHERE id &gt; 100 FOR UPDATE;</div></pre></td></tr></table></figure>
+<p>其实就是在执行上面语句的时候，利用next-key的机制不仅仅锁住了index record，而且还有gap lock。他会阻止其他事务想该表中插入任务id大于100的记录。</p>
+<p>有一种别的说法<br>在如下情况下会出现“脏读”：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">transaction1:</div><div class="line">START TRANSACTION;</div><div class="line">SELECT * FROM child WHERE id &gt; 100 ;</div><div class="line"></div><div class="line">transaction2:</div><div class="line">START TRANSACTION;</div><div class="line">INSERT INTO child(id,a) VALUES (103,2);</div><div class="line">COMMIT;</div></pre></td></tr></table></figure>
+<p>此时再次在transaction1中执行    SELECT * FROM child WHERE id &gt; 100 ; 不会出现刚刚插入的行。<br>但是如果在transaction1中执行  update child set a = 2; 然后在执行select就会发现出现了刚刚插入的行。</p>
 
       
     </div>
@@ -482,7 +494,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/设计模式/" rel="tag"># 设计模式</a>
+            <a href="/tags/数据库/" rel="tag"># 数据库</a>
           
         </div>
       
@@ -495,18 +507,14 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/02/27/mysql锁和事务/" rel="next" title="mysql锁和事务">
-                <i class="fa fa-chevron-left"></i> mysql锁和事务
-              </a>
-            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/02/12/设计模式系列-创建型模式/" rel="prev" title="设计模式系列---创建型模式">
-                设计模式系列---创建型模式 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/02/27/mysql锁和事务/" rel="prev" title="mysql锁和事务">
+                mysql锁和事务 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -649,7 +657,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#结构型模式"><span class="nav-number">1.</span> <span class="nav-text">结构型模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#适配器模式"><span class="nav-number">1.1.</span> <span class="nav-text">适配器模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#装饰器模式"><span class="nav-number">1.2.</span> <span class="nav-text">装饰器模式</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#InnoDB事务模型"><span class="nav-number">1.</span> <span class="nav-text">InnoDB事务模型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#事务隔离级别"><span class="nav-number">1.1.</span> <span class="nav-text">事务隔离级别</span></a></li></ol></li></ol></div>
             
 
           </div>
