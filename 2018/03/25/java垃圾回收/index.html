@@ -87,17 +87,23 @@
 
 
 
-<meta name="description" content="java序列化废话序列化就是为了保存在内存中的各种对象的状态，并且可以把保存的对象状态再读出来。虽然你可以用你自己的各种各样的方法来保存Object States，但是Java给你提供一种应该比你自己好的保存对象状态的机制,那就是序列化。在java中实现Serializable接口就说明该类可以被序列化。一般用于:  把内存中对象保存在文件或数据库中 网络传输  几个问题1.静态成员变量可以被序列">
+<meta name="description" content="java 垃圾回收其实很多书都很系统的讲过垃圾回收，我只是把知识点串一下。 几个小问题 第一个问题，垃圾回收是基于什么的？  基于GC Root枚举(这个比较基础，就不多说了。)   第二个问题，如何高效的GC Root枚举？  这时就需要一个地方来记录对象引用，Oop来记录哪些地方存着对象引用。   第三个问题，虽然Oop记录了这些信息，但是不能每条指令都生成Oop，这样效率太低了，那应该怎么办">
 <meta name="keywords" content="java">
 <meta property="og:type" content="article">
-<meta property="og:title" content="java 序列化(一)">
-<meta property="og:url" content="http://songbingjia.cn/2017/07/23/java-序列化-一/index.html">
+<meta property="og:title" content="java垃圾回收">
+<meta property="og:url" content="http://songbingjia.cn/2018/03/25/java垃圾回收/index.html">
 <meta property="og:site_name" content="宋兵甲的博客">
-<meta property="og:description" content="java序列化废话序列化就是为了保存在内存中的各种对象的状态，并且可以把保存的对象状态再读出来。虽然你可以用你自己的各种各样的方法来保存Object States，但是Java给你提供一种应该比你自己好的保存对象状态的机制,那就是序列化。在java中实现Serializable接口就说明该类可以被序列化。一般用于:  把内存中对象保存在文件或数据库中 网络传输  几个问题1.静态成员变量可以被序列">
-<meta property="og:updated_time" content="2017-07-23T14:23:03.000Z">
+<meta property="og:description" content="java 垃圾回收其实很多书都很系统的讲过垃圾回收，我只是把知识点串一下。 几个小问题 第一个问题，垃圾回收是基于什么的？  基于GC Root枚举(这个比较基础，就不多说了。)   第二个问题，如何高效的GC Root枚举？  这时就需要一个地方来记录对象引用，Oop来记录哪些地方存着对象引用。   第三个问题，虽然Oop记录了这些信息，但是不能每条指令都生成Oop，这样效率太低了，那应该怎么办">
+<meta property="og:image" content="https://user-images.githubusercontent.com/13915081/37282784-a98bfd5a-2630-11e8-932f-be3d7900120b.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/13915081/37283034-7e59b770-2631-11e8-8aee-e96f3019ad18.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/13915081/37283228-2d5da2ea-2632-11e8-9075-6f4608756cc1.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/13915081/37283757-13e846f6-2634-11e8-907b-04cac4c61e5a.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/13915081/37284663-6a3d148e-2637-11e8-881e-64a74ddf1b58.png">
+<meta property="og:updated_time" content="2018-03-25T13:19:37.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="java 序列化(一)">
-<meta name="twitter:description" content="java序列化废话序列化就是为了保存在内存中的各种对象的状态，并且可以把保存的对象状态再读出来。虽然你可以用你自己的各种各样的方法来保存Object States，但是Java给你提供一种应该比你自己好的保存对象状态的机制,那就是序列化。在java中实现Serializable接口就说明该类可以被序列化。一般用于:  把内存中对象保存在文件或数据库中 网络传输  几个问题1.静态成员变量可以被序列">
+<meta name="twitter:title" content="java垃圾回收">
+<meta name="twitter:description" content="java 垃圾回收其实很多书都很系统的讲过垃圾回收，我只是把知识点串一下。 几个小问题 第一个问题，垃圾回收是基于什么的？  基于GC Root枚举(这个比较基础，就不多说了。)   第二个问题，如何高效的GC Root枚举？  这时就需要一个地方来记录对象引用，Oop来记录哪些地方存着对象引用。   第三个问题，虽然Oop记录了这些信息，但是不能每条指令都生成Oop，这样效率太低了，那应该怎么办">
+<meta name="twitter:image" content="https://user-images.githubusercontent.com/13915081/37282784-a98bfd5a-2630-11e8-932f-be3d7900120b.png">
 
 
 
@@ -125,13 +131,13 @@
 
 
 
-  <link rel="canonical" href="http://songbingjia.cn/2017/07/23/java-序列化-一/"/>
+  <link rel="canonical" href="http://songbingjia.cn/2018/03/25/java垃圾回收/"/>
 
 
 
 
 
-  <title> java 序列化(一) | 宋兵甲的博客 </title>
+  <title> java垃圾回收 | 宋兵甲的博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -314,7 +320,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://songbingjia.cn/2017/07/23/java-序列化-一/">
+    <link itemprop="mainEntityOfPage" href="http://songbingjia.cn/2018/03/25/java垃圾回收/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="宋兵甲">
@@ -335,7 +341,7 @@
             
             
               
-                java 序列化(一)
+                java垃圾回收
               
             
           </h1>
@@ -350,8 +356,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-23T19:37:19+08:00">
-                2017-07-23
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-25T21:18:57+08:00">
+                2018-03-25
               </time>
             
 
@@ -391,7 +397,7 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a class="cloud-tie-join-count" href="/2017/07/23/java-序列化-一/#comments" itemprop="discussionUrl">
+                <a class="cloud-tie-join-count" href="/2018/03/25/java垃圾回收/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count join-count" itemprop="commentCount"></span>
                 </a>
               </span>
@@ -418,16 +424,97 @@
       
 
       
-        <h1 id="java序列化"><a href="#java序列化" class="headerlink" title="java序列化"></a>java序列化</h1><h2 id="废话"><a href="#废话" class="headerlink" title="废话"></a>废话</h2><p>序列化就是为了保存在内存中的各种对象的状态，并且可以把保存的对象状态再读出来。虽然你可以用你自己的各种各样的方法来保存Object States，<br>但是Java给你提供一种应该比你自己好的保存对象状态的机制,那就是序列化。在java中实现Serializable接口就说明该类可以被序列化。<br>一般用于:</p>
-<ul>
-<li>把内存中对象保存在文件或数据库中</li>
-<li>网络传输</li>
+        <h1 id="java-垃圾回收"><a href="#java-垃圾回收" class="headerlink" title="java 垃圾回收"></a>java 垃圾回收</h1><p>其实很多书都很系统的讲过垃圾回收，我只是把知识点串一下。</p>
+<h2 id="几个小问题"><a href="#几个小问题" class="headerlink" title="几个小问题"></a>几个小问题</h2><ul>
+<li><p>第一个问题，垃圾回收是基于什么的？</p>
+<blockquote>
+<p>基于GC Root枚举(这个比较基础，就不多说了。)</p>
+</blockquote>
+</li>
+<li><p>第二个问题，如何高效的GC Root枚举？</p>
+<blockquote>
+<p>这时就需要一个地方来记录对象引用，Oop来记录哪些地方存着对象引用。</p>
+</blockquote>
+</li>
+<li><p>第三个问题，虽然Oop记录了这些信息，但是不能每条指令都生成Oop，这样效率太低了，那应该怎么办呢？</p>
+</li>
 </ul>
-<h2 id="几个问题"><a href="#几个问题" class="headerlink" title="几个问题"></a>几个问题</h2><p>1.静态成员变量可以被序列化么？<br> 不行的。<br> <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Foo</span> <span class="keyword">implements</span> <span class="title">Serializable</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = -<span class="number">3450064362986273896L</span>;</div><div class="line">       <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> a = <span class="number">1</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SerialMain</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] arg)</span> <span class="keyword">throws</span> IOException, ClassNotFoundException </span>&#123;</div><div class="line">        Foo myFoo = <span class="keyword">new</span> Foo(); </div><div class="line">        Foo.a = <span class="number">100</span>;</div><div class="line"></div><div class="line">        FileOutputStream fs = <span class="keyword">new</span> FileOutputStream(<span class="string">"foo.ser"</span>);</div><div class="line">        ObjectOutputStream os = <span class="keyword">new</span> ObjectOutputStream(fs);</div><div class="line">        os.writeObject(myFoo);</div><div class="line">        os.close();</div><div class="line"></div><div class="line">        Foo.setA(<span class="number">10000</span>);</div><div class="line"></div><div class="line">        FileInputStream fi=<span class="keyword">new</span> FileInputStream(<span class="string">"foo.ser"</span>);</div><div class="line">        ObjectInputStream oi=<span class="keyword">new</span> ObjectInputStream(fi);</div><div class="line">        Foo box=(Foo)oi.readObject();</div><div class="line">        oi.close();</div><div class="line">        System.out.println(box);</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>结果为 a=10000<br>因为序列化是记录对象的状态，并不记录类的状态。</p>
-<p>2.serialVersionUID的作用<br>serialVersionUID可以理解为可序列化对象的一个运行时版本号，当反序列化时jvm会对比目标对象和源数据之间的版本号是否一致，如果不一致会<br>报InvalidClassException。导致serialVersionUID不一致的可能有很多，比如对象属性的变化，环境的不同等，所以为了兼容性，建议Serializable对象<br>都定义一个serialVersionUID成员变量，格式如上代码所示。这样既能避免环境问题，又能当对象版本变化时不报错（此时只序列化能识别的对象，但是我感觉这<br>并不是一个好的现象，这样会不能及时发现升级，有可能造成更大的错误。）</p>
-<p>3.enum序列化<br>enum序列化其实被序列化的是名字，反序列化时用valueof方法来匹配，这个比较坑，特别是系统升级时，所以使用时一定要谨慎。</p>
-<h1 id="protobuff"><a href="#protobuff" class="headerlink" title="protobuff"></a>protobuff</h1><h2 id="什么是protobuf"><a href="#什么是protobuf" class="headerlink" title="什么是protobuf"></a>什么是protobuf</h2><p>protobuff是google开源的语言无关，平台无关的可扩展的序列化结构（就像xml一样，不过更简单，更高效）。用户可以通过一次定义如何构建数据，然后可以使用<br>不同的语言方便的读写这些数据。</p>
+<blockquote>
+<p>这时就引入了安全点(safepoint)这个概念，程序不是任何时间都能停下来GC的，只有到安全点的时候才能暂停。所以只要在安全点时记录Oop信息就行了。</p>
+</blockquote>
+<ul>
+<li><p>第四个问题，安全点怎么选？</p>
+<blockquote>
+<p>原则:是否有让程序长时间执行的特征。例如:方法调用，循环跳转，异常跳转等。</p>
+</blockquote>
+</li>
+<li><p>第五个问题，怎么让程序到安全点后都停下来？</p>
+<blockquote>
+<p>理论上两种方式，抢先式中断&amp;主动式中断，抢先式不用代码配合，在GC发生的时候，先把全部线程中断，然后不再安全点的就恢复它，然后让它跑到安全点，这个基本没人这么做。而主动式是需要中断的时候不用对线程操作，只是设个标识，然后线程主动轮询这个标识。轮询标识的地方其实就是安全点。</p>
+</blockquote>
+</li>
+<li><p>第六个问题，在程序“不执行”的时候，例如sleep或block住了，如果走到安全点？</p>
+<blockquote>
+<p>首先这个时候线程无法响应JVM的中断请求，走到安全点，JVM也不可能等到线程获得CPU时间。这时就引入安全区域。</p>
+</blockquote>
+</li>
+<li><p>最后一个问题，安全区域是什么？</p>
+<blockquote>
+<p>安全区域就是指一段代码片段中引用关系不会变化。在该区域内任何地方GC都是安全的。可以把它看成扩展后的安全点。所以当线程执行到安全区域里的代码时，首先它自己要意识到自己已经在其中了，这段时间内GC就不要管它了，在离开安全区域时，它要检查根枚举完成了没，如果没完成他要等到完才能离开安全区域。</p>
+</blockquote>
+</li>
+</ul>
+<p>这几个问题能帮助大家理解垃圾回收中的一些词的概念。</p>
+<h2 id="主要垃圾回收器的简介"><a href="#主要垃圾回收器的简介" class="headerlink" title="主要垃圾回收器的简介"></a>主要垃圾回收器的简介</h2><p>先上图<br><img src="https://user-images.githubusercontent.com/13915081/37282784-a98bfd5a-2630-11e8-932f-be3d7900120b.png" alt="image"></p>
+<h3 id="Serial-new"><a href="#Serial-new" class="headerlink" title="Serial new"></a>Serial new</h3><p>早期(JDK1.3.1之前)的新生代收集的唯一选择，单线程，它收集的时候要停止所有用户线程。Stop The World!<br><img src="https://user-images.githubusercontent.com/13915081/37283034-7e59b770-2631-11e8-8aee-e96f3019ad18.png" alt="image"></p>
+<ul>
+<li>缺点: 这个很明显就不说了。</li>
+<li>优点: 简单高效，特别对单CPU来说。所以在client模式下是一个很好的选择</li>
+</ul>
+<h3 id="ParNew"><a href="#ParNew" class="headerlink" title="ParNew"></a>ParNew</h3><p>就是Serial收集器的多线程版本。<br><img src="https://user-images.githubusercontent.com/13915081/37283228-2d5da2ea-2632-11e8-9075-6f4608756cc1.png" alt="image"><br>其实没太多创新，但是确实Server模式下新生代收集的首选，因为它是出Serial外，目前唯一能和CMS收集器配合工作的。</p>
+<p>ParNew在单CPU下绝对不会比Serial号。但是随着CPU数量的增加，它还是会更充分的利用系统的资源的。</p>
+<h3 id="Parallel-Scavenge"><a href="#Parallel-Scavenge" class="headerlink" title="Parallel Scavenge"></a>Parallel Scavenge</h3><p>新生代收集器，也是复制算法收集，但是它的关注点是吞吐量。吞吐量就是CPU用于运行用户代码的时间和CPU总消耗时间的比。</p>
+<p>所以停顿时间越短就越适合于用户交互，良好的响应速度能提升用户体验，而搞吞吐量能高效的利用CPU时间。</p>
+<p>Parallel提供了配置最大停顿时间和吞吐量大小的参数。</p>
+<h3 id="Serial-Old"><a href="#Serial-Old" class="headerlink" title="Serial Old"></a>Serial Old</h3><p>就是Serial的老年版收集器，用标记-整理算法，单线程。<br>两个主要用途: </p>
+<ul>
+<li>与Parallel Scavenge收集器搭配使用</li>
+<li>座位CMS的后备方案，当其发生Concurrent Mode Failure时(这个后面会讲。)</li>
+</ul>
+<h2 id="Parallel-Old"><a href="#Parallel-Old" class="headerlink" title="Parallel Old"></a>Parallel Old</h2><p>是Parallel Scavenge的老年代版本，多线程&amp;标记-整理。<br>主要用于和Parallel Scavenge在CPU资源敏感的场合使用。</p>
+<h3 id="CMS"><a href="#CMS" class="headerlink" title="CMS"></a>CMS</h3><p>CMS是以获得最短停顿时间为目标的收集器。标记-清除算法。它有如下4个步骤</p>
+<ul>
+<li>初始标记(只标记GC Roots能直接关联的对象，所以很快!)</li>
+<li>并发标记(和用户线程并行)</li>
+<li>重新标记(修正了并发标记期间因为用户程序导致变化的记录,它的停顿时间比初始标识长，但远小于并发标记)</li>
+<li>并发清除(与用户线程并行)</li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/13915081/37283757-13e846f6-2634-11e8-907b-04cac4c61e5a.png" alt="image"></p>
+<p>其中初始标记和重新标记还是要stop the world的。</p>
+<p>缺点：</p>
+<ul>
+<li>对CPU资源敏感。因为并发标记，并发清除不会导致程序停，但是会占用CPU。</li>
+<li>无法处理浮动垃圾，可能会Concurrent Mode Failure，导致另外一次Full GC。因为CMS并发清除的时候用户线程可能还会产生垃圾，而这部分垃圾在标记之后，所以只能等到下次。因为垃圾回收阶段程序还在跑，所以还要预留空间。默认老年代使用68%后激活，当然你也可以设高点，不过CMS运行期间如果预留内存无法满足程序需要，就要Serial Old了，这个比较慢。</li>
+<li>最后一个缺点，标记-清除有碎片，当碎片过多无法分配大对象的时候就要提前触发一次full GC。所以CMS有一个参数(自己查),用于在CMS顶不住要FullGC的时候开始内存合并整理。它还有个参数用于设置执行多少次不压缩的FullGC后来一个压缩的。</li>
+</ul>
+<h3 id="G1"><a href="#G1" class="headerlink" title="G1"></a>G1</h3><p>现在已经成熟，最新的信息我后面查一下补充，现在只说一下它的设计思路。<br><img src="https://user-images.githubusercontent.com/13915081/37284663-6a3d148e-2637-11e8-881e-64a74ddf1b58.png" alt="image"></p>
+<ul>
+<li>初始标记</li>
+<li>并发标记</li>
+<li>最终标记</li>
+<li>筛选回收</li>
+</ul>
+<p>初始看起来这个和CMS差不多，连步骤和并发的点都差不多，其实大大的不同。<br>首先说一下它的优点：</p>
+<ul>
+<li>并发&amp;并行: 这点和CMS差不多，就是最大限度的并发。</li>
+<li>分代收集: G1中也采用不同的方式去处理新对象和老对象，但是它不用其他回收期配合</li>
+<li>空间整合: 它整体看起来是标记-整理，从局部(两个Region之间)上看起来是复制算法。不过无论哪种都不会有碎片。关于region，后面再说。</li>
+<li>可预测的停顿: 这个也是G1的一大优势，G1能建立可预测的停顿时间模型，能让使用者明确在一个长度为M毫秒的时间片内，消费在垃圾收集上的时间不超过N毫秒。</li>
+</ul>
+<p>在G1之前，别的收集器都是老年代和新生代，但是G1不是这样了，G1把JAVA堆分成了很多大小相等的独立的区域(Region)，虽然还是有新生代和来年代的概念，但是他们不再是物理隔离了，他们都是一部分region(不需要连续)的集合。</p>
+<p>G1通过跟踪各个region里垃圾堆积的价值大小(回收获得的空间大小以及回收时间的经验值)，在后台维护一个优先列表，每次根据允许的收集时间，优先回收价值最大的region。</p>
+<p>其实这里就引入一个问题，region不是独立的，那么一个region中的对象可能会引用其他region的对象。这样的话不就要扫描全部的堆对象了么？<br>其实不仅仅是G1，在原来的垃圾回收器中也有类似的问题，所以在G1中region之间的对象引用以及其他收集器中的新生代和老年代之间的对象引用，虚拟机是使用Remebered set来记录的。</p>
+<p>G1的每个Region都有一个和它对应的Remebered set，虚拟机发现程序对reference类型进行写操作时就会产生一个write barrier的写中断，检查该引用是否引用了其他region的对象(在分代收集的时候就会坚持老年代是否应用了新生代的对象)，如果是，就通过CardTable吧相关应用对象所属的region记录在Remebered set中。</p>
 
       
     </div>
@@ -470,18 +557,14 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/11/19/spring-XML-extensions/" rel="next" title="spring XML extensions">
-                <i class="fa fa-chevron-left"></i> spring XML extensions
-              </a>
-            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/04/17/Angular2-Binding学习笔记/" rel="prev" title="Angular2-Binding学习笔记">
-                Angular2-Binding学习笔记 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/02/28/mysql事务隔离级别/" rel="prev" title="mysql事务隔离级别">
+                mysql事务隔离级别 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -624,7 +707,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#java序列化"><span class="nav-number">1.</span> <span class="nav-text">java序列化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#废话"><span class="nav-number">1.1.</span> <span class="nav-text">废话</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#几个问题"><span class="nav-number">1.2.</span> <span class="nav-text">几个问题</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#protobuff"><span class="nav-number">2.</span> <span class="nav-text">protobuff</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是protobuf"><span class="nav-number">2.1.</span> <span class="nav-text">什么是protobuf</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#java-垃圾回收"><span class="nav-number">1.</span> <span class="nav-text">java 垃圾回收</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#几个小问题"><span class="nav-number">1.1.</span> <span class="nav-text">几个小问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#主要垃圾回收器的简介"><span class="nav-number">1.2.</span> <span class="nav-text">主要垃圾回收器的简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Serial-new"><span class="nav-number">1.2.1.</span> <span class="nav-text">Serial new</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ParNew"><span class="nav-number">1.2.2.</span> <span class="nav-text">ParNew</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Parallel-Scavenge"><span class="nav-number">1.2.3.</span> <span class="nav-text">Parallel Scavenge</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Serial-Old"><span class="nav-number">1.2.4.</span> <span class="nav-text">Serial Old</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Parallel-Old"><span class="nav-number">1.3.</span> <span class="nav-text">Parallel Old</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CMS"><span class="nav-number">1.3.1.</span> <span class="nav-text">CMS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#G1"><span class="nav-number">1.3.2.</span> <span class="nav-text">G1</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
