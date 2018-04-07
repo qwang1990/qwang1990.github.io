@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="数据库," />
+  <meta name="keywords" content="java,SpringBoot," />
 
 
 
@@ -87,19 +87,17 @@
 
 
 
-<meta name="description" content="MySQL InnoDB 锁版本 5.7 共享锁和排它锁InnoDB实现了两种标准的行锁，共享锁(shared lock)和排它锁(exclusive lock)。  共享锁允许持有它的事务读取改行 排它锁允许持有它的事务更新或删除改行  如果事务T1持有行r的共享锁，者别的事务T2对行r的请求会按如下处理:  如果是s锁的请求，者立刻得到授权，并且此时T1和T2都会持有行r的s锁 若果是x锁的请">
-<meta name="keywords" content="数据库">
+<meta name="description" content="开发工具spring boot提供了一系列的工具。可以用如下方式来引入:1234567&amp;lt;dependencies&amp;gt;    &amp;lt;dependency&amp;gt;        &amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt;        &amp;lt;artifactId&amp;gt;spring-boot-devtools&amp;lt;/a">
+<meta name="keywords" content="java,SpringBoot">
 <meta property="og:type" content="article">
-<meta property="og:title" content="mysql锁和事务">
-<meta property="og:url" content="http://songbingjia.cn/2018/02/27/mysql锁和事务/index.html">
+<meta property="og:title" content="Spring Boot系列---开发工具">
+<meta property="og:url" content="http://songbingjia.cn/2018/04/06/Spring-Boot系列-开发工具/index.html">
 <meta property="og:site_name" content="宋兵甲的博客">
-<meta property="og:description" content="MySQL InnoDB 锁版本 5.7 共享锁和排它锁InnoDB实现了两种标准的行锁，共享锁(shared lock)和排它锁(exclusive lock)。  共享锁允许持有它的事务读取改行 排它锁允许持有它的事务更新或删除改行  如果事务T1持有行r的共享锁，者别的事务T2对行r的请求会按如下处理:  如果是s锁的请求，者立刻得到授权，并且此时T1和T2都会持有行r的s锁 若果是x锁的请">
-<meta property="og:image" content="https://user-images.githubusercontent.com/13915081/36726906-48ea6232-1bf6-11e8-96fe-8fc465edf17c.png">
-<meta property="og:updated_time" content="2018-02-28T12:13:20.000Z">
+<meta property="og:description" content="开发工具spring boot提供了一系列的工具。可以用如下方式来引入:1234567&amp;lt;dependencies&amp;gt;    &amp;lt;dependency&amp;gt;        &amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt;        &amp;lt;artifactId&amp;gt;spring-boot-devtools&amp;lt;/a">
+<meta property="og:updated_time" content="2018-04-07T14:21:12.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="mysql锁和事务">
-<meta name="twitter:description" content="MySQL InnoDB 锁版本 5.7 共享锁和排它锁InnoDB实现了两种标准的行锁，共享锁(shared lock)和排它锁(exclusive lock)。  共享锁允许持有它的事务读取改行 排它锁允许持有它的事务更新或删除改行  如果事务T1持有行r的共享锁，者别的事务T2对行r的请求会按如下处理:  如果是s锁的请求，者立刻得到授权，并且此时T1和T2都会持有行r的s锁 若果是x锁的请">
-<meta name="twitter:image" content="https://user-images.githubusercontent.com/13915081/36726906-48ea6232-1bf6-11e8-96fe-8fc465edf17c.png">
+<meta name="twitter:title" content="Spring Boot系列---开发工具">
+<meta name="twitter:description" content="开发工具spring boot提供了一系列的工具。可以用如下方式来引入:1234567&amp;lt;dependencies&amp;gt;    &amp;lt;dependency&amp;gt;        &amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt;        &amp;lt;artifactId&amp;gt;spring-boot-devtools&amp;lt;/a">
 
 
 
@@ -127,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="http://songbingjia.cn/2018/02/27/mysql锁和事务/"/>
+  <link rel="canonical" href="http://songbingjia.cn/2018/04/06/Spring-Boot系列-开发工具/"/>
 
 
 
 
 
-  <title> mysql锁和事务 | 宋兵甲的博客 </title>
+  <title> Spring Boot系列---开发工具 | 宋兵甲的博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -316,7 +314,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://songbingjia.cn/2018/02/27/mysql锁和事务/">
+    <link itemprop="mainEntityOfPage" href="http://songbingjia.cn/2018/04/06/Spring-Boot系列-开发工具/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="宋兵甲">
@@ -337,7 +335,7 @@
             
             
               
-                mysql锁和事务
+                Spring Boot系列---开发工具
               
             
           </h1>
@@ -352,8 +350,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-27T22:30:13+08:00">
-                2018-02-27
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-06T22:20:21+08:00">
+                2018-04-06
               </time>
             
 
@@ -393,7 +391,7 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a class="cloud-tie-join-count" href="/2018/02/27/mysql锁和事务/#comments" itemprop="discussionUrl">
+                <a class="cloud-tie-join-count" href="/2018/04/06/Spring-Boot系列-开发工具/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count join-count" itemprop="commentCount"></span>
                 </a>
               </span>
@@ -420,55 +418,61 @@
       
 
       
-        <h1 id="MySQL-InnoDB-锁"><a href="#MySQL-InnoDB-锁" class="headerlink" title="MySQL InnoDB 锁"></a>MySQL InnoDB 锁</h1><p>版本 5.7</p>
-<h2 id="共享锁和排它锁"><a href="#共享锁和排它锁" class="headerlink" title="共享锁和排它锁"></a>共享锁和排它锁</h2><p>InnoDB实现了两种标准的行锁，共享锁(shared lock)和排它锁(exclusive lock)。</p>
+        <h2 id="开发工具"><a href="#开发工具" class="headerlink" title="开发工具"></a>开发工具</h2><p>spring boot提供了一系列的工具。可以用如下方式来引入:<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-devtools<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">optional</span>&gt;</span>true<span class="tag">&lt;/<span class="name">optional</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>当执行一个full packaged application时开发中工具会自动禁用，如果你使用java -jar来启动程序或使用特定的classloader来启动它，它就会被认为是生产环境应用。</p>
+</blockquote>
+<h3 id="property-defaults"><a href="#property-defaults" class="headerlink" title="property defaults"></a>property defaults</h3><p>spring boot中很多的类库都有缓存功能来提高性能。比如，template engines可以缓存编译的模板来避免多次解析模板文件。又如Spring MVC也可以在返回的静态资源的http头中添加caching header。</p>
+<p>尽管caching在生产中特别有帮助，但是在开发中会起反作用，它会让你看不到你对程序的修改。所以spring-boot-devtools默认禁止caching选项。</p>
+<p>cache选项通常可以通过application.properties来配置。比如，thymeleaf提供了spring.thymeleaf.cache属性。除此之外，你还可以用spring-boot-devtools来自动的智能的管理这些配置。</p>
+<blockquote>
+<p>devtools的完整属性清单可以<a href="https://github.com/spring-projects/spring-boot/blob/v2.0.0.RELEASE/spring-boot-project/spring-boot-devtools/src/main/java/org/springframework/boot/devtools/env/DevToolsPropertyDefaultsPostProcessor.java" target="_blank" rel="external">点击这里</a></p>
+</blockquote>
+<h3 id="自动restart"><a href="#自动restart" class="headerlink" title="自动restart"></a>自动restart</h3><p>应用可以使用spring-boot-devtools在classpath中的文件有变化的时候自动重启。这个功能在使用IDE时特别好用。默认情况下，classpath中任何的变化都会导致重启，但是有些资源变化的时候可能不需要重启，比如view template。可以使用<a href="#static">排除监控资源</a>来实现。</p>
+<blockquote>
+<p>因为devtools监控classpath资源，所以唯一触发重启的方式就是更新classpath。在IDEA中，可以使用Build -&gt; Make Project</p>
+<p>devTools在重启过程中依赖application的上下文shutdown钩子。所以你如果禁用了shutdown hook，它将无法正常工作(SpringApplication.setRegisterShutdownHook(false))</p>
+<p>在监控classpath时，devtools会自动忽视名字为spring-boot, spring-boot-devtools, spring-boot-autoconfigure, spring-boot-actuator, spring-boot-starter的项目</p>
+<p>devtools需要定制applicationContext使用的ResourceLoader。所以如果你的应用已经提供了一个，它将被包装。</p>
+<p>restart vs reload<br>spring boot的重启是依靠两个classloader实现的。那些没有变化的class会放在一个base classloader中。那些变化的class会被装载进restart classloader。当应用重启以后，restart classloader会被丢弃，然后生成一个新的。这种实现意味着restart会比”cold starts”快很多，因为base classloader始终可用。</p>
+<p>如果你发现restart不够快或你遇到了classloading的问题，你可以使用reloading技术比如<a href="https://zeroturnaround.com/software/jrebel/" target="_blank" rel="external">JRebel</a>，它基于重写加载过的class。</p>
+</blockquote>
+<h4 id="变更日志"><a href="#变更日志" class="headerlink" title="变更日志"></a>变更日志</h4><p>默认情况下，每次系统重启都会有环境评估日志打印。也可以用如下方法禁用log。</p>
+<blockquote>
+<p>spring.devtools.restart.log-condition-evaluation-delta=false</p>
+</blockquote>
+<h4 id="排除监控资源"><a href="#排除监控资源" class="headerlink" title="排除监控资源"></a><span id="static">排除监控资源</span></h4><p>有些静态资源在变更时不希望重启，这时可以用如下方法:</p>
+<blockquote>
+<p>spring.devtools.restart.exclude=static/<strong>,public/</strong></p>
+</blockquote>
+<h4 id="监控别的路径"><a href="#监控别的路径" class="headerlink" title="监控别的路径"></a>监控别的路径</h4><p>有时不仅仅希望监控classpath，可能还希望其他的路径，可以使用spring.devtools.restart.additional-paths属性。你可以把spring.devtools.restart.exclude=用于spring.devtools.restart.additional-paths之前，来标明新增路径中哪些是不想引入的。</p>
+<h4 id="禁用restart"><a href="#禁用restart" class="headerlink" title="禁用restart"></a>禁用restart</h4><p>如果你不想使用restart功能，可以用spring.devtools.restart.enabled属性禁用它。通常你可以在application.properties中设置该属性(虽然这是restart classloader依然启动，但是它不监控任何别的变化了)。</p>
+<p>如果你想要完全禁用restart功能，你需要使用System的spring.devtools.restart.enabled属性<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">    System.setProperty(<span class="string">"spring.devtools.restart.enabled"</span>, <span class="string">"false"</span>);</div><div class="line">    SpringApplication.run(MyApp.class, args);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h4 id="使用trigger-file"><a href="#使用trigger-file" class="headerlink" title="使用trigger file"></a>使用trigger file</h4><p>如果你只想在特定的时间重启，你可以使用trigger file，它是一个特殊的文件，在你重启检查的时候必须被修改。</p>
+<blockquote>
+<p>spring.devtools.restart.trigger-file</p>
+</blockquote>
+<h4 id="自定义restart-classloader"><a href="#自定义restart-classloader" class="headerlink" title="自定义restart classloader"></a>自定义restart classloader</h4><p>正如前文讲到的，restart是用两个classloader实现的。在大多数情况下都是可以的。但是有时会有问题。</p>
+<p>默认情况下，所有在IDE打开的项目都在restart classloader中，常规的.jar文件都在base classloader中。但是当你工作在一个多module的项目中时，不是所有项目都在你的IDE中，这时你就要自定义一些东西。为了能这样做，你可以创建一个META-INF/spring-devtools.properties文件</p>
+<p>spring-devtools.properties文件可以包含前缀为restart.exclude和restart.include的属性。include表示元素应该被放到restart classloader中，exclude表示元素应该被放到base classloader中。属性的值可以使正则表达式:<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">restart.exclude.companycommonlibs=/mycorp-common-[\\w-]+\.jar</div><div class="line">restart.include.projectcommon=/mycorp-myproj-[\\w-]+\.jar</div></pre></td></tr></table></figure></p>
+<h4 id="限制"><a href="#限制" class="headerlink" title="限制"></a>限制</h4><p>restart在处理ObjectInputStream的deserialized时表现不佳。如果你想deserialize对象，你最好配合着Thread.currentThread().getContextClassLoader()使用Spring的ConfigurableObjectInputStream。</p>
+<p>不幸的是很多第三方的library在deserialize时没有关联context classloader。所以如果你遇到这种问题，你需要想原作者提一个fix request。</p>
+<h3 id="LiveReload"><a href="#LiveReload" class="headerlink" title="LiveReload"></a>LiveReload</h3><p>spring-boot-devtools有一个内置的liveReload服务器，可以用来当资源变更时刷新浏览器，LiveReload浏览器插件可以在<a href="https://livereload.com/extensions/" target="_blank" rel="external">livereload.com</a>上获得。<br>如果你不想启用LiveReload功能，就把spring.devtools.livereload.enabled属性设置为false。</p>
+<h3 id="全局设置"><a href="#全局设置" class="headerlink" title="全局设置"></a>全局设置</h3><p>如果你想配置全局的devtools设置，你只需要在自己的home目录下添加一个 .spring-boot-devtools.properties文件。所有在这个文件中添加的属性都会被用到全部的spring boot应用。</p>
+<h3 id="remote-应用"><a href="#remote-应用" class="headerlink" title="remote 应用"></a>remote 应用</h3><p>Spring boot的开发者工具不仅仅针对本地发开，在远程运行应用时你也可以使用很多开发者工具的功能。远程支持是选择性的功能。你可以启用它:<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">excludeDevtools</span>&gt;</span>false<span class="tag">&lt;/<span class="name">excludeDevtools</span>&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>然后你需要设置spring.devtools.remote.secret属性：</p>
+<blockquote>
+<p>spring.devtools.remote.secret=mysecret</p>
+<p>在远程应用中启用spring-boot-devtools是有安全问题的，所以你一定不要在生产中使用！</p>
+</blockquote>
+<h4 id="运行remote-client应用"><a href="#运行remote-client应用" class="headerlink" title="运行remote client应用"></a>运行remote client应用</h4><p>远程client应用设计用于在你的本地跑远程的应用。你需要运行org.springframework.boot.devtools.RemoteSpringApplication，并且和你链接的远程项目有相同的classpath。应用的唯一必须参数是你想要连接的URL<br>假设你想要跑一个项目名为my-app的项目你需要如下步骤：</p>
 <ul>
-<li>共享锁允许持有它的事务读取改行</li>
-<li>排它锁允许持有它的事务更新或删除改行</li>
+<li>选择在run菜单选择run configuration</li>
+<li>创建java application launch Configuration </li>
+<li>找到my-app项目</li>
+<li>使用org.springframework.boot.devtools.RemoteSpringApplication为main class</li>
+<li>添加<a href="https://myapp.cfapps.io" target="_blank" rel="external">https://myapp.cfapps.io</a> 为程序参数(或者是你自己的远程URL)</li>
 </ul>
-<p>如果事务T1持有行r的共享锁，者别的事务T2对行r的请求会按如下处理:</p>
-<ul>
-<li>如果是s锁的请求，者立刻得到授权，并且此时T1和T2都会持有行r的s锁</li>
-<li>若果是x锁的请求者不能被直接授权</li>
-</ul>
-<p>如果事务T1持有的是行r的排他锁，其他任何事务的任务请求都不会得到授权，其他事务要等待T1释放行r上的锁。</p>
-<h2 id="意向锁-intention-locks"><a href="#意向锁-intention-locks" class="headerlink" title="意向锁(intention locks)"></a>意向锁(intention locks)</h2><p>InnoDB支持多种粒度的锁，它可以让行锁和表锁共存。比如说， LOCK TABLES … WRITE 会对指定表上x锁。InnoDB使用意向锁来实现多个粒度的锁。意向锁是表级别的锁。<br>它代表着事务可能会在后面对表中的行申请s或x锁。我们有两种意向锁:</p>
-<ul>
-<li>意向共享锁(IS) 表明事务有对表中的某一行设置共享锁的意向。</li>
-<li>意向排他锁(IX) 表明事务有队表中的某一行设置排它锁的意向。</li>
-</ul>
-<p>比如 SELECT … LOCK IN SHARE MODE 设置了一个IS锁, SELECT … FOR UPDATE 设置了一个IX锁。</p>
-<p>意向锁的规则如下:</p>
-<ul>
-<li>一个事务想要在表中的某一行获得s锁的前提是，它首先获得IS锁或比IS锁更强的锁。</li>
-<li>一个事务想要在表中的某一行获得x锁的前提是，它首先获得IX锁。</li>
-</ul>
-<p><img src="https://user-images.githubusercontent.com/13915081/36726906-48ea6232-1bf6-11e8-96fe-8fc465edf17c.png" alt="image"></p>
-<p>当事务申请的锁和当前锁的关系为compatible时，它可以获得该锁，但如果是conflicts，该事物必须等待当前所释放。如果事务所需的锁和当前锁conflicts，并且因为死锁的原因导致无法获得，就会出错。</p>
-<p>除全表请求(LOCK TABLES … WRITE)外，意向锁不会阻塞任何事。它的主要目的是表明有事务将要锁某行。</p>
-<h2 id="记录锁-Record-Locks"><a href="#记录锁-Record-Locks" class="headerlink" title="记录锁(Record Locks)"></a>记录锁(Record Locks)</h2><p>记录锁会锁定一个索引记录。比如，SELECT c1 FROM t WHERE c1 = 10 FOR UPDATE 会阻止其他任何事务插入，更新或删除t.c1=10的行。<br>记录锁一定会锁住索引记录，即使这个表没有定义索引。这种情况下，InnoDB会创建一个隐含的clustered索引，然后为记录所使用这个索引。</p>
-<h2 id="间隙锁-Gap-Locks"><a href="#间隙锁-Gap-Locks" class="headerlink" title="间隙锁(Gap Locks)"></a>间隙锁(Gap Locks)</h2><p>间隙锁是一个锁住索引之间，或第一个索引之前，或最后一个索引之后的记录。比如 SELECT c1 FROM t WHERE c1 BETWEEN 10 and 20 FOR UPDATE会阻止其他事务插入c1值为15的记录，无论这个值是否存在，因为在间隙内的所有值都被锁了。</p>
-<p>间隙锁可以跨越一个索引值，多个索引值甚至是0个索引值。</p>
-<p>间隙锁是性能和并发性的一个权衡，它用于一些隔离级别上。</p>
-<p>当使用唯一索引来检索唯一行的时候不需要间隙锁。(它不包括检索条件是一个多值唯一索引中的一部分值的情况)比如，如果id是唯一索引，这下面这个语句只会在id为100的记录上加index锁，而不会在它之前的间隙里加间隙锁。</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> <span class="keyword">child</span> <span class="keyword">WHERE</span> <span class="keyword">id</span> = <span class="number">100</span>;</div></pre></td></tr></table></figure>
-<p>如果id没有索引或是一个非唯一的索引，上面的语句会锁住之前的间隙。</p>
-<p>值得注意的是不同的事务可以持有冲突的间隙锁。比如，事务A可以持有一个间隙共享锁(gap S-lock),事务B可以在同一个间隙中持有间隙排它锁(gap X-lock)。？？</p>
-<p>在InnoDB中间隙锁是“purely inhibitive”的，它意味着间隙锁只阻止事务插入到该间隙。它不阻止其他事务在同一个gap上获取锁。因此，间隙共享锁和间隙排它锁作用相同。</p>
-<p>间隙锁可以显示的禁止。你可以吧事务隔离级别设为READ COMMITTED或者启用innodb_locks_unsafe_for_binlog变量(这个已经被废弃了)。在这种情况下间隙锁只会被用于外键约束检测和重复key值检测了。</p>
-<h2 id="Next-Key-Locks"><a href="#Next-Key-Locks" class="headerlink" title="Next-Key Locks"></a>Next-Key Locks</h2><p>Next-Key锁是索引记录上的record锁和索引近路之前的gap锁的组合。</p>
-<p>InnoDB是以下面的方式来执行级别的锁，当搜索或扫描一个表的索引时，它会在遇到的索引记录上加s或x锁。所以行锁实际上就是index-record锁。索引记录上的next-key锁也会影响所以记录之前的区间。因此next-key锁是index-record锁加上索引之前的间隙。如果一个会话在索引记录R上有s或x锁，其他会话不能在索引顺序在R之前的区间中插入新的值。</p>
-<p>假设一个索引有值10，11，13，20。可能的next-key如下：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">(negative infinity, 10]</div><div class="line">(10, 11]</div><div class="line">(11, 13]</div><div class="line">(13, 20]</div><div class="line">(20, positive infinity)</div></pre></td></tr></table></figure>
-<p>最后一种情况下，next-key仅仅锁了一个间隙。默认情况下，InnoDB工作在 REPEATABLE READ 事务隔离级别下，此时它使用next-key来检索和遍历索引。它可以避免phantom行（后面会讲到）。</p>
-<h2 id="插入意向锁-REPEATABLE-READ"><a href="#插入意向锁-REPEATABLE-READ" class="headerlink" title="插入意向锁(REPEATABLE READ)"></a>插入意向锁(REPEATABLE READ)</h2><p>插入意向锁是insert上的gap锁，优先级高于行插入。这个锁标明希望用如下方式插入记录的意向:当多个事务插入同一个索引间隙，如果它们插入的不是同一个位置，它们就不需要等待其他事务。假设在4和7之间个index record， 两个事务尝试插入5和6，在获取x锁之前，它们都会获得4和7间隙中的插入意向锁。</p>
-<p>下面一个例子说明事务获得插入意向锁的优先级高于被插入记录上的排他锁。假设我们有两个客户端A和B。<br>A创建了一个表有两个索引记录 90和102，然后开启了一个事务，获取Id大于100的x锁。这个x锁包含一个小于102的gap锁。</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">mysql&gt; CREATE TABLE child (id int(11) NOT NULL, PRIMARY KEY(id)) ENGINE=InnoDB;</div><div class="line">mysql&gt; INSERT INTO child (id) values (90),(102);</div><div class="line"></div><div class="line">mysql&gt; START TRANSACTION;</div><div class="line">mysql&gt; SELECT * FROM child WHERE id &gt; 100 FOR UPDATE;</div><div class="line">+-----+</div><div class="line">| id  |</div><div class="line">+-----+</div><div class="line">| 102 |</div><div class="line">+-----+</div></pre></td></tr></table></figure>
-<p>这时B开启了一个事务，插入一个值到该gap中。这个事务先获得插入意向锁，然后等待获取x锁。<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">mysql&gt; START TRANSACTION;</div><div class="line">mysql&gt; INSERT INTO child (id) VALUES (101);</div></pre></td></tr></table></figure></p>
-<p>插入语句的事务数据如下:</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">RECORD LOCKS space id 31 page no 3 n bits 72 index `PRIMARY` of table `test`.`child`</div><div class="line">trx id 8731 lock_mode X locks gap before rec <span class="keyword">insert</span> intention waiting</div><div class="line"><span class="built_in">Record</span> <span class="keyword">lock</span>, <span class="keyword">heap</span> <span class="keyword">no</span> <span class="number">3</span> <span class="keyword">PHYSICAL</span> <span class="built_in">RECORD</span>: n_fields <span class="number">3</span>; compact format; info bits 0</div><div class="line"> 0: len 4; hex 80000066; asc    f;;</div><div class="line"> 1: len 6; hex 000000002215; asc     " ;;</div><div class="line"> 2: len 7; hex 9000000172011c; asc     r  ;;...</div></pre></td></tr></table></figure>
-<h2 id="自增锁-AUTO-INC-Locks"><a href="#自增锁-AUTO-INC-Locks" class="headerlink" title="自增锁(AUTO-INC Locks)"></a>自增锁(AUTO-INC Locks)</h2><p>自增锁是一个特殊的表级别的锁，它出现在当一个事务想要插入一个有AUTO_INCREMENT列的表的时候。在这种情况下，如果一个事务想要在该表中插入值，其他想插入数据的表必须等待它完成。</p>
-<p> innodb_autoinc_lock_mode可以控制自增锁的算法，它允许你权衡自增值的可以测性和插入操作的并发性。。</p>
 
       
     </div>
@@ -498,7 +502,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/数据库/" rel="tag"># 数据库</a>
+            <a href="/tags/java/" rel="tag"># java</a>
+          
+            <a href="/tags/SpringBoot/" rel="tag"># SpringBoot</a>
           
         </div>
       
@@ -511,8 +517,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/02/28/mysql事务隔离级别/" rel="next" title="mysql事务隔离级别">
-                <i class="fa fa-chevron-left"></i> mysql事务隔离级别
+              <a href="/2018/04/07/Spring-Boot系列-Spring-Boot的功能一/" rel="next" title="Spring Boot系列---Spring Boot的功能一">
+                <i class="fa fa-chevron-left"></i> Spring Boot系列---Spring Boot的功能一
               </a>
             
           </div>
@@ -521,8 +527,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/02/12/设计模式系列-结构型模式1/" rel="prev" title="设计模式系列---结构型模式1">
-                设计模式系列---结构型模式1 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/04/05/Spring-Boot系列-构建系统/" rel="prev" title="Spring Boot系列---构建系统">
+                Spring Boot系列---构建系统 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -665,7 +671,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#MySQL-InnoDB-锁"><span class="nav-number">1.</span> <span class="nav-text">MySQL InnoDB 锁</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#共享锁和排它锁"><span class="nav-number">1.1.</span> <span class="nav-text">共享锁和排它锁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#意向锁-intention-locks"><span class="nav-number">1.2.</span> <span class="nav-text">意向锁(intention locks)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#记录锁-Record-Locks"><span class="nav-number">1.3.</span> <span class="nav-text">记录锁(Record Locks)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#间隙锁-Gap-Locks"><span class="nav-number">1.4.</span> <span class="nav-text">间隙锁(Gap Locks)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Next-Key-Locks"><span class="nav-number">1.5.</span> <span class="nav-text">Next-Key Locks</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#插入意向锁-REPEATABLE-READ"><span class="nav-number">1.6.</span> <span class="nav-text">插入意向锁(REPEATABLE READ)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自增锁-AUTO-INC-Locks"><span class="nav-number">1.7.</span> <span class="nav-text">自增锁(AUTO-INC Locks)</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#开发工具"><span class="nav-number">1.</span> <span class="nav-text">开发工具</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#property-defaults"><span class="nav-number">1.1.</span> <span class="nav-text">property defaults</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自动restart"><span class="nav-number">1.2.</span> <span class="nav-text">自动restart</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#变更日志"><span class="nav-number">1.2.1.</span> <span class="nav-text">变更日志</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#排除监控资源"><span class="nav-number">1.2.2.</span> <span class="nav-text">排除监控资源</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#监控别的路径"><span class="nav-number">1.2.3.</span> <span class="nav-text">监控别的路径</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#禁用restart"><span class="nav-number">1.2.4.</span> <span class="nav-text">禁用restart</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用trigger-file"><span class="nav-number">1.2.5.</span> <span class="nav-text">使用trigger file</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#自定义restart-classloader"><span class="nav-number">1.2.6.</span> <span class="nav-text">自定义restart classloader</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#限制"><span class="nav-number">1.2.7.</span> <span class="nav-text">限制</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LiveReload"><span class="nav-number">1.3.</span> <span class="nav-text">LiveReload</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#全局设置"><span class="nav-number">1.4.</span> <span class="nav-text">全局设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#remote-应用"><span class="nav-number">1.5.</span> <span class="nav-text">remote 应用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#运行remote-client应用"><span class="nav-number">1.5.1.</span> <span class="nav-text">运行remote client应用</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>

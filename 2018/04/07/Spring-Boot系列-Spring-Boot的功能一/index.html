@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="数据库," />
+  <meta name="keywords" content="java,SpringBoot," />
 
 
 
@@ -87,19 +87,17 @@
 
 
 
-<meta name="description" content="MySQL InnoDB 锁版本 5.7 共享锁和排它锁InnoDB实现了两种标准的行锁，共享锁(shared lock)和排它锁(exclusive lock)。  共享锁允许持有它的事务读取改行 排它锁允许持有它的事务更新或删除改行  如果事务T1持有行r的共享锁，者别的事务T2对行r的请求会按如下处理:  如果是s锁的请求，者立刻得到授权，并且此时T1和T2都会持有行r的s锁 若果是x锁的请">
-<meta name="keywords" content="数据库">
+<meta name="description" content="Spring Boot的功能SpringApplicationSpringApplication class提供了一个方便启动Spring应用的方式，大多数情况下你只需要在main方法中运行SpringApplication.run静态方法就行：123public static void main(String[] args) &amp;#123;    SpringApplication.run(MyS">
+<meta name="keywords" content="java,SpringBoot">
 <meta property="og:type" content="article">
-<meta property="og:title" content="mysql锁和事务">
-<meta property="og:url" content="http://songbingjia.cn/2018/02/27/mysql锁和事务/index.html">
+<meta property="og:title" content="Spring Boot系列---Spring Boot的功能一">
+<meta property="og:url" content="http://songbingjia.cn/2018/04/07/Spring-Boot系列-Spring-Boot的功能一/index.html">
 <meta property="og:site_name" content="宋兵甲的博客">
-<meta property="og:description" content="MySQL InnoDB 锁版本 5.7 共享锁和排它锁InnoDB实现了两种标准的行锁，共享锁(shared lock)和排它锁(exclusive lock)。  共享锁允许持有它的事务读取改行 排它锁允许持有它的事务更新或删除改行  如果事务T1持有行r的共享锁，者别的事务T2对行r的请求会按如下处理:  如果是s锁的请求，者立刻得到授权，并且此时T1和T2都会持有行r的s锁 若果是x锁的请">
-<meta property="og:image" content="https://user-images.githubusercontent.com/13915081/36726906-48ea6232-1bf6-11e8-96fe-8fc465edf17c.png">
-<meta property="og:updated_time" content="2018-02-28T12:13:20.000Z">
+<meta property="og:description" content="Spring Boot的功能SpringApplicationSpringApplication class提供了一个方便启动Spring应用的方式，大多数情况下你只需要在main方法中运行SpringApplication.run静态方法就行：123public static void main(String[] args) &amp;#123;    SpringApplication.run(MyS">
+<meta property="og:updated_time" content="2018-04-07T14:23:29.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="mysql锁和事务">
-<meta name="twitter:description" content="MySQL InnoDB 锁版本 5.7 共享锁和排它锁InnoDB实现了两种标准的行锁，共享锁(shared lock)和排它锁(exclusive lock)。  共享锁允许持有它的事务读取改行 排它锁允许持有它的事务更新或删除改行  如果事务T1持有行r的共享锁，者别的事务T2对行r的请求会按如下处理:  如果是s锁的请求，者立刻得到授权，并且此时T1和T2都会持有行r的s锁 若果是x锁的请">
-<meta name="twitter:image" content="https://user-images.githubusercontent.com/13915081/36726906-48ea6232-1bf6-11e8-96fe-8fc465edf17c.png">
+<meta name="twitter:title" content="Spring Boot系列---Spring Boot的功能一">
+<meta name="twitter:description" content="Spring Boot的功能SpringApplicationSpringApplication class提供了一个方便启动Spring应用的方式，大多数情况下你只需要在main方法中运行SpringApplication.run静态方法就行：123public static void main(String[] args) &amp;#123;    SpringApplication.run(MyS">
 
 
 
@@ -127,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="http://songbingjia.cn/2018/02/27/mysql锁和事务/"/>
+  <link rel="canonical" href="http://songbingjia.cn/2018/04/07/Spring-Boot系列-Spring-Boot的功能一/"/>
 
 
 
 
 
-  <title> mysql锁和事务 | 宋兵甲的博客 </title>
+  <title> Spring Boot系列---Spring Boot的功能一 | 宋兵甲的博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -316,7 +314,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://songbingjia.cn/2018/02/27/mysql锁和事务/">
+    <link itemprop="mainEntityOfPage" href="http://songbingjia.cn/2018/04/07/Spring-Boot系列-Spring-Boot的功能一/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="宋兵甲">
@@ -337,7 +335,7 @@
             
             
               
-                mysql锁和事务
+                Spring Boot系列---Spring Boot的功能一
               
             
           </h1>
@@ -352,8 +350,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-27T22:30:13+08:00">
-                2018-02-27
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-07T22:21:56+08:00">
+                2018-04-07
               </time>
             
 
@@ -393,7 +391,7 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a class="cloud-tie-join-count" href="/2018/02/27/mysql锁和事务/#comments" itemprop="discussionUrl">
+                <a class="cloud-tie-join-count" href="/2018/04/07/Spring-Boot系列-Spring-Boot的功能一/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count join-count" itemprop="commentCount"></span>
                 </a>
               </span>
@@ -420,55 +418,42 @@
       
 
       
-        <h1 id="MySQL-InnoDB-锁"><a href="#MySQL-InnoDB-锁" class="headerlink" title="MySQL InnoDB 锁"></a>MySQL InnoDB 锁</h1><p>版本 5.7</p>
-<h2 id="共享锁和排它锁"><a href="#共享锁和排它锁" class="headerlink" title="共享锁和排它锁"></a>共享锁和排它锁</h2><p>InnoDB实现了两种标准的行锁，共享锁(shared lock)和排它锁(exclusive lock)。</p>
+        <h2 id="Spring-Boot的功能"><a href="#Spring-Boot的功能" class="headerlink" title="Spring Boot的功能"></a>Spring Boot的功能</h2><h3 id="SpringApplication"><a href="#SpringApplication" class="headerlink" title="SpringApplication"></a>SpringApplication</h3><p>SpringApplication class提供了一个方便启动Spring应用的方式，大多数情况下你只需要在main方法中运行SpringApplication.run静态方法就行：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">    SpringApplication.run(MySpringConfiguration.class, args);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>应用启动后，你应该能看到类似输出:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">  .   ____          _            __ _ _</div><div class="line"> /\\ / ___&apos;_ __ _ _(_)_ __  __ _ \ \ \ \</div><div class="line">( ( )\___ | &apos;_ | &apos;_| | &apos;_ \/ _` | \ \ \ \</div><div class="line"> \\/  ___)| |_)| | | | | || (_| |  ) ) ) )</div><div class="line">  &apos;  |____| .__|_| |_|_| |_\__, | / / / /</div><div class="line"> =========|_|==============|___/=/_/_/_/</div><div class="line"> :: Spring Boot ::   v2.0.0.RELEASE</div><div class="line"></div><div class="line">2013-07-31 00:08:16.117  INFO 56603 --- [           main] o.s.b.s.app.SampleApplication            : Starting SampleApplication v0.1.0 on mycomputer with PID 56603 (/apps/myapp.jar started by pwebb)</div><div class="line">2013-07-31 00:08:16.166  INFO 56603 --- [           main] ationConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@6e5a8246: startup date [Wed Jul 31 00:08:16 PDT 2013]; root of context hierarchy</div><div class="line">2014-03-04 13:09:54.912  INFO 41370 --- [           main] .t.TomcatServletWebServerFactory : Server initialized with port: 8080</div><div class="line">2014-03-04 13:09:56.501  INFO 41370 --- [           main] o.s.b.s.app.SampleApplication            : Started SampleApplication in 2.992 seconds (JVM running for 3.658)</div></pre></td></tr></table></figure>
+<p>默认情况下是Info级别的日志</p>
+<h4 id="自定义Banner"><a href="#自定义Banner" class="headerlink" title="自定义Banner"></a>自定义Banner</h4><p>可以在你的classpath中添加banner.txt文件或设置spring.banner.location属性来这只文件名。如果文件的编码不是UTF-8，你可以使用spring.banner.charset来修改该编码。除了text文件之外，你还可以在你的classpath中添加banner.gif,banner.jps,banner.png文件，或这只spring.banner.image.location属性。图片会被转化成ASCII表达，并且在text banner上面打印。</p>
+<p>在banner.txt文件中，你可以使用如下占位符:<br>&lt; img width=”1153” alt=”2018-04-07 11 41 04” src=”<a href="https://user-images.githubusercontent.com/13915081/38450913-a2d915e2-3a58-11e8-803e-8f39991c6e72.png&quot;&gt;" target="_blank" rel="external">https://user-images.githubusercontent.com/13915081/38450913-a2d915e2-3a58-11e8-803e-8f39991c6e72.png&quot;&gt;</a></p>
+<p>打印banner的功能是名为springBootBanner的单类bean提供的。</p>
+<h4 id="自定义SpringApplication"><a href="#自定义SpringApplication" class="headerlink" title="自定义SpringApplication"></a>自定义SpringApplication</h4><p>如果默认的SpringApplication不满足你的需求，你可以创建一个本地实例，然后自定义它。比如想要关闭banner，你可以按照如下这么写:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">    SpringApplication app = <span class="keyword">new</span> SpringApplication(MySpringConfiguration.class);</div><div class="line">    app.setBannerMode(Banner.Mode.OFF);</div><div class="line">    app.run(args);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h4 id="流式构建API"><a href="#流式构建API" class="headerlink" title="流式构建API"></a>流式构建API</h4><p>如果你需要构建一个有层级的ApplicationContext或者你想要用流式构建API，你可以使用SpringApplicationBuilder。<br>SpringApplicationBuilder可以使用parent或child方法调用方法，用法如下:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">new</span> SpringApplicationBuilder()</div><div class="line">        .sources(Parent.class)</div><div class="line">        .child(Application.class)</div><div class="line">        .bannerMode(Banner.Mode.OFF)</div><div class="line">        .run(args);</div></pre></td></tr></table></figure></p>
+<p>当创建ApplicationContext层级时有很多的限制。比如，web组件必须包含在child context中，parent和child上下文必须使用同一个Environment。具体内容参见<a href="https://docs.spring.io/spring-boot/docs/2.0.0.RELEASE/api/org/springframework/boot/builder/SpringApplicationBuilder.html" target="_blank" rel="external">SpringApplicationBuilder</a>。</p>
+<h4 id="Application-event-和-listener"><a href="#Application-event-和-listener" class="headerlink" title="Application event 和 listener"></a>Application event 和 listener</h4><p>除了Spring frame常用的事件，如ContextRefreshedEvent等，SpringApplication还有很多其他的应用事件。</p>
+<blockquote>
+<p>有些事件实际上是在ApplicationContext创建之触发的，所以你不能使用@Bean为这些事件注册监听，你可以用SpringApplication.addListeners(…​) 或 SpringApplicationBuilder.listeners(…​) 。<br>如果这些listener自动注册，你可以添加META-INF/spring.factories文件，然后使用org.springframework.context.ApplicationListener这个key来关联你的listener。<br>如下所示:<br>org.springframework.context.ApplicationListener=com.example.project.MyListener</p>
+</blockquote>
+<p>应用事件以如下顺序发起:</p>
 <ul>
-<li>共享锁允许持有它的事务读取改行</li>
-<li>排它锁允许持有它的事务更新或删除改行</li>
+<li>ApplicationStartingEvent在所有处理之前发起，除了注册listeners和初始化。</li>
+<li>ApplicationEnvironmentPreparedEvent在确定context使用的environment时发起，这时context还未创建。</li>
+<li>ApplicationPreparedEvent在refresh开始之前，但是在bean定义被加载之后</li>
+<li>ApplicationStartedEvent在context被刷新之后，但是在所有应用或command-line runners被调用之前。</li>
+<li>ApplicationReadyEvent在任意应用或command-line runner被调用之后。它表明系统已经做好服务的准备了</li>
+<li>ApplicationReadyEvent在系统启动异常的时候发起</li>
 </ul>
-<p>如果事务T1持有行r的共享锁，者别的事务T2对行r的请求会按如下处理:</p>
-<ul>
-<li>如果是s锁的请求，者立刻得到授权，并且此时T1和T2都会持有行r的s锁</li>
-<li>若果是x锁的请求者不能被直接授权</li>
-</ul>
-<p>如果事务T1持有的是行r的排他锁，其他任何事务的任务请求都不会得到授权，其他事务要等待T1释放行r上的锁。</p>
-<h2 id="意向锁-intention-locks"><a href="#意向锁-intention-locks" class="headerlink" title="意向锁(intention locks)"></a>意向锁(intention locks)</h2><p>InnoDB支持多种粒度的锁，它可以让行锁和表锁共存。比如说， LOCK TABLES … WRITE 会对指定表上x锁。InnoDB使用意向锁来实现多个粒度的锁。意向锁是表级别的锁。<br>它代表着事务可能会在后面对表中的行申请s或x锁。我们有两种意向锁:</p>
-<ul>
-<li>意向共享锁(IS) 表明事务有对表中的某一行设置共享锁的意向。</li>
-<li>意向排他锁(IX) 表明事务有队表中的某一行设置排它锁的意向。</li>
-</ul>
-<p>比如 SELECT … LOCK IN SHARE MODE 设置了一个IS锁, SELECT … FOR UPDATE 设置了一个IX锁。</p>
-<p>意向锁的规则如下:</p>
-<ul>
-<li>一个事务想要在表中的某一行获得s锁的前提是，它首先获得IS锁或比IS锁更强的锁。</li>
-<li>一个事务想要在表中的某一行获得x锁的前提是，它首先获得IX锁。</li>
-</ul>
-<p><img src="https://user-images.githubusercontent.com/13915081/36726906-48ea6232-1bf6-11e8-96fe-8fc465edf17c.png" alt="image"></p>
-<p>当事务申请的锁和当前锁的关系为compatible时，它可以获得该锁，但如果是conflicts，该事物必须等待当前所释放。如果事务所需的锁和当前锁conflicts，并且因为死锁的原因导致无法获得，就会出错。</p>
-<p>除全表请求(LOCK TABLES … WRITE)外，意向锁不会阻塞任何事。它的主要目的是表明有事务将要锁某行。</p>
-<h2 id="记录锁-Record-Locks"><a href="#记录锁-Record-Locks" class="headerlink" title="记录锁(Record Locks)"></a>记录锁(Record Locks)</h2><p>记录锁会锁定一个索引记录。比如，SELECT c1 FROM t WHERE c1 = 10 FOR UPDATE 会阻止其他任何事务插入，更新或删除t.c1=10的行。<br>记录锁一定会锁住索引记录，即使这个表没有定义索引。这种情况下，InnoDB会创建一个隐含的clustered索引，然后为记录所使用这个索引。</p>
-<h2 id="间隙锁-Gap-Locks"><a href="#间隙锁-Gap-Locks" class="headerlink" title="间隙锁(Gap Locks)"></a>间隙锁(Gap Locks)</h2><p>间隙锁是一个锁住索引之间，或第一个索引之前，或最后一个索引之后的记录。比如 SELECT c1 FROM t WHERE c1 BETWEEN 10 and 20 FOR UPDATE会阻止其他事务插入c1值为15的记录，无论这个值是否存在，因为在间隙内的所有值都被锁了。</p>
-<p>间隙锁可以跨越一个索引值，多个索引值甚至是0个索引值。</p>
-<p>间隙锁是性能和并发性的一个权衡，它用于一些隔离级别上。</p>
-<p>当使用唯一索引来检索唯一行的时候不需要间隙锁。(它不包括检索条件是一个多值唯一索引中的一部分值的情况)比如，如果id是唯一索引，这下面这个语句只会在id为100的记录上加index锁，而不会在它之前的间隙里加间隙锁。</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> <span class="keyword">child</span> <span class="keyword">WHERE</span> <span class="keyword">id</span> = <span class="number">100</span>;</div></pre></td></tr></table></figure>
-<p>如果id没有索引或是一个非唯一的索引，上面的语句会锁住之前的间隙。</p>
-<p>值得注意的是不同的事务可以持有冲突的间隙锁。比如，事务A可以持有一个间隙共享锁(gap S-lock),事务B可以在同一个间隙中持有间隙排它锁(gap X-lock)。？？</p>
-<p>在InnoDB中间隙锁是“purely inhibitive”的，它意味着间隙锁只阻止事务插入到该间隙。它不阻止其他事务在同一个gap上获取锁。因此，间隙共享锁和间隙排它锁作用相同。</p>
-<p>间隙锁可以显示的禁止。你可以吧事务隔离级别设为READ COMMITTED或者启用innodb_locks_unsafe_for_binlog变量(这个已经被废弃了)。在这种情况下间隙锁只会被用于外键约束检测和重复key值检测了。</p>
-<h2 id="Next-Key-Locks"><a href="#Next-Key-Locks" class="headerlink" title="Next-Key Locks"></a>Next-Key Locks</h2><p>Next-Key锁是索引记录上的record锁和索引近路之前的gap锁的组合。</p>
-<p>InnoDB是以下面的方式来执行级别的锁，当搜索或扫描一个表的索引时，它会在遇到的索引记录上加s或x锁。所以行锁实际上就是index-record锁。索引记录上的next-key锁也会影响所以记录之前的区间。因此next-key锁是index-record锁加上索引之前的间隙。如果一个会话在索引记录R上有s或x锁，其他会话不能在索引顺序在R之前的区间中插入新的值。</p>
-<p>假设一个索引有值10，11，13，20。可能的next-key如下：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">(negative infinity, 10]</div><div class="line">(10, 11]</div><div class="line">(11, 13]</div><div class="line">(13, 20]</div><div class="line">(20, positive infinity)</div></pre></td></tr></table></figure>
-<p>最后一种情况下，next-key仅仅锁了一个间隙。默认情况下，InnoDB工作在 REPEATABLE READ 事务隔离级别下，此时它使用next-key来检索和遍历索引。它可以避免phantom行（后面会讲到）。</p>
-<h2 id="插入意向锁-REPEATABLE-READ"><a href="#插入意向锁-REPEATABLE-READ" class="headerlink" title="插入意向锁(REPEATABLE READ)"></a>插入意向锁(REPEATABLE READ)</h2><p>插入意向锁是insert上的gap锁，优先级高于行插入。这个锁标明希望用如下方式插入记录的意向:当多个事务插入同一个索引间隙，如果它们插入的不是同一个位置，它们就不需要等待其他事务。假设在4和7之间个index record， 两个事务尝试插入5和6，在获取x锁之前，它们都会获得4和7间隙中的插入意向锁。</p>
-<p>下面一个例子说明事务获得插入意向锁的优先级高于被插入记录上的排他锁。假设我们有两个客户端A和B。<br>A创建了一个表有两个索引记录 90和102，然后开启了一个事务，获取Id大于100的x锁。这个x锁包含一个小于102的gap锁。</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">mysql&gt; CREATE TABLE child (id int(11) NOT NULL, PRIMARY KEY(id)) ENGINE=InnoDB;</div><div class="line">mysql&gt; INSERT INTO child (id) values (90),(102);</div><div class="line"></div><div class="line">mysql&gt; START TRANSACTION;</div><div class="line">mysql&gt; SELECT * FROM child WHERE id &gt; 100 FOR UPDATE;</div><div class="line">+-----+</div><div class="line">| id  |</div><div class="line">+-----+</div><div class="line">| 102 |</div><div class="line">+-----+</div></pre></td></tr></table></figure>
-<p>这时B开启了一个事务，插入一个值到该gap中。这个事务先获得插入意向锁，然后等待获取x锁。<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">mysql&gt; START TRANSACTION;</div><div class="line">mysql&gt; INSERT INTO child (id) VALUES (101);</div></pre></td></tr></table></figure></p>
-<p>插入语句的事务数据如下:</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">RECORD LOCKS space id 31 page no 3 n bits 72 index `PRIMARY` of table `test`.`child`</div><div class="line">trx id 8731 lock_mode X locks gap before rec <span class="keyword">insert</span> intention waiting</div><div class="line"><span class="built_in">Record</span> <span class="keyword">lock</span>, <span class="keyword">heap</span> <span class="keyword">no</span> <span class="number">3</span> <span class="keyword">PHYSICAL</span> <span class="built_in">RECORD</span>: n_fields <span class="number">3</span>; compact format; info bits 0</div><div class="line"> 0: len 4; hex 80000066; asc    f;;</div><div class="line"> 1: len 6; hex 000000002215; asc     " ;;</div><div class="line"> 2: len 7; hex 9000000172011c; asc     r  ;;...</div></pre></td></tr></table></figure>
-<h2 id="自增锁-AUTO-INC-Locks"><a href="#自增锁-AUTO-INC-Locks" class="headerlink" title="自增锁(AUTO-INC Locks)"></a>自增锁(AUTO-INC Locks)</h2><p>自增锁是一个特殊的表级别的锁，它出现在当一个事务想要插入一个有AUTO_INCREMENT列的表的时候。在这种情况下，如果一个事务想要在该表中插入值，其他想插入数据的表必须等待它完成。</p>
-<p> innodb_autoinc_lock_mode可以控制自增锁的算法，它允许你权衡自增值的可以测性和插入操作的并发性。。</p>
+<blockquote>
+<p>一般用户不会使用application事件，但是明白他们存在是很重要的。Spring boot在内部使用它们做很多的事情。</p>
+</blockquote>
+<p>应用事件使用的是Spring框架的时间发布机制。这种机制保证发布到child context的监听器的事件同样会发布到他的祖先上下文中。因此，如果你的应用使用的是层级式的SpringApplication实例，一个lister肯能会收到同一个应用事件的多个实例。</p>
+<p>为了能让你的listener区分出事件的上下文，listener需要获得它的注入context，然后对比该上下文和事件上下文。上下文可以实现ApplicationContextAware来注入或者如果listener是bean的话，可以使用@Autowire。</p>
+<h4 id="Web环境"><a href="#Web环境" class="headerlink" title="Web环境"></a>Web环境</h4><p>SpringApplication尝试创建出最合适的ApplicationContext。默认情况下，AnnotationConfigApplicationContext 或 AnnotationConfigServletWebServerApplicationContext将会被使用，取决于你是否在开发web应用。</p>
+<p>判断是否是web环境的算法十分简单(它基于指定的几个类是否存在)。如果你需要重写这种默认算法，你可以使用setWebEnvironment(boolean webEnvironment)。</p>
+<p>你也可以使用setApplicationContextClass(…​)来完全的控制ApplicationContext。</p>
+<blockquote>
+<p>当使用JUnit时，通常setWebEnvironment(false)</p>
+</blockquote>
+<h4 id="读取Application参数"><a href="#读取Application参数" class="headerlink" title="读取Application参数"></a>读取Application参数</h4><p>如果你需要读取传递到SpringApplication.run(…)中的参数，你可以注入org.springframework.boot.ApplicationArguments bean。ApplicationArguments接口提供以String[]形式来访问可选和必填参数的方法，如下所示:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> org.springframework.boot.*</div><div class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.*</div><div class="line"><span class="keyword">import</span> org.springframework.stereotype.*</div><div class="line"></div><div class="line"><span class="meta">@Component</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyBean</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="meta">@Autowired</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyBean</span><span class="params">(ApplicationArguments args)</span> </span>&#123;</div><div class="line">        <span class="keyword">boolean</span> debug = args.containsOption(<span class="string">"debug"</span>);</div><div class="line">        List&lt;String&gt; files = args.getNonOptionArgs();</div><div class="line">        <span class="comment">// if run with "--debug logfile.txt" debug=true, files=["logfile.txt"]</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>未完待续。。。。。。！！！</p>
 
       
     </div>
@@ -498,7 +483,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/数据库/" rel="tag"># 数据库</a>
+            <a href="/tags/java/" rel="tag"># java</a>
+          
+            <a href="/tags/SpringBoot/" rel="tag"># SpringBoot</a>
           
         </div>
       
@@ -511,18 +498,14 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/02/28/mysql事务隔离级别/" rel="next" title="mysql事务隔离级别">
-                <i class="fa fa-chevron-left"></i> mysql事务隔离级别
-              </a>
-            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/02/12/设计模式系列-结构型模式1/" rel="prev" title="设计模式系列---结构型模式1">
-                设计模式系列---结构型模式1 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/04/06/Spring-Boot系列-开发工具/" rel="prev" title="Spring Boot系列---开发工具">
+                Spring Boot系列---开发工具 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -665,7 +648,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#MySQL-InnoDB-锁"><span class="nav-number">1.</span> <span class="nav-text">MySQL InnoDB 锁</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#共享锁和排它锁"><span class="nav-number">1.1.</span> <span class="nav-text">共享锁和排它锁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#意向锁-intention-locks"><span class="nav-number">1.2.</span> <span class="nav-text">意向锁(intention locks)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#记录锁-Record-Locks"><span class="nav-number">1.3.</span> <span class="nav-text">记录锁(Record Locks)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#间隙锁-Gap-Locks"><span class="nav-number">1.4.</span> <span class="nav-text">间隙锁(Gap Locks)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Next-Key-Locks"><span class="nav-number">1.5.</span> <span class="nav-text">Next-Key Locks</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#插入意向锁-REPEATABLE-READ"><span class="nav-number">1.6.</span> <span class="nav-text">插入意向锁(REPEATABLE READ)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自增锁-AUTO-INC-Locks"><span class="nav-number">1.7.</span> <span class="nav-text">自增锁(AUTO-INC Locks)</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring-Boot的功能"><span class="nav-number">1.</span> <span class="nav-text">Spring Boot的功能</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SpringApplication"><span class="nav-number">1.1.</span> <span class="nav-text">SpringApplication</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#自定义Banner"><span class="nav-number">1.1.1.</span> <span class="nav-text">自定义Banner</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#自定义SpringApplication"><span class="nav-number">1.1.2.</span> <span class="nav-text">自定义SpringApplication</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#流式构建API"><span class="nav-number">1.1.3.</span> <span class="nav-text">流式构建API</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Application-event-和-listener"><span class="nav-number">1.1.4.</span> <span class="nav-text">Application event 和 listener</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Web环境"><span class="nav-number">1.1.5.</span> <span class="nav-text">Web环境</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#读取Application参数"><span class="nav-number">1.1.6.</span> <span class="nav-text">读取Application参数</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
