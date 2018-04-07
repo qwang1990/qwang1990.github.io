@@ -314,6 +314,336 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://songbingjia.cn/2018/04/05/Spring-Boot系列-构建系统/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="宋兵甲">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://cloud.githubusercontent.com/assets/13915081/24868296/3248ddcc-1e42-11e7-857a-0e4b4cebb75e.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="宋兵甲的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2018/04/05/Spring-Boot系列-构建系统/" itemprop="url">
+                  Spring Boot系列---构建系统
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-05T22:15:10+08:00">
+                2018-04-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/后端/" itemprop="url" rel="index">
+                    <span itemprop="name">后端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="构建系统"><a href="#构建系统" class="headerlink" title="构建系统"></a>构建系统</h2><p>构建项目的一点细节，不看这个按照后面的demo来也可以使用spring boot，但是个人建议看一下。</p>
+<h3 id="依赖管理"><a href="#依赖管理" class="headerlink" title="依赖管理"></a>依赖管理</h3><p>每个版本的springboot都会提供一个它支持的依赖列表，所以在使用中你不需要在你的pom文件中为那些依赖指定版本。使用maven的用户可以继承spring-boot-starter-parent以获得如下好处：</p>
+<ul>
+<li>使用java8位默认的编译级别</li>
+<li>源码的encoding为UTF-8</li>
+<li>获得上面说到的管理常用依赖的版本的好处</li>
+<li>提供resource filtering功能（针对application<em>.properties 和 application</em>.yml）</li>
+<li>提供插件配置功能</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">parent</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-parent<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">version</span>&gt;</span>2.0.0.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">parent</span>&gt;</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>你需要在这里声明spring boot的版本，后面再引入starters时就可以不写版本号了。</p>
+</blockquote>
+<p>你也可以在你的项目中重写单独的依赖。比如你想单独升级其他的spring data版本，可以使用如下写法：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">properties</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">spring-data-releasetrain.version</span>&gt;</span>Fowler-SR2<span class="tag">&lt;/<span class="name">spring-data-releasetrain.version</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">properties</span>&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="不使用parent-pom"><a href="#不使用parent-pom" class="headerlink" title="不使用parent pom"></a>不使用parent pom</h3><p>可能在一些情况下你不想或无法使用parent pom文件，这时你依旧可以通过下列手段获取依赖管理的能力。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">dependencyManagement</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">            <span class="comment">&lt;!-- Import dependency management from Spring Boot --&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-dependencies<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.0.0.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">type</span>&gt;</span>pom<span class="tag">&lt;/<span class="name">type</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">scope</span>&gt;</span>import<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">dependencyManagement</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>在前面的例子中你无法重写单独的依赖，为了获得这种功能你需要在spring-boot-dependencies前面加上自己需要的依赖，如下所示:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">dependencyManagement</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></div><div class="line">        <span class="comment">&lt;!-- Override Spring Data release train provided by Spring Boot --&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.data<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-data-releasetrain<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>Fowler-SR2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">type</span>&gt;</span>pom<span class="tag">&lt;/<span class="name">type</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">scope</span>&gt;</span>import<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-dependencies<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.0.0.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">type</span>&gt;</span>pom<span class="tag">&lt;/<span class="name">type</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">scope</span>&gt;</span>import<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">dependencyManagement</span>&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="使用spring-boot-maven插件"><a href="#使用spring-boot-maven插件" class="headerlink" title="使用spring boot maven插件"></a>使用spring boot maven插件</h3><p>spring boot有一个maven插件，它可以把当前项目打包成一个可执行jar包。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>gradle 和 ant 的大家自己查资料吧。</p>
+</blockquote>
+<h3 id="starters"><a href="#starters" class="headerlink" title="starters"></a>starters</h3><p>starters是一系列方便的依赖描述符。有了它你可以获得一站式的依赖服务。比如，你想使用spring和jpa，你可以在项目中添加依赖spring-boot-starter-data-jpa。</p>
+<p><a href="https://docs.spring.io/spring-boot/docs/2.0.0.RELEASE/reference/htmlsingle/#using-boot-starter" target="_blank" rel="external">点击这里</a> 查看startet。</p>
+<h2 id="代码结构"><a href="#代码结构" class="headerlink" title="代码结构"></a>代码结构</h2><p>spring没有特别指定编码结构，但是下面是一种很好的实践。</p>
+<h3 id="“default“-package"><a href="#“default“-package" class="headerlink" title="“default“ package"></a>“default“ package</h3><p>当你个class没有声明package时，它就被认为是default package。不建议使用default package，因为它会对使用@ComponentScan，@EntityScan或@SpringBootApplication等注解造成影响。</p>
+<h3 id="main-class的位置"><a href="#main-class的位置" class="headerlink" title="main class的位置"></a>main class的位置</h3><p>建议把main class放在根package。因为@EnableAutoConfiguration注解一般放在main class，它隐式定义了应用检索报的基础位置。如果main class是根package，你也可以使用@SpringBootApplication注解。<br>下面展示一种典型的布局:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">com</div><div class="line"> +- example</div><div class="line">     +- myapplication</div><div class="line">         +- Application.java</div><div class="line">         |</div><div class="line">         +- customer</div><div class="line">         |   +- Customer.java</div><div class="line">         |   +- CustomerController.java</div><div class="line">         |   +- CustomerService.java</div><div class="line">         |   +- CustomerRepository.java</div><div class="line">         |</div><div class="line">         +- order</div><div class="line">             +- Order.java</div><div class="line">             +- OrderController.java</div><div class="line">             +- OrderService.java</div><div class="line">             +- OrderRepository.java</div></pre></td></tr></table></figure>
+<p>Application.java按如下方式文件声明main方法:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.example.myapplication;</div><div class="line"></div><div class="line"><span class="keyword">import</span> org.springframework.boot.SpringApplication;</div><div class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.EnableAutoConfiguration;</div><div class="line"><span class="keyword">import</span> org.springframework.context.annotation.ComponentScan;</div><div class="line"><span class="keyword">import</span> org.springframework.context.annotation.Configuration;</div><div class="line"></div><div class="line"><span class="meta">@Configuration</span></div><div class="line"><span class="meta">@EnableAutoConfiguration</span></div><div class="line"><span class="meta">@ComponentScan</span></div><div class="line"><span class="comment">//@SpringBootApplication // same as @Configuration @EnableAutoConfiguration @ComponentScan</span></div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Application</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        SpringApplication.run(Application.class, args);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="configuration-class"><a href="#configuration-class" class="headerlink" title="configuration class"></a>configuration class</h3><p>spring boot比较偏爱java-base的配置，尽管上面的SpringApplication也可以使用xml配置，但是通常建议你的主配置是一个@Configuration class。通常定义main方法的类是主@Configuration类的好的选择。</p>
+<p>你不需要把全部的@Configuration放在一个class中。 @Import注解用来引入其他的Configuration类。你也可以使用@ComponentScan来自动的收集包含@Configuration类。</p>
+<p>如果你必须使用xml类型的配置，建议你依然由@Configuration为开始类，然后使用@ImportResource注解来加载XML配置文件。</p>
+<h3 id="auto-configuration"><a href="#auto-configuration" class="headerlink" title="auto-configuration"></a>auto-configuration</h3><p>spring boot的auto-configuration机制会根据你添加的jar包依赖自动的配置你的应用。比如，如果HSQLDB在你的classpath中，并且你没有手动的配置任何数据库连接bean，那么spring boot就会自动配置一个内存数据库。<br>你可以通过在你的@Configuration类中添加@EnableAutoConfiguration或@SpringBootApplication注解来开启auto-configuration。</p>
+<blockquote>
+<p>你应该永远只添加一个@EnableAutoConfiguration注解。我们通常建议你把它放到主@Configuration类中。</p>
+</blockquote>
+<h3 id="优雅的替换auto-Configuration"><a href="#优雅的替换auto-Configuration" class="headerlink" title="优雅的替换auto-Configuration"></a>优雅的替换auto-Configuration</h3><p>auto-configuration是非侵入性的。在任何时刻，你都可以定义自己的配置来替换auto-configuration的默认配置。比如，如果你添加自己的DataSource bean，那么默认的内嵌数据库的支持就移除了。</p>
+<p>如果你想发现当前auto-configuration实现的都是什么，你可以在启动任务的时候添加–debug。</p>
+<h3 id="禁用指定的auto-configuration类"><a href="#禁用指定的auto-configuration类" class="headerlink" title="禁用指定的auto-configuration类"></a>禁用指定的auto-configuration类</h3><p>如果你不想使用指定的auto-configuration类，你可以使用@EnableAutoConfiguration的exclude属性来禁用它。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.*;</div><div class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.jdbc.*;</div><div class="line"><span class="keyword">import</span> org.springframework.context.annotation.*;</div><div class="line"></div><div class="line"><span class="meta">@Configuration</span></div><div class="line"><span class="meta">@EnableAutoConfiguration</span>(exclude=&#123;DataSourceAutoConfiguration.class&#125;)</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyConfiguration</span> </span>&#123;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>如果class不在classpath中，你可以使用excludeName属性指定全限定名。最后，你也可以通过spring.autoconfigure.exclude属性来控制auto-configuration禁用的class。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://songbingjia.cn/2018/04/05/Spring-Boot系列-目录/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="宋兵甲">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://cloud.githubusercontent.com/assets/13915081/24868296/3248ddcc-1e42-11e7-857a-0e4b4cebb75e.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="宋兵甲的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2018/04/05/Spring-Boot系列-目录/" itemprop="url">
+                  Spring Boot系列---目录
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-05T22:07:43+08:00">
+                2018-04-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/后端/" itemprop="url" rel="index">
+                    <span itemprop="name">后端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>最近SpringBoot发布了2.0版本，系统总结一下</p>
+<p>项目的建立参见<a href="https://projects.spring.io/spring-boot/" target="_blank" rel="external">这里</a>,就不多说了。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://songbingjia.cn/2018/03/25/java垃圾回收/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2056,429 +2386,13 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://songbingjia.cn/2017/04/17/Angular2-Binding学习笔记/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="宋兵甲">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://cloud.githubusercontent.com/assets/13915081/24868296/3248ddcc-1e42-11e7-857a-0e4b4cebb75e.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="宋兵甲的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/04/17/Angular2-Binding学习笔记/" itemprop="url">
-                  Angular2-Binding学习笔记
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-17T23:14:15+08:00">
-                2017-04-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/前端/" itemprop="url" rel="index">
-                    <span itemprop="name">前端</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="纵观全局"><a href="#纵观全局" class="headerlink" title="纵观全局"></a>纵观全局</h1><p>绑定的类型可以根据数据流的方向分成三类：</p>
-<pre><code>1.从数据源到视图
-2.从视图到数据源
-3.双向的从视图到数据源再到视图
-</code></pre><h2 id="下面是三种绑定的比较，里面具体名词不清楚没关系，后面会讲到"><a href="#下面是三种绑定的比较，里面具体名词不清楚没关系，后面会讲到" class="headerlink" title="下面是三种绑定的比较，里面具体名词不清楚没关系，后面会讲到"></a>下面是三种绑定的比较，里面具体名词不清楚没关系，后面会讲到</h2><p><img src="https://cloud.githubusercontent.com/assets/13915081/25138269/acb58114-248c-11e7-87ca-99e15450fe9f.png" alt="binding-categories"></p>
-<h1 id="第一类绑定：-指令-gt-视图目标"><a href="#第一类绑定：-指令-gt-视图目标" class="headerlink" title="第一类绑定： 指令 ===&gt; 视图目标"></a>第一类绑定： 指令 ===&gt; 视图目标</h1><p>该绑定数据从指令流向模板中，主要有一下几种</p>
-<pre><code>1.插值表达式
-2.绑定到Property上
-3.绑定到Attribute上
-4.绑定到class上
-5.绑定到style上
-</code></pre><blockquote>
-<p>注：在分别讲这几种类型之前先明确一个概念: Property vs Attribute (转自angular官网)<br>HTML attribute 与 DOM property 的对比<br>要想理解 Angular 绑定如何工作，重点是搞清 HTML attribute 和 DOM property 之间的区别。<br>&emsp;&emsp;1.attribute 是由 HTML 定义的。property 是由 DOM (Document Object Model) 定义的。<br>&emsp;&emsp;2.少量 HTML attribute 和 property 之间有着 1:1 的映射，如id。<br>&emsp;&emsp;3.有些 HTML attribute 没有对应的 property，如colspan。<br>&emsp;&emsp;4.有些 DOM property 没有对应的 attribute，如textContent。<br>&emsp;&emsp;5.大量 HTML attribute看起来映射到了property…… 但却不像我们想的那样！<br>最后一类尤其让人困惑…… 除非我们能理解这个普遍原则：<br>attribute 初始化 DOM property，然后它们的任务就完成了。property 的值可以改变；attribute 的值不能改变。<br>例如，当浏览器渲染&lt;input type=”text” value=”Bob”&gt;时，它将创建相应 DOM 节点， 其value property 被初始化为 “Bob”。<br>当用户在输入框中输入 “Sally” 时，DOM 元素的value property 变成了 “Sally”。 但是这个 HTML value attribute 保持不变。如果我们读取 input 元素的 attribute，就会发现确实没变： input.getAttribute(‘value’) // 返回 “Bob”。<br>HTML attribute value指定了初始值；DOM value property 是当前值。<br>disabled attribute 是另一个古怪的例子。按钮的disabled property 是false，因为默认情况下按钮是可用的。 当我们添加disabled attribute 时，只要它出现了按钮的disabled property 就初始化为true，于是按钮就被禁用了。<br>添加或删除disabled attribute会禁用或启用这个按钮。但 attribute 的值无关紧要，这就是我们为什么没法通过 &lt;button disabled=”false”&gt;仍被禁用&lt;/button&gt;这种写法来启用按钮。<br>设置按钮的disabled property（如，通过 Angular 绑定）可以禁用或启用这个按钮。 这就是 property 的价值。<br>就算名字相同，HTML attribute 和 DOM property 也不是同一样东西。</p>
-</blockquote>
-<p><em>简单来说就是HTML attribute是html元素定义的时候，定义完以后angular中操作改变的都是DOM property的值，所以除了插值表达式之外的绑定类型，在等号左边是目标名， 无论是包在括号中 ([]、()) 还是用前缀形式 (bind-、on-、bindon-)，这个目标名就是属性（Property）的名字。</em></p>
-<h2 id="插值表达式"><a href="#插值表达式" class="headerlink" title="插值表达式"></a>插值表达式</h2><p>插值表达式是绑定中最简单的一种，就是把{ { } }中的计算结果插入到HTML标签内的文本上，或给标签的属性赋值。<br>&lt;h3&gt;<br>  { { title } }<br>  &lt;img src=&quot;{ {heroImageUrl} }&quot; style=&quot;height:30px&quot;&gt;<br>  &lt;p&gt;The sum of 1 + 1 is { {1 + 1} }&lt;/p&gt;<br>&lt;/h3&gt;</p>
-<p>第一处是直接插入到HTML标签内的文本，第二处是给标签的属性赋值，第三处是也是给HTML标签内的文本插值，但是值是经过计算得来的</p>
-<h2 id="绑定到Property"><a href="#绑定到Property" class="headerlink" title="绑定到Property"></a>绑定到Property</h2><p>绑定到property分为两类:</p>
-<ul>
-<li>元素的property<br>  &lt;button [disabled]=&quot;isUnchanged&quot;&gt;Cancel is disabled&lt;/button&gt;</li>
-<li><p>指令(组件)的property</p>
-<ul>
-<li>设置angular自带指令的属性(这个在属性型指令和结构型指令中会细讲)<br> &lt;div [ngClass]=&quot;classes&quot;&gt;[ngClass] binding to the classes property&lt;/div&gt;</li>
-<li><p>设置自定义的组件(指令)的属性<br>  &lt;hero-detail [heroName]=&quot;hero&quot;  &gt;&lt;/hero-detail&gt;<br>  此时hero-detail的代码如下:</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">@Component(&#123;</div><div class="line">  selector: &apos;hero-detail&apos;,</div><div class="line">  template: `</div><div class="line">  &lt;h1&gt;heroName: &#123;&#123;heroName&#125;&#125;&lt;/h1&gt;</div><div class="line">`,</div><div class="line">&#125;)</div><div class="line">export class HeroDetailComponent  &#123;</div><div class="line">  @Input() heroName:string;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>   即[heroName]就是组件中的待输入的property，类似java中的一个类的构造参数</p>
-<blockquote>
-<p>绑定到property的过程是单向的，即从组件的数据流向目标属性的数据，如果必须读取目标元素上的属性或调用它的某个方法，<br>得用另一种技术 — ViewChild 和 ContentChild。</p>
-</blockquote>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="绑定到Attribute"><a href="#绑定到Attribute" class="headerlink" title="绑定到Attribute"></a>绑定到Attribute</h2><p>&emsp;&emsp;绑定到Attribute的原因大多是元素没有属性可绑的时候，所以必须使用attribute绑定。table中的 colspan/rowspan 等 attribute。 它们是纯粹的 attribute，没有对应的属性可供绑定。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&lt;table border=1&gt;</div><div class="line">  &lt;!--  expression calculates colspan=2 --&gt;</div><div class="line">  &lt;tr&gt;&lt;td [attr.colspan]=&quot;1 + 1&quot;&gt;One-Two&lt;/td&gt;&lt;/tr&gt;</div><div class="line">  &lt;!-- ERROR: There is no `colspan` property to set!</div><div class="line">    &lt;tr&gt;&lt;td colspan=&quot;&#123;&#123;1 + 1&#125;&#125;&quot;&gt;Three-Four&lt;/td&gt;&lt;/tr&gt;</div><div class="line">  --&gt;</div><div class="line">  &lt;tr&gt;&lt;td&gt;Five&lt;/td&gt;&lt;td&gt;Six&lt;/td&gt;&lt;/tr&gt;</div><div class="line">&lt;/table&gt;</div></pre></td></tr></table></figure>
-<h2 id="绑定到CSS上"><a href="#绑定到CSS上" class="headerlink" title="绑定到CSS上"></a>绑定到CSS上</h2><p>借助 CSS 类绑定，可以从元素的class attribute 上添加和移除 CSS 类名。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;!-- toggle the &quot;special&quot; class on/off with a property --&gt;</div><div class="line">&lt;div [class.special]=&quot;isSpecial&quot;&gt;The class binding is special&lt;/div&gt;</div></pre></td></tr></table></figure></p>
-<h2 id="绑定到style上"><a href="#绑定到style上" class="headerlink" title="绑定到style上"></a>绑定到style上</h2><p>样式绑定的语法与属性绑定类似<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;button [style.color]=&quot;isSpecial ? &apos;red&apos;: &apos;green&apos;&quot;&gt;Red&lt;/button&gt;</div><div class="line">&lt;button [style.background-color]=&quot;canSave ? &apos;cyan&apos;: &apos;grey&apos;&quot; &gt;Save&lt;/button&gt;</div></pre></td></tr></table></figure></p>
-<h1 id="第二类绑定：视图目标-gt-指令"><a href="#第二类绑定：视图目标-gt-指令" class="headerlink" title="第二类绑定：视图目标 ===&gt; 指令"></a>第二类绑定：视图目标 ===&gt; 指令</h1><h2 id="基本语法-圆括号中的名称-——-比如-click-——-标记出目标事件。在下面例子中，目标是按钮的-click-事件。"><a href="#基本语法-圆括号中的名称-——-比如-click-——-标记出目标事件。在下面例子中，目标是按钮的-click-事件。" class="headerlink" title="基本语法 :圆括号中的名称 —— 比如(click) —— 标记出目标事件。在下面例子中，目标是按钮的 click 事件。"></a>基本语法 :圆括号中的名称 —— 比如(click) —— 标记出目标事件。在下面例子中，目标是按钮的 click 事件。</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;button (click)=&quot;onSave($event)&quot;&gt;Save&lt;/button&gt;</div></pre></td></tr></table></figure>
-<p>绑定会通过名叫$event的事件对象传递关于此事件的信息(包括数据值)</p>
-<h2 id="使用EventEmitter实现自定义事件"><a href="#使用EventEmitter实现自定义事件" class="headerlink" title="使用EventEmitter实现自定义事件"></a>使用EventEmitter实现自定义事件</h2><p>通常，指令使用 Angular EventEmitter 来触发自定义事件。 指令创建一个EventEmitter实例，并且把它作为属性暴露出来。 指令调用EventEmitter.emit(payload)来触发事件，可以传入任何东西作为消息载荷。 父指令通过绑定到这个属性来监听事件，并通过$event对象来访问载荷。</p>
-<p>假设HeroDetailComponent用于显示英雄的信息，并响应用户的动作。 虽然HeroDetailComponent包含删除按钮，但它自己并不知道该如何删除这个英雄。 最好的做法是触发事件来报告“删除用户”的请求。、</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">template: `</div><div class="line">&lt;div&gt;</div><div class="line">  &lt;img src=&quot;&#123;&#123;heroImageUrl&#125;&#125;&quot;&gt;</div><div class="line">  &lt;span [style.text-decoration]=&quot;lineThrough&quot;&gt;</div><div class="line">    &#123;&#123;prefix&#125;&#125; &#123;&#123;hero?.name&#125;&#125;</div><div class="line">  &lt;/span&gt;</div><div class="line">  &lt;button (click)=&quot;delete()&quot;&gt;Delete&lt;/button&gt;</div><div class="line">&lt;/div&gt;`</div><div class="line"></div><div class="line">// This component make a request but it can&apos;t actually delete a hero.</div><div class="line">deleteRequest = new EventEmitter&lt;Hero&gt;();</div><div class="line"></div><div class="line">delete() &#123;</div><div class="line">  this.deleteRequest.emit(this.hero);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>组件定义了deleteRequest属性，它是EventEmitter实例。 当用户点击删除时，组件会调用delete()方法，让EventEmitter发出一个Hero对象。</p>
-<p>现在，假设有个宿主的父组件，它绑定了HeroDetailComponent的deleteRequest事件。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;hero-detail (deleteRequest)=&quot;deleteHero($event)&quot; [hero]=&quot;currentHero&quot;&gt;&lt;/hero-detail&gt;</div></pre></td></tr></table></figure>
-<p>当deleteRequest事件触发时，Angular 调用父组件的deleteHero方法， 在$event变量中传入要删除的英雄（来自HeroDetail）。</p>
-<blockquote>
-<p>上面这个例子就可以看成hero-detail组件自定义了一个deleteRequest事件（可以类比button元素的click事件）</p>
-</blockquote>
-<h1 id="第三类绑定：视图目标-lt-gt-指令-双向邦定"><a href="#第三类绑定：视图目标-lt-gt-指令-双向邦定" class="headerlink" title="第三类绑定：视图目标 &lt;===&gt; 指令 (双向邦定)"></a>第三类绑定：视图目标 &lt;===&gt; 指令 (双向邦定)</h1><p>简单来说双向绑定就是既要设置 <em>元素属性</em> ，又要监听元素事件变化。<br>Angular 为此提供一种特殊的双向数据绑定语法：[(x)]。 [(x)]语法结合了属性绑定的方括号[x]和事件绑定的圆括号(x)<br>当一个元素拥有可以设置的属性x和对应的事件xChange时，解释[(x)]语法就容易多了。 下面的SizerComponent符合这个模式。它有size属性和伴随的sizeChange事件：</p>
-<p><em>sizer.component.ts</em><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">import &#123; Component, EventEmitter, Input, Output &#125; from &apos;@angular/core&apos;;</div><div class="line">@Component(&#123;</div><div class="line">  selector: &apos;my-sizer&apos;,</div><div class="line">  template: `</div><div class="line">  &lt;div&gt;</div><div class="line">    &lt;button (click)=&quot;dec()&quot; title=&quot;smaller&quot;&gt;-&lt;/button&gt;</div><div class="line">    &lt;button (click)=&quot;inc()&quot; title=&quot;bigger&quot;&gt;+&lt;/button&gt;</div><div class="line">    &lt;label [style.font-size.px]=&quot;size&quot;&gt;FontSize: &#123;&#123;size&#125;&#125;px&lt;/label&gt;</div><div class="line">  &lt;/div&gt;`</div><div class="line">&#125;)</div><div class="line">export class SizerComponent &#123;</div><div class="line">  @Input()  size: number | string;</div><div class="line">  @Output() sizeChange = new EventEmitter&lt;number&gt;();</div><div class="line">  dec() &#123; this.resize(-1); &#125;</div><div class="line">  inc() &#123; this.resize(+1); &#125;</div><div class="line">  resize(delta: number) &#123;</div><div class="line">    this.size = Math.min(40, Math.max(8, +this.size + delta));</div><div class="line">    this.sizeChange.emit(this.size);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>这段代码重在于:</p>
-<ul>
-<li>size是一个输入属性用于初始</li>
-<li>点击smaller或bigger会触发size大小的变化</li>
-<li>size大小变化后会触发sizeChange事件(这里用到了上文中说到的EventEmitter)</li>
-</ul>
-<p><em>app.component.ts</em><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;my-sizer [(size)]=&quot;fontSizePx&quot;&gt;&lt;/my-sizer&gt;</div><div class="line">&lt;div [style.font-size.px]=&quot;fontSizePx&quot;&gt;Resizable Text&lt;/div&gt;</div></pre></td></tr></table></figure></p>
-<p>在这列AppComponent的fontSizePx就被双向绑定到了SizerComponent上</p>
-<ul>
-<li>SizerComponent的size的初始值就是AppComponent的fontSizePx</li>
-<li>在SizerComponent组件内通过点击按钮更新size的大小会影响fontSizePx的大小，最终会改变Resizable Text的显示</li>
-</ul>
-<p>双向绑定语法实际上是属性绑定和事件绑定的语法糖。 Angular将SizerComponent的绑定分解成这样：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;my-sizer [size]=&quot;fontSizePx&quot; (sizeChange)=&quot;fontSizePx=$event&quot;&gt;&lt;/my-sizer&gt;</div></pre></td></tr></table></figure></p>
-<p>我们希望能在像&lt;input&gt;和&lt;select&gt;这样的 HTML 元素上使用双向数据绑定。 可惜，原生 HTML 元素不遵循x值和xChange事件的模式。</p>
-<p>幸运的是，Angular 以 NgModel 指令为桥梁，允许在表单元素上使用双向数据绑定。</p>
-<blockquote>
-<p>在使用ngModel指令之前需要先引入FormsModule</p>
-</blockquote>
-<p>现在假设我们需要把一个input的value属性和输入变更都绑定到组件的myName属性。 使用以下方式也可以满足这个需求:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;input [value]=&quot;myName&quot;</div><div class="line">       (input)=&quot;myName&quot; &gt;</div></pre></td></tr></table></figure></p>
-<p>但是这个很不好用，因为你需要记住每一个标签的设置值得属性和变更时需要绑定的事件<br>使用ngModel你可以用下面的方式完成同样的功能,它使用ngModel这个指令屏蔽了不同标签的设置属性和变更事件。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;input</div><div class="line">  [ngModel]=&quot;myName&quot;</div><div class="line">  (ngModelChange)=&quot;myName&quot;&gt;</div></pre></td></tr></table></figure></p>
-<p>上面代码可以简写为:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;input [(ngModel)]=&quot;myName&quot;&gt;</div></pre></td></tr></table></figure></p>
-<p>使用第二种方法比较简单，但是它的局限是只能完成属性值的绑定，如果想要实现更复杂的功能还是需要使用第一种写法。</p>
-<p>因为HTML的元素实现细节不同，所以angular2只对基本的HTML Form元素提供了支持。</p>
-<blockquote>
-<p>源码<a href="https://github.com/qwang1990/angular2/tree/master/angular_binding" target="_blank" rel="external">https://github.com/qwang1990/angular2/tree/master/angular_binding</a></p>
-</blockquote>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://songbingjia.cn/2017/04/08/Angular2-Module学习笔记/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="宋兵甲">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://cloud.githubusercontent.com/assets/13915081/24868296/3248ddcc-1e42-11e7-857a-0e4b4cebb75e.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="宋兵甲的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/04/08/Angular2-Module学习笔记/" itemprop="url">
-                  Angular2 Module学习笔记
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-08T21:36:19+08:00">
-                2017-04-08
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/前端/" itemprop="url" rel="index">
-                    <span itemprop="name">前端</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-<h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><p>Angular 模块能帮你把应用组织成多个内聚的功能块，可以类比java的package</p>
-<h1 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">@NgModule(&#123;</div><div class="line">  imports:      [ CommonModule ],</div><div class="line">  declarations: [ TitleComponent ],</div><div class="line">  exports:      [ TitleComponent ],</div><div class="line">  providers:    [ UserService ],</div><div class="line">  &lt;!--bootstrap:    [ AppComponent ]--&gt;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
-<p>Angular 模块是一个由@NgModule装饰器提供元数据的类，元数据包括：</p>
-<ul>
-<li>imports: 导入其它模块，从其它模块中获得本模块所需的组件、指令和管道</li>
-<li>declarations: 声明哪些组件、指令、管道属于该模块</li>
-<li>exports: 公开某些类，以便其它的组件模板可以使用它们</li>
-<li>provider: 在应用程序级提供服务，以便应用中的任何组件都能使用它</li>
-<li>bootstrap: 把指定组件标记为引导 (bootstrap) 组件。当 Angular 引导应用时，它会在 DOM 中渲染AppComponent，并把结果放进index.html的<my-app>元素标记内部。这个元数据只有根模块有。</my-app></li>
-</ul>
-<h1 id="模块基本使用"><a href="#模块基本使用" class="headerlink" title="模块基本使用"></a>模块基本使用</h1><ul>
-<li><p>声明组件和指令: 定义的组件和指令必须在模块中声明了，模板才能识别组件和指令对应的标签</p>
-<pre><code class="angular2html">例如我们定义指令HighlightDirective：
-  import { Directive, ElementRef } from &apos;@angular/core&apos;;
-
-  @Directive({ selector: &apos;[highlight]&apos; })
-  /** Highlight the attached element in gold */
-  export class HighlightDirective {
-    constructor(el: ElementRef) {
-      el.nativeElement.style.backgroundColor = &apos;gold&apos;;
-      console.log(
-        `* AppRoot highlight called for ${el.nativeElement.tagName}`);
-    }
-  }
-
-  在使用 &lt;h1 highlight&gt;{{title}}&lt;/h1&gt; 前必须要在我们的module的declaration中加入如下定义：
-  declarations: [
-    ... 
-    HighlightDirective,
-    ...
-  ],
-</code></pre>
-</li>
-<li><p>服务提供商<br>模块可以往应用的“根依赖注入器”中添加提供商，让那些服务在应用中到处可用,这个和在组件中提供服务不同。<font color="#ff0000">组件中提供的服务是分层级的。</font>这个在多级注入的时候会讲到。</p>
-</li>
-</ul>
-<h1 id="特性模块"><a href="#特性模块" class="headerlink" title="特性模块"></a>特性模块</h1><ul>
-<li><p>为什么要有多个模块<br>&emsp;&emsp;随着应用越来越大，如果只是用一个根模块就会出现很多问题。 比如指令冲突，我们在一个类中定义了ADirective，然后再另一个类中定义了同名的ADirective，并且他们的selector一样都是’sameName’.当我们在别处使用这个&lt;sameName … &gt;时就会出现，后一个declaration的指令会覆盖前一个declaration的指令。</p>
-</li>
-<li><p>什么是特性模块<br>特性模块和根模块一样都是是带有@NgModule装饰器及其元数据的类，它和根模块有着同一个依赖注入器。不同点是: </p>
-<pre><code>1.我们引导根模块来启动应用，但导入特性模块来扩展应用。
-2.特性模块可以对其它模块暴露或隐藏自己的实现。(通过exports来控制)
-</code></pre></li>
-<li><p>一个使用特性模块的小技巧—重新导出<br>场景如下:<br>&emsp;&emsp;  你有一个特性模块A, 它引入了CommonModule和FormsModule在自身模块内使用, 这时另一个模块B导入模块A, 而且B也需要使用CommonModule和FormsModule, 正常情况下B还需要导入CommonModule和FormsModule这两个模块,<br>但如果模块A将CommonModule和FormsModule export出去, 这时B就只需导入A模块即可。</p>
-</li>
-</ul>
-<h1 id="没图说个XX"><a href="#没图说个XX" class="headerlink" title="没图说个XX"></a>没图说个XX</h1><p><img src="https://cloud.githubusercontent.com/assets/13915081/25060334/0efbeb14-21cd-11e7-87af-9a08a372952d.png" alt="angular_module 001"></p>
-<p>本例中RootModule分别引入了ModuleM和ModuleW</p>
-<ul>
-<li>ModuleM 声明了两个组件, 导入了FormModule, 并提供了ServiceMA服务,最后它导出了自己的其中一个组件ComponentMA和ForModule</li>
-<li>ModuleW 声明了两个组件, 导入了RouterModule, 并提供了ServiceWA服务,最后它只导出了自己的其中一个组件ComponentMA</li>
-</ul>
-<p>此时会有以下结果:</p>
-<pre><code>1. ModuleM 中可以使用自己声明的组件(即在自己的模板中使用组件的selector标签)和FormModule中的功能。
-2. ModuleW 中可以使用自己声明的组件(即在自己的模板中使用组件的selector标签)和RouterModule中的功能。
-3. 全局中都能使用 serviceA,ServiceMA,serviceWA。以为模块级别的依赖注入器是同一个。
-4. 在RootModule中可以使用FormModule,ComponentMA和ComponentWB。
-</code></pre><p>源码：<a href="https://github.com/qwang1990/angular2/tree/master/angular_module" target="_blank" rel="external">https://github.com/qwang1990/angular2/tree/master/angular_module</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
 
 
           </div>
@@ -2521,7 +2435,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">12</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -2543,7 +2457,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
