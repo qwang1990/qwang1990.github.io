@@ -314,6 +314,207 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://songbingjia.cn/2018/04/26/Spring-Boot系列-Spring-Boot的功能三-profile-log/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="宋兵甲">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://cloud.githubusercontent.com/assets/13915081/24868296/3248ddcc-1e42-11e7-857a-0e4b4cebb75e.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="宋兵甲的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2018/04/26/Spring-Boot系列-Spring-Boot的功能三-profile-log/" itemprop="url">
+                  Spring Boot系列---Spring Boot的功能三(profile&log)
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-26T09:01:15+08:00">
+                2018-04-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/后端/" itemprop="url" rel="index">
+                    <span itemprop="name">后端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="Spring-Boot的功能三"><a href="#Spring-Boot的功能三" class="headerlink" title="Spring Boot的功能三"></a>Spring Boot的功能三</h2><p>###Profiles<br>Spring profile提供了一种方式去分离应用的配置，使它们只能在特定的环境下可见。所有@Component或@Configuration都可以被@Profile注解，如下所示:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Configuration</span></div><div class="line"><span class="meta">@Profile</span>(<span class="string">"production"</span>)</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ProductionConfiguration</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="comment">// ...</span></div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>你可以使用 spring.profiles.active环境变量来指定激活哪个profile。比如你可以在application.properties文件中添加如下语句:</p>
+<blockquote>
+<p>spring.profiles.active=dev,hsqldb</p>
+</blockquote>
+<p>你也可以在命令行使用:–spring.profiles.active=dev,hsqldb</p>
+<h5 id="激活profile"><a href="#激活profile" class="headerlink" title="激活profile"></a>激活profile</h5><p>spring.profiles.active属性和其他属性一样，高优先级的propertySource的将被应用。这意味着你可以声明spring.profiles.active，然后在命令行中替换它。</p>
+<p>有些时候我们可能希望增加激活的profile而不是替换，此时可以用spring.profile.include属性，SpringApplication也提供api来设置它，setAdditionalProfiles()</p>
+<p>比如:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">---</div><div class="line">my.property: fromyamlfile</div><div class="line">---</div><div class="line">spring.profiles: prod</div><div class="line">spring.profiles.include:</div><div class="line">  - proddb</div><div class="line">  - prodmq</div></pre></td></tr></table></figure></p>
+<p>在如上配置下，应用激活的profile有prod，proddb，prodmq</p>
+<h3 id="Logging"><a href="#Logging" class="headerlink" title="Logging"></a>Logging</h3><p>spring boot的日志使用<a href="https://commons.apache.org/proper/commons-logging/" target="_blank" rel="external">Commons Logging</a>但是具体的实现是开放的。默认配置提供<a href="https://docs.oracle.com/javase/8/docs/api//java/util/logging/package-summary.html" target="_blank" rel="external">Java Util Logging</a>,<a href="https://logging.apache.org/log4j/2.x/" target="_blank" rel="external">Log4J2</a>和<a href="http://logback.qos.ch/" target="_blank" rel="external">Logback</a></p>
+<p>默认情况下，如果你使用”Starters”，将使用logback来打日志。</p>
+<h4 id="log格式"><a href="#log格式" class="headerlink" title="log格式"></a>log格式</h4><p>默认的日志输出如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">2014-03-05 10:57:51.112  INFO 45469 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/7.0.52</div><div class="line">2014-03-05 10:57:51.253  INFO 45469 --- [ost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext</div><div class="line">2014-03-05 10:57:51.253  INFO 45469 --- [ost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1358 ms</div><div class="line">2014-03-05 10:57:51.698  INFO 45469 --- [ost-startStop-1] o.s.b.c.e.ServletRegistrationBean        : Mapping servlet: &apos;dispatcherServlet&apos; to [/]</div><div class="line">2014-03-05 10:57:51.702  INFO 45469 --- [ost-startStop-1] o.s.b.c.embedded.FilterRegistrationBean  : Mapping filter: &apos;hiddenHttpMethodFilter&apos; to: [/*]</div></pre></td></tr></table></figure></p>
+<p>具体字段含义:</p>
+<ul>
+<li>时间，精确到微妙</li>
+<li>日志级别: ERROR,WARN,INFO,DEBUG,TARCE</li>
+<li>进程Id</li>
+<li>—分隔符，用于分割真实的日志</li>
+<li>线程名</li>
+<li>logger名字(通常是源class名)</li>
+<li>日志信息</li>
+</ul>
+<blockquote>
+<p>logback没有FATAL级别，它被映射到ERROR级别</p>
+</blockquote>
+<h4 id="console输出"><a href="#console输出" class="headerlink" title="console输出"></a>console输出</h4><p>默认的日志配置会把输出打印到console上。默认情况下ERROR,WARN,INFO级别的信息将被打印。你可以用以下方式来开启debug日志的打印<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ java -jar myapp.jar --debug</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>你也可以在application.properties中声明debug=true来开启。</p>
+</blockquote>
+<h4 id="输出文件"><a href="#输出文件" class="headerlink" title="输出文件"></a>输出文件</h4><p>默认情况下Spring Boot只把日志输出到控制台上。如果你想写进日志中，你可以设置logging.file or logging.path属性(比如在application.properties中)<br>下面展示了如何一起使用上面两个属性:</p>
+<ul>
+<li>logging.file(none) logging.path(none) =&gt; 只有控制台输出</li>
+<li>logging.file(name) logging.path(none) =&gt; name可以是绝对路径也可是相对路径，日志写入指定文件。</li>
+<li>logging.file(none) logging.path(dir) =&gt; 可以是相对目录，也可以是绝对目录，在该目录下写入spring.log日志文件</li>
+</ul>
+<h4 id="日志级别"><a href="#日志级别" class="headerlink" title="日志级别"></a>日志级别</h4><p>SpringBoot提供如下方式设置日志级别,logging.level.<logger-name\>=<level\> 其中level可以是TRACE, DEBUG, INFO, WARN, ERROR, FATAL, 或 OFF。root日志可以使用logging.level.root来设置。<br>如下例所示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">logging.level.root=WARN</div><div class="line">logging.level.org.springframework.web=DEBUG</div><div class="line">logging.level.org.hibernate=ERROR</div></pre></td></tr></table></figure></level\></logger-name\></p>
+<h4 id="自定义配置"><a href="#自定义配置" class="headerlink" title="自定义配置"></a>自定义配置</h4><p>我们可以通过在classpath中加入合适的jar包来激活一系列的日志系统。并且可以通过在classpath或环境变量logging.config里指定的路径下添加配置文件来自定义这些日志系统。<br>你也也可以使用 org.springframework.boot.logging.LoggingSystem 来指定使用哪个日志系统。</p>
+<blockquote>
+<p>因为日志系统是在ApplicationContext创建之前初始化的，所以你不能通过@PropertySources来控制日志系统，你只能通过System属性来控制它。</p>
+</blockquote>
+<p>不同的日志系统对应的配置文件如下:</p>
+<ul>
+<li>Logback =&gt; logback-spring.xml, logback-spring.groovy, logback.xml, or logback.groovy</li>
+<li>Log4j2 =&gt; log4j2-spring.xml or log4j2.xml</li>
+<li>JDK(Java Util Logging) =&gt; logging.properties</li>
+</ul>
+<blockquote>
+<p>如果可能，建议使用-spring的配置(比如logback-spring.xml)。因为使用标准的配置文件，spring不能完全的控制log的初始化。</p>
+</blockquote>
+<h4 id="logback的扩展"><a href="#logback的扩展" class="headerlink" title="logback的扩展"></a>logback的扩展</h4><p>SpringBoot提供了很多的LogBack的扩展，你可以使用它扩展你的logback-spring.xml配置文件。</p>
+<blockquote>
+<p>因为logback.xml加载的太早了，所以你无法扩展它，你可以扩展logback-spring.xml文件或logging.config下的文件。</p>
+</blockquote>
+<p>扩展功能：</p>
+<ul>
+<li><a href="https://docs.spring.io/spring-boot/docs/2.0.1.RELEASE/reference/htmlsingle/#_profile_specific_configuration" target="_blank" rel="external">指定profile的配置</a></li>
+<li><a href="https://docs.spring.io/spring-boot/docs/2.0.1.RELEASE/reference/htmlsingle/#_environment_properties" target="_blank" rel="external">使用环境变量</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://songbingjia.cn/2018/04/09/Spring-Boot系列-Spring-Boot的功能二-配置/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2093,172 +2294,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://songbingjia.cn/2018/02/12/设计模式系列-创建型模式/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="宋兵甲">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://cloud.githubusercontent.com/assets/13915081/24868296/3248ddcc-1e42-11e7-857a-0e4b4cebb75e.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="宋兵甲的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2018/02/12/设计模式系列-创建型模式/" itemprop="url">
-                  设计模式系列---创建型模式
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-12T22:05:50+08:00">
-                2018-02-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/后端/" itemprop="url" rel="index">
-                    <span itemprop="name">后端</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="创建型模式"><a href="#创建型模式" class="headerlink" title="创建型模式"></a>创建型模式</h1><h2 id="简单工厂"><a href="#简单工厂" class="headerlink" title="简单工厂"></a>简单工厂</h2><p>不多解释，太简单了。就是用一个工厂决定要产生的类。比如Shape是一个基类，它有很多子类Circle，Rectangle，Square。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ShapeFactory</span> </span>&#123;</div><div class="line">   <span class="comment">//使用 getShape 方法获取形状类型的对象</span></div><div class="line">   <span class="function"><span class="keyword">public</span> Shape <span class="title">getShape</span><span class="params">(String shapeType)</span></span>&#123;</div><div class="line">      <span class="keyword">if</span>(shapeType == <span class="keyword">null</span>)&#123;</div><div class="line">         <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">      &#125;        </div><div class="line">      <span class="keyword">if</span>(shapeType.equalsIgnoreCase(<span class="string">"CIRCLE"</span>))&#123;</div><div class="line">         <span class="keyword">return</span> <span class="keyword">new</span> Circle();</div><div class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span>(shapeType.equalsIgnoreCase(<span class="string">"RECTANGLE"</span>))&#123;</div><div class="line">         <span class="keyword">return</span> <span class="keyword">new</span> Rectangle();</div><div class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span>(shapeType.equalsIgnoreCase(<span class="string">"SQUARE"</span>))&#123;</div><div class="line">         <span class="keyword">return</span> <span class="keyword">new</span> Square();</div><div class="line">      &#125;</div><div class="line">      <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>缺点明显，加一个子类就要改一下工厂。</p>
-<h2 id="抽象工厂"><a href="#抽象工厂" class="headerlink" title="抽象工厂"></a>抽象工厂</h2><p>一个中心工厂创建其他的工厂。其他的工厂可以理解为一个产品系列，它可以生产很多的产品。<br>优点：因为中心工厂是创建工厂的，所以用户拿到工厂后产生的产品是一个系列的。<br>如下面这个例子：<br>我们有一个王国的工厂接口：KingdomFactory，它可以生产士兵，就是我们说的产品。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">KingdomFactory</span> </span>&#123;</div><div class="line">  <span class="function">Army <span class="title">createArmy</span><span class="params">()</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>这时我们对该工厂有两个实现：精灵王国和兽人王国，它们分别生产自己的士兵，它们就是两个系列。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//这里ElfArmy 和 OrcArmy都是Army的子类</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ElfKingdomFactory</span> <span class="keyword">implements</span> <span class="title">KingdomFactory</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> Army <span class="title">createArmy</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ElfArmy();</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">OrcKingdomFactory</span> <span class="keyword">implements</span> <span class="title">KingdomFactory</span> </span>&#123;</div><div class="line">  <span class="function"><span class="keyword">public</span> Army <span class="title">createArmy</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> OrcArmy();</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>中心工厂的核心方法定义如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">public static KingdomFactory makeFactory(KingdomType type) &#123;</div><div class="line">      switch (type) &#123;</div><div class="line">        case ELF:</div><div class="line">          return new ElfKingdomFactory();</div><div class="line">        case ORC:</div><div class="line">          return new OrcKingdomFactory();</div><div class="line">        default:</div><div class="line">          throw new IllegalArgumentException(&quot;KingdomType not supported.&quot;);</div><div class="line">      &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
-<p>缺点也很明显：增加产品系列比较麻烦。</p>
-<h2 id="建造者模式-builder"><a href="#建造者模式-builder" class="headerlink" title="建造者模式(builder)"></a>建造者模式(builder)</h2><p>这个可以类比JAVA中的StringBuilder。用于对象比较复杂，使用构造函数比较麻烦&amp;难以形象表达。这时可以一步一步的build它。</p>
-<h2 id="原型模式-Prototype-Pattern"><a href="#原型模式-Prototype-Pattern" class="headerlink" title="原型模式(Prototype Pattern)"></a>原型模式(Prototype Pattern)</h2><p>这种模式是实现了一个原型接口，该接口用于创建当前对象的克隆。其实就是用来克隆对象的。</p>
-<h2 id="单类-Singleton-Pattern"><a href="#单类-Singleton-Pattern" class="headerlink" title="单类(Singleton Pattern)"></a>单类(Singleton Pattern)</h2><p>保证一个在类在全局中只有一个实例。<br>下面直接讲在java中单类的5中实现方式：</p>
-<ul>
-<li><p>饿汉模式</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line">    <span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">IvoryTower</span> </span>&#123;</div><div class="line">      <span class="comment">/**</span></div><div class="line">       * 私有构造函数</div><div class="line">       */</div><div class="line">      <span class="function"><span class="keyword">private</span> <span class="title">IvoryTower</span><span class="params">()</span> </span>&#123;&#125;</div><div class="line">      <span class="comment">/**</span></div><div class="line">       * 静态变量，为该对象</div><div class="line">       */</div><div class="line">      <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> IvoryTower INSTANCE = <span class="keyword">new</span> IvoryTower();</div><div class="line">      <span class="comment">/**</span></div><div class="line">       * 这里是获取对象的方法。</div><div class="line">       * <span class="doctag">@return</span> instance of the singleton.</div><div class="line">       */</div><div class="line">      <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> IvoryTower <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> INSTANCE;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">```  </div><div class="line"></div><div class="line">- 饱汉模式</div><div class="line">```java </div><div class="line">    <span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">ThreadSafeLazyLoadedIvoryTower</span> </span>&#123;</div><div class="line">      <span class="keyword">private</span> <span class="keyword">static</span> ThreadSafeLazyLoadedIvoryTower instance;</div><div class="line">      <span class="function"><span class="keyword">private</span> <span class="title">ThreadSafeLazyLoadedIvoryTower</span><span class="params">()</span> </span>&#123;</div><div class="line">      <span class="comment">// 这里是为了防止反射导致的多个实例的问题</span></div><div class="line">        <span class="keyword">if</span> (instance != <span class="keyword">null</span>) &#123;</div><div class="line">          <span class="keyword">throw</span> <span class="keyword">new</span> IllegalStateException(<span class="string">"Already initialized."</span>);</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">      <span class="comment">/**</span></div><div class="line">       - 唯一实例在第一次调用的时候才会产生。此处使用synchronized字段来防止并发的问题</div><div class="line">       */</div><div class="line">      <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">synchronized</span> ThreadSafeLazyLoadedIvoryTower <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (instance == <span class="keyword">null</span>) &#123;</div><div class="line">          instance = <span class="keyword">new</span> ThreadSafeLazyLoadedIvoryTower();</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> instance;</div><div class="line">      &#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>饿汉模式</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">ThreadSafeDoubleCheckLocking</span> </span>&#123;</div><div class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">volatile</span> ThreadSafeDoubleCheckLocking instance;</div><div class="line">  <span class="comment">/**</span></div><div class="line">   * 这里是为了防止反射导致的多个实例的问题</div><div class="line">   */</div><div class="line">  <span class="function"><span class="keyword">private</span> <span class="title">ThreadSafeDoubleCheckLocking</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (instance != <span class="keyword">null</span>) &#123;</div><div class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> IllegalStateException(<span class="string">"Already initialized."</span>);</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ThreadSafeDoubleCheckLocking <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="comment">// 本地变量能增加25%的效率</span></div><div class="line">    <span class="comment">// Joshua Bloch "Effective Java, Second Edition", p. 283-284</span></div><div class="line">    ThreadSafeDoubleCheckLocking result = instance;</div><div class="line">    <span class="comment">// 检查result是否已经创建了，如果是，就返回</span></div><div class="line">    <span class="keyword">if</span> (result == <span class="keyword">null</span>) &#123;</div><div class="line">      <span class="comment">// 虽然没有初始化，但是我哦们不能确定没有别的线程初始化它，所以这是使用排它锁。</span></div><div class="line">      <span class="keyword">synchronized</span> (ThreadSafeDoubleCheckLocking.class) &#123;</div><div class="line">        <span class="comment">//再次把实例赋值给本地变量，来看它是否被其他线程初始化。</span></div><div class="line">        result = instance;</div><div class="line">        <span class="keyword">if</span> (result == <span class="keyword">null</span>) &#123;</div><div class="line">          <span class="comment">// 当result依然没有初始化，就直接初始化。这里是线程安全的</span></div><div class="line">          <span class="comment">// 并且因为实例使用了volatile修饰，所以也不会有指令重排和可见性的问题。</span></div><div class="line">          instance = result = <span class="keyword">new</span> ThreadSafeDoubleCheckLocking();</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> result;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>静态内部类实现</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//即使饿汉模式加载，又使用了静态内部类的特性保证了只初始化一个对象。</span></div><div class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">InitializingOnDemandHolderIdiom</span> </span>&#123;</div><div class="line">  <span class="function"><span class="keyword">private</span> <span class="title">InitializingOnDemandHolderIdiom</span><span class="params">()</span> </span>&#123;&#125;</div><div class="line">  <span class="comment">/**</span></div><div class="line">   */</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> InitializingOnDemandHolderIdiom <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> HelperHolder.INSTANCE;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="comment">/**</span></div><div class="line">   */</div><div class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">HelperHolder</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> InitializingOnDemandHolderIdiom INSTANCE =</div><div class="line">        <span class="keyword">new</span> InitializingOnDemandHolderIdiom();</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>枚举</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//无话可说。。。。</span></div><div class="line"><span class="keyword">public</span> <span class="keyword">enum</span> EnumIvoryTower &#123;</div><div class="line">  INSTANCE;</div><div class="line">  <span class="meta">@Override</span></div><div class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> getDeclaringClass().getCanonicalName() + <span class="string">"@"</span> + hashCode();</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -2308,7 +2343,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
