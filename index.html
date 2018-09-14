@@ -504,8 +504,7 @@
 <p>所以，有以下改动点：</p>
 <ol>
 <li>沿用主干分支，特性分支，发布分支的概念，但是同一时刻，只有3个发布分支，分别是release/dev, release/test,release/staging分别对应着开发发布分支（用于发布到开发环境），测试发布分支（发布到测试环境），预发发布分支（发布到预发环境)</li>
-<li>发布分支的上线步骤dev-&gt;test-&gt;staging-&gt;生产<br>即dev发布分支由特性分支和主干分支合并动态生成<br>test发布分支由dev发布分支和当前主干分支合并动态生成<br>staging发布分支由test发布分支和当前主干合并动态生成<br>生产代码由staging发布分支合并到主干分支</li>
-<li>上线后，删除特性分支，删除staging分支</li>
+<li>发布分支的上线步骤dev-&gt;test-&gt;staging-&gt;生产<br>比如：<br><img src="https://user-images.githubusercontent.com/13915081/45532870-2e500980-b828-11e8-812a-40f2dc6b481e.png" alt="6"><br>上述例子中，开始我们有3个特性分支需要开发，1.0.0版本只需特性分支1上线</li>
 </ol>
 
           

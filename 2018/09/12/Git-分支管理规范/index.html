@@ -102,7 +102,8 @@
 <meta property="og:image" content="https://user-images.githubusercontent.com/13915081/45492707-94447e80-b79f-11e8-9c1d-1adcd820b6c5.png">
 <meta property="og:image" content="https://user-images.githubusercontent.com/13915081/45492744-ade5c600-b79f-11e8-94bb-5f441b41985e.png">
 <meta property="og:image" content="https://user-images.githubusercontent.com/13915081/45493544-90196080-b7a1-11e8-8380-6c60154bd9b0.png">
-<meta property="og:updated_time" content="2018-09-14T03:24:22.000Z">
+<meta property="og:image" content="https://user-images.githubusercontent.com/13915081/45532870-2e500980-b828-11e8-812a-40f2dc6b481e.png">
+<meta property="og:updated_time" content="2018-09-14T06:12:38.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git 分支管理规范">
 <meta name="twitter:description" content="本文不涉及git指令的介绍，侧重于分支管理，个人理解分支管理并没有正确与否，重要在于是否成体系，简单来说就是能否高效的应对所有情况。没有对比就没有伤害，先看两种比较出名的分支管理方式: Git flow原文链接根红苗正，很多注重流程的大公司都在使用。先看一张总览图：大家可以仔细看一下这幅图，带着问题继续向下看 概念在上图中有如下几个概念：  时间线：这个就不多说了，牵扯到一些哲学问题 master">
@@ -517,8 +518,7 @@
 <p>所以，有以下改动点：</p>
 <ol>
 <li>沿用主干分支，特性分支，发布分支的概念，但是同一时刻，只有3个发布分支，分别是release/dev, release/test,release/staging分别对应着开发发布分支（用于发布到开发环境），测试发布分支（发布到测试环境），预发发布分支（发布到预发环境)</li>
-<li>发布分支的上线步骤dev-&gt;test-&gt;staging-&gt;生产<br>即dev发布分支由特性分支和主干分支合并动态生成<br>test发布分支由dev发布分支和当前主干分支合并动态生成<br>staging发布分支由test发布分支和当前主干合并动态生成<br>生产代码由staging发布分支合并到主干分支</li>
-<li>上线后，删除特性分支，删除staging分支</li>
+<li>发布分支的上线步骤dev-&gt;test-&gt;staging-&gt;生产<br>比如：<br><img src="https://user-images.githubusercontent.com/13915081/45532870-2e500980-b828-11e8-812a-40f2dc6b481e.png" alt="6"><br>上述例子中，开始我们有3个特性分支需要开发，1.0.0版本只需特性分支1上线</li>
 </ol>
 
       
