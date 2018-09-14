@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="git," />
 
 
 
@@ -87,15 +87,26 @@
 
 
 
-<meta name="description" content="小菜鸟的技术博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="宋兵甲的博客">
-<meta property="og:url" content="http://songbingjia.cn/index.html">
+<meta name="description" content="本文不涉及git指令的介绍，侧重于分支管理，个人理解分支管理并没有正确与否，重要在于是否成体系，简单来说就是能否高效的应对所有情况。没有对比就没有伤害，先看两种比较出名的分支管理方式: Git flow原文链接根红苗正，很多注重流程的大公司都在使用。先看一张总览图：大家可以仔细看一下这幅图，带着问题继续向下看 概念在上图中有如下几个概念：  时间线：这个就不多说了，牵扯到一些哲学问题 master">
+<meta name="keywords" content="git">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git 分支管理规范">
+<meta property="og:url" content="http://songbingjia.cn/2018/09/12/Git-分支管理规范/index.html">
 <meta property="og:site_name" content="宋兵甲的博客">
-<meta property="og:description" content="小菜鸟的技术博客">
+<meta property="og:description" content="本文不涉及git指令的介绍，侧重于分支管理，个人理解分支管理并没有正确与否，重要在于是否成体系，简单来说就是能否高效的应对所有情况。没有对比就没有伤害，先看两种比较出名的分支管理方式: Git flow原文链接根红苗正，很多注重流程的大公司都在使用。先看一张总览图：大家可以仔细看一下这幅图，带着问题继续向下看 概念在上图中有如下几个概念：  时间线：这个就不多说了，牵扯到一些哲学问题 master">
+<meta property="og:image" content="https://user-images.githubusercontent.com/13915081/45464223-2e75d980-b742-11e8-890a-fbd7a4da6a10.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/13915081/45470852-d353df00-b761-11e8-88d7-6415d32d1230.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/13915081/45471561-11520280-b764-11e8-9061-e6f3fde25e36.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/13915081/45472550-1d8b8f00-b767-11e8-9450-1144463035ca.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/13915081/45476260-16697e80-b771-11e8-95a4-2980ee827f95.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/13915081/45492707-94447e80-b79f-11e8-9c1d-1adcd820b6c5.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/13915081/45492744-ade5c600-b79f-11e8-94bb-5f441b41985e.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/13915081/45493544-90196080-b7a1-11e8-8380-6c60154bd9b0.png">
+<meta property="og:updated_time" content="2018-09-14T03:24:22.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="宋兵甲的博客">
-<meta name="twitter:description" content="小菜鸟的技术博客">
+<meta name="twitter:title" content="Git 分支管理规范">
+<meta name="twitter:description" content="本文不涉及git指令的介绍，侧重于分支管理，个人理解分支管理并没有正确与否，重要在于是否成体系，简单来说就是能否高效的应对所有情况。没有对比就没有伤害，先看两种比较出名的分支管理方式: Git flow原文链接根红苗正，很多注重流程的大公司都在使用。先看一张总览图：大家可以仔细看一下这幅图，带着问题继续向下看 概念在上图中有如下几个概念：  时间线：这个就不多说了，牵扯到一些哲学问题 master">
+<meta name="twitter:image" content="https://user-images.githubusercontent.com/13915081/45464223-2e75d980-b742-11e8-890a-fbd7a4da6a10.png">
 
 
 
@@ -123,13 +134,13 @@
 
 
 
-  <link rel="canonical" href="http://songbingjia.cn/"/>
+  <link rel="canonical" href="http://songbingjia.cn/2018/09/12/Git-分支管理规范/"/>
 
 
 
 
 
-  <title> 宋兵甲的博客 </title>
+  <title> Git 分支管理规范 | 宋兵甲的博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -164,9 +175,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-   page-home 
- ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -303,10 +312,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-        
-            
 
   
 
@@ -336,10 +344,7 @@
             
             
               
-                
-                <a class="post-title-link" href="/2018/09/12/Git-分支管理规范/" itemprop="url">
-                  Git 分支管理规范
-                </a>
+                Git 分支管理规范
               
             
           </h1>
@@ -390,6 +395,16 @@
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/2018/09/12/Git-分支管理规范/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -412,9 +427,7 @@
       
 
       
-        
-          
-            <p>本文不涉及git指令的介绍，侧重于分支管理，个人理解分支管理并没有正确与否，重要在于是否成体系，简单来说就是能否高效的应对所有情况。没有对比就没有伤害，先看两种比较出名的分支管理方式:</p>
+        <p>本文不涉及git指令的介绍，侧重于分支管理，个人理解分支管理并没有正确与否，重要在于是否成体系，简单来说就是能否高效的应对所有情况。没有对比就没有伤害，先看两种比较出名的分支管理方式:</p>
 <h1 id="Git-flow"><a href="#Git-flow" class="headerlink" title="Git flow"></a><center>Git flow</center></h1><p><a href="https://nvie.com/posts/a-successful-git-branching-model/" target="_blank" rel="external">原文链接</a><br>根红苗正，很多注重流程的大公司都在使用。先看一张总览图：<br><img src="https://user-images.githubusercontent.com/13915081/45464223-2e75d980-b742-11e8-890a-fbd7a4da6a10.png" alt="全流程图"><br>大家可以仔细看一下这幅图，带着问题继续向下看</p>
 <h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>在上图中有如下几个概念：</p>
 <ul>
@@ -508,43 +521,56 @@
 <li>上线后，删除特性分支，删除staging分支</li>
 </ol>
 
-          
+      
+    </div>
+
+    <div>
+      
         
+
       
     </div>
 
     <div>
       
-    </div>
+        
 
-    <div>
       
     </div>
 
     <div>
+      
+        
+
       
     </div>
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/git/" rel="tag"># git</a>
+          
+        </div>
+      
+
+      
+        
+      
 
       
 
       
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-        
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -552,6 +578,12 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
 
         </div>
         
@@ -571,8 +603,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="https://cloud.githubusercontent.com/assets/13915081/24868296/3248ddcc-1e42-11e7-857a-0e4b4cebb75e.jpg"
@@ -645,6 +686,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Git-flow"><span class="nav-number">1.</span> <span class="nav-text">Git flow</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#概念"><span class="nav-number">1.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#master-amp-develop"><span class="nav-number">1.2.</span> <span class="nav-text">master & develop</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#辅助分支"><span class="nav-number">1.3.</span> <span class="nav-text">辅助分支</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#feature分支"><span class="nav-number">1.3.1.</span> <span class="nav-text">feature分支</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#操作步骤"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">操作步骤</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#release-分支"><span class="nav-number">1.3.2.</span> <span class="nav-text">release 分支</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#操作步骤-1"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">操作步骤</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hotfix分支"><span class="nav-number">1.3.3.</span> <span class="nav-text">Hotfix分支</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#操作步骤-2"><span class="nav-number">1.3.3.1.</span> <span class="nav-text">操作步骤</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优缺点"><span class="nav-number">1.4.</span> <span class="nav-text">优缺点</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#AoneFlow"><span class="nav-number">2.</span> <span class="nav-text">AoneFlow</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#分支"><span class="nav-number">2.1.</span> <span class="nav-text">分支</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#规则"><span class="nav-number">2.2.</span> <span class="nav-text">规则</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-所有特性分支由主干创建"><span class="nav-number">2.2.1.</span> <span class="nav-text">1.所有特性分支由主干创建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-合并特性分支生成发布分支"><span class="nav-number">2.2.2.</span> <span class="nav-text">2.合并特性分支生成发布分支</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-发布到线上正式环境后，合并相应的发布分支到主干，在主干添加标签，同时删除该发布分支-amp-关联的特性分支"><span class="nav-number">2.2.3.</span> <span class="nav-text">3. 发布到线上正式环境后，合并相应的发布分支到主干，在主干添加标签，同时删除该发布分支&关联的特性分支</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优缺点-1"><span class="nav-number">2.3.</span> <span class="nav-text">优缺点</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#我们用什么？"><span class="nav-number">3.</span> <span class="nav-text">我们用什么？</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -763,6 +820,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
 
   
 
