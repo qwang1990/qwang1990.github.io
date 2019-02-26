@@ -315,6 +315,520 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://songbingjia.cn/2019/02/26/ServiceMesh简介/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="宋兵甲">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://cloud.githubusercontent.com/assets/13915081/24868296/3248ddcc-1e42-11e7-857a-0e4b4cebb75e.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="宋兵甲的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2019/02/26/ServiceMesh简介/" itemprop="url">
+                  ServiceMesh简介
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-26T22:20:23+08:00">
+                2019-02-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+        
+    
+        
+            
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://songbingjia.cn/2019/02/12/ceph官网导读/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="宋兵甲">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://cloud.githubusercontent.com/assets/13915081/24868296/3248ddcc-1e42-11e7-857a-0e4b4cebb75e.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="宋兵甲的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2019/02/12/ceph官网导读/" itemprop="url">
+                  ceph官网导读
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-12T14:14:14+08:00">
+                2019-02-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/后端/" itemprop="url" rel="index">
+                    <span itemprop="name">后端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>ceph有的<a href="http://docs.ceph.org.cn/" target="_blank" rel="external">中文网站</a> 但是更新速度比较缓慢，当前还停留在Jewel版本，所以建议还是看官网比较好。在讲官网之前，先聊一下什么是ceph，它的架构是什么样的。</p>
+<h1 id="什么是ceph"><a href="#什么是ceph" class="headerlink" title="什么是ceph"></a>什么是ceph</h1><p>摘抄一段wiki上的翻译：ceph是一个免费的软件存储平台，在一个分布式集群上实现存储，提供对象存储，块存储，文件系统三种类型的接口。ceph旨在提供无单点故障的分布式系统，并且可以扩展到 exabyte级，而且免费。</p>
+<p>其实这个定义把ceph的几个重要特性都说了出来，首先是它基于一套底层结构支持对象存储，块存储和文件系统；其次它不存在单点问题，也不存在性能瓶颈，关于这一点后面会讲讲到；最后，也是很重要的一点，它是免费的！</p>
+<p>下面我们看一下<a href="http://docs.ceph.com/docs/master/releases/schedule/" target="_blank" rel="external">ceph的版本</a>，截止当前（2019.02.12）ceph的最新版本是13.2.4，发布日期是2019.01。其实从版本的更新时间和频率也可以侧面看出一个技术的活跃程度。最后再给出ceph社区的地址 <a href="http://ceph.org.cn/" target="_blank" rel="external">中文</a> , <a href="https://ceph.com/community/" target="_blank" rel="external">英文</a>。</p>
+<h1 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h1><p>这里只盗用一张官网的图，具体的架构官网上很清晰<a href="http://docs.ceph.org.cn/architecture/" target="_blank" rel="external">中文</a>和<a href="http://docs.ceph.com/docs/master/architecture/" target="_blank" rel="external">英文</a>版本，这两个版本我粗略看起来差不多，如果感觉英文能力没问题，建议读英文版的，毕竟比较新。<br><img src="https://user-images.githubusercontent.com/13915081/52620636-0ac8e200-2ee0-11e9-80bc-2fa435d49a3f.png" alt="image"></p>
+<p>从上图可以看出，无论是对象存储，块存储还是文件系统其实都基于底层的RADOS实现的，ceph基于RADOS提供了一个可以无限扩展的存储集群，这个集群主要有两种类型的后台进程Monitor和OSD。随后文档中讲解了<a href="http://docs.ceph.com/docs/master/architecture/#storing-data" target="_blank" rel="external">数据如何存储</a>。随后讲了如何<a href="http://docs.ceph.com/docs/master/architecture/#scalability-and-high-availability" target="_blank" rel="external">支持扩展和高可用</a>，引出<a href="http://docs.ceph.com/docs/master/architecture/#crush-introduction" target="_blank" rel="external">CRUSH</a>算法，这个是ceph的核心概念之一，就是因为有了它才实现了ceph的去中心化。</p>
+<p>讲完基础架构之后，开始讲<a href="http://docs.ceph.com/docs/master/architecture/#dynamic-cluster-management" target="_blank" rel="external">集群的管理</a>引入了pool、PG等概念，并且简单描述了数据读取的流程，并且讲到了数据如何保持一致性，如何reblance等。随后用很长的篇幅讲解了<a href="http://docs.ceph.com/docs/master/architecture/#erasure-coding" target="_blank" rel="external">ERASURE CODING</a>它是一种和replica一样的保证数据高可用的方法。 随后还讲到了如何在ceph中增加<a href="http://docs.ceph.com/docs/master/architecture/#cache-tiering" target="_blank" rel="external">cache</a>层和如何自己<a href="http://docs.ceph.com/docs/master/architecture/#extending-ceph" target="_blank" rel="external">扩展</a>ceph。在该文章的末尾，讲解了一个ceph中很重要的概念<a href="http://docs.ceph.com/docs/master/architecture/#data-striping" target="_blank" rel="external">条带化</a>，大家对条带化这个词肯定不陌生，想要了解ceph如何利用它来增加性能的可以看一下。</p>
+<h1 id="官网导读"><a href="#官网导读" class="headerlink" title="官网导读"></a>官网导读</h1><p>看完架构之后，估计大家对ceph就有一个大致的了解了，那么就可以看一下官网了 – <a href="http://docs.ceph.com/docs/master/ " target="_blank" rel="external">地址</a></p>
+<p><img width="1254" alt="2019-02-12 5 18 42" src="https://user-images.githubusercontent.com/13915081/52624716-508aa800-2eea-11e9-8b1a-e8775d0c0859.png"></p>
+<p>上图是ceph官方文档首页截图，左边是文档的菜单栏，内容如下：</p>
+<ul>
+<li><a href="http://docs.ceph.com/docs/master/start/intro/" target="_blank" rel="external">Intro to Ceph</a>：介绍的组件，并且对硬件，操作系统做了一些建议；还提供给大家贡献ceph社区和贡献ceph文档的方法。</li>
+<li>Installation，一共3个主菜单，分别告诉大家如何使用 <a href="http://docs.ceph.com/docs/master/start/#" target="_blank" rel="external">ceph-deploy部署</a>，如何<a href="http://docs.ceph.com/docs/master/install/" target="_blank" rel="external">手动部署</a>以及如何使用<a href="http://docs.ceph.com/docs/master/start/kube-helm/" target="_blank" rel="external">k8s+helm</a>部署。</li>
+<li><p><a href="http://docs.ceph.com/docs/master/rados/" target="_blank" rel="external">CEPH STORAGE CLUSTER</a>：ceph存储的基础，基于RADOS，这部分内容无论是使用对象存储，块存储还是文件系统的都建议看一下。它的子目录主要分为<a href="http://docs.ceph.com/docs/master/rados/configuration/" target="_blank" rel="external">配置</a>、<a href="http://docs.ceph.com/docs/master/rados/deployment/" target="_blank" rel="external">部署</a>、<a href="http://docs.ceph.com/docs/master/rados/operations/" target="_blank" rel="external">操作</a>、<a href="http://docs.ceph.com/docs/master/rados/man/" target="_blank" rel="external">帮助手册</a>、<a href="http://docs.ceph.com/docs/master/rados/troubleshooting/" target="_blank" rel="external">troubleshooting</a>、<a href="http://docs.ceph.com/docs/master/rados/api/" target="_blank" rel="external">api</a>。其中配置，操作建议认真看一下。</p>
+<blockquote>
+<p>下面三个菜单就是<a href="http://docs.ceph.com/docs/master/cephfs/" target="_blank" rel="external">ceph文件系统</a>，<a href="http://docs.ceph.com/docs/master/rbd/" target="_blank" rel="external">ceph块存储</a>，<a href="http://docs.ceph.com/docs/master/radosgw/" target="_blank" rel="external">ceph对象存储</a>的内容了，关于这部分，需要用到啥看啥就行。当然这三块也是整个官方文档的重点。</p>
+</blockquote>
+</li>
+<li><p><a href="http://docs.ceph.com/docs/master/mgr/" target="_blank" rel="external">Ceph Manager Daemon</a>：ceph-mgr，monitor之外的另一个对ceph集群监控的组件，可以了解。</p>
+</li>
+<li><a href="http://docs.ceph.com/docs/master/api/" target="_blank" rel="external">API Documentation</a>所有你需要的api都在这。</li>
+<li><a href="http://docs.ceph.com/docs/master/architecture/" target="_blank" rel="external">Architecture</a>就是文章开始说的架构，<font size="3" color="red">建议最先看</font>，先对ceph有个全方位的了解。</li>
+<li><a href="http://docs.ceph.com/docs/master/dev/#" target="_blank" rel="external">Developer Guide</a>:开发者指南，把别的都了解了再看这个吧。</li>
+<li><a href="http://docs.ceph.com/docs/master/dev/internals/" target="_blank" rel="external">CEPH INTERNALS</a>：看名字就知道，高段位再看，先把前面的都了解了吧。</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+        
+    
+        
+            
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://songbingjia.cn/2018/11/28/java日志规范/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="宋兵甲">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://cloud.githubusercontent.com/assets/13915081/24868296/3248ddcc-1e42-11e7-857a-0e4b4cebb75e.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="宋兵甲的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2018/11/28/java日志规范/" itemprop="url">
+                  闲谈java日志
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-28T08:33:51+08:00">
+                2018-11-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/后端/" itemprop="url" rel="index">
+                    <span itemprop="name">后端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="闲谈java日志"><a href="#闲谈java日志" class="headerlink" title="闲谈java日志"></a><center>闲谈java日志</center></h1><p>本文有如下三个主题</p>
+<ul>
+<li>工具上的规范</li>
+<li>日志规范</li>
+<li>扩展</li>
+</ul>
+<p>关于扩展的内容，先讲一个概念，大家有兴趣的可以告诉我，后面可以以专题的形式讲一下。</p>
+<h2 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h2><p>这个可以参考阿里java规范：为什么阿里巴巴禁止工程师直接使用日志系统(Log4j、Logback)中的 API</p>
+<p>其实本质原因是，打日志的工具有很多，常用的有</p>
+<ul>
+<li>java.util.logging：这个是jdk自带的</li>
+<li>Log4j </li>
+<li>Logback</li>
+<li>log4j2</li>
+</ul>
+<p>其中后面三个是同一个作者写的，这里我们暂且不比较它们的优劣，主要关注怎么用，其实开始已经说了，不要直接使用任何一个工具的api，为什么呢？主要是它们的api都是不同的，如果你的应用和某一个api紧耦合，当需要改变日志工具的时候就会非常痛苦，那怎么办呢？<br>在计算计科学中，没有中间层解决不了的问题，如果有，那就再来一层，这时就引入了SLF4J，它就是一个中间层，它不负责实际打印日志，它只是一个Facade，也就是设计模式中常说的门面模式。</p>
+<p><img src="https://user-images.githubusercontent.com/13915081/49122524-c6ba3e00-f2ef-11e8-8483-674009be7a1b.png" alt="7"></p>
+<p>所以第一个要求就是，打日志统一使用：</p>
+<blockquote>
+<pre><code>private static final Logger logger = LoggerFactory.getLogger(XXX.class);
+</code></pre></blockquote>
+<p>关于日志工具的比价，日志门面的比较，后面可以搞专题讲。不是本篇文章的重点。</p>
+<h2 id="书写规范"><a href="#书写规范" class="headerlink" title="书写规范"></a>书写规范</h2><p>这个是本次的重点，主要侧重于log的注意事项和一些最佳实践</p>
+<h3 id="1-正确的理解日志级别"><a href="#1-正确的理解日志级别" class="headerlink" title="1. 正确的理解日志级别"></a>1. 正确的理解日志级别</h3><p>当前应用中有很多人对日志级别的使用不正确，或者说全部都使用一个日志级别，这个问题比较大，后面按照如下规则来区分级别：</p>
+<ul>
+<li>Debug : 主要供开发使用，包含的数据一般是响应时间，健康检查等。比如:”XXX response time 10 ms”</li>
+<li>Info : 业务流程，要保证QA能看懂你的日志，帮助大家理解系统。比如:”用户:张三 创建账户成功”</li>
+<li>Warning : 这些日志标识出现了异常情况，的那还是并不代表错误，而且也不需要立刻得到处理。比如:”用户输入了错误的字符：‘张三$’，忽略它”</li>
+<li>Error : 出现错误，需立即解决，这个大家估计比较熟悉</li>
+</ul>
+<h3 id="2-日志的受众不仅仅是自己"><a href="#2-日志的受众不仅仅是自己" class="headerlink" title="2. 日志的受众不仅仅是自己"></a>2. 日志的受众不仅仅是自己</h3><p>一定要记住，日志不仅仅是自己看，还要给其他程序员，QA来看，而且程序员还可能使用grep，awk等来查看日志，所以它们必须简单并且内容充实。有人建议打印两种日志，一种给机器看，一种给人看，比如：</p>
+<ul>
+<li>transaction was completed successfully” + transactionID “total time for transaction =” + TimeElapsed</li>
+<li>“success” + transactionID  “time” + TimeElapsed</li>
+</ul>
+<p>这里我们推荐使用第一种</p>
+<h3 id="3-记录下与外部系统的交互"><a href="#3-记录下与外部系统的交互" class="headerlink" title="3. 记录下与外部系统的交互"></a>3. 记录下与外部系统的交互</h3><p>系统间的问题是最难定位的，所以要求在系统间交互的地方一定要打印日志。这可能会带来一定的性能上的损耗，所以日常可以不开启，当系统出现问题的时候再开启。</p>
+<h3 id="4-正确的记录异常信息"><a href="#4-正确的记录异常信息" class="headerlink" title="4. 正确的记录异常信息"></a>4. 正确的记录异常信息</h3><p>记录异常是记录日志中很重要的一个环节。很多时候我们习惯记录一个异常，然后把它包装到一个自定义异常后再抛出它，这会导致异常被打印两次，这里要求不要多次打印该异常，直接把它包装到自定义异常抛出即可，在全局异常处理的地方打印堆栈信息。</p>
+<p>BAD:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">try</span> &#123;</div><div class="line"></div><div class="line">   Integer x = <span class="keyword">null</span>;</div><div class="line"></div><div class="line">   ++x;</div><div class="line"></div><div class="line">&#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line"></div><div class="line">log.error(“IO exception”, e);</div><div class="line"></div><div class="line"><span class="keyword">throw</span> <span class="keyword">new</span> MyCustomException(e);</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>GOOD:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">try</span> &#123;</div><div class="line"></div><div class="line">   Integer x = <span class="keyword">null</span>;</div><div class="line"></div><div class="line">   ++x;</div><div class="line"></div><div class="line">&#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line"></div><div class="line"><span class="keyword">throw</span> <span class="keyword">new</span> MyCustomException(e);</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>最后，用如下形式打印异常：log.error(“Error XXX {} ”, e);</p>
+<p>以下摘抄阿里巴巴开发规范日志篇</p>
+<ol>
+<li><p>【强制】应用中不可直接使用日志系统(Log4j、Logback)中的 API,而应依赖使用日志框架<br>SLF4J 中的 API,使用门面模式的日志框架,有利于维护和各个类的日志处理方式统一。<br>import org.slf4j.Logger;<br>import org.slf4j.LoggerFactory;<br>private static final Logger logger = LoggerFactory.getLogger(Abc.class);</p>
+</li>
+<li><p>【强制】日志文件推荐至少保存 15 天,因为有些异常具备以“周”为频次发生的特点。</p>
+</li>
+<li><p>【强制】应用中的扩展日志(如打点、临时监控、访问日志等)命名方式: appName_logType_logName.log。logType:日志类型,推荐分类有 stats/desc/monitor/visit 等;logName:日志描述。这种命名的好处:通过文件名就可知 道日志文件属于什么应用,什么类型,什么目的,也有利于归类查找。<br>——禁止用于商业用途,违者必究—— 19 /35<br>阿里巴巴 Java 开发手册 正例:mppserver 应用中单独监控时区转换异常,如:<br>mppserver_monitor_timeZoneConvert.log<br>说明:推荐对日志进行分类,如将错误日志和业务日志分开存放,便于开发人员查看,也便于 通过日志对系统进行及时监控。</p>
+</li>
+<li><p>【强制】对 trace/debug/info 级别的日志输出,必须使用条件输出形式或者使用占位符的方 式。<br>说明:logger.debug(“Processing trade with id: “ + id + “ and symbol: “ + symbol); 如果日志级别是 warn,上述日志不会打印,但是会执行字符串拼接操作,如果 symbol 是对象, 会执行 toString()方法,浪费了系统资源,执行了上述操作,最终日志却没有打印。 正例:(条件)<br>if (logger.isDebugEnabled()) {<br>logger.debug(“Processing trade with id: “ + id + “ and symbol: “ + symbol);<br>}<br>正例:(占位符)<br>logger.debug(“Processing trade with id: {} and symbol : {} “, id, symbol);</p>
+</li>
+<li><p>【强制】避免重复打印日志,浪费磁盘空间,务必在 log4j.xml 中设置 additivity=false。 正例:<logger name="com.taobao.dubbo.config" additivity="false"></logger></p>
+</li>
+<li><p>【强制】异常信息应该包括两类信息:案发现场信息和异常堆栈信息。如果不处理,那么通过 关键字 throws 往上抛出。<br>正例:logger.error(各类参数或者对象toString + “_” + e.getMessage(), e);</p>
+</li>
+<li><p>【推荐】谨慎地记录日志。生产环境禁止输出 debug 日志;有选择地输出 info 日志;如果使 用 warn 来记录刚上线时的业务行为信息,一定要注意日志输出量的问题,避免把服务器磁盘 撑爆,并记得及时删除这些观察日志。 说明:大量地输出无效日志,不利于系统性能提升,也不利于快速定位错误点。记录日志时请 思考:这些日志真的有人看吗?看到这条日志你能做什么?能不能给问题排查带来好处?</p>
+</li>
+<li><p>【参考】可以使用 warn 日志级别来记录用户输入参数错误的情况,避免用户投诉时,无所适 从。注意日志输出的级别,error 级别只记录系统逻辑出错、异常等重要的错误信息。如非必 要,请不要在此场景打出 error 级别。</p>
+</li>
+</ol>
+<p>以上说的没毛病，对于 1，2，5 已于代码模板中实现，其余各条需要大家遵守</p>
+<h3 id="日志追踪"><a href="#日志追踪" class="headerlink" title="日志追踪"></a>日志追踪</h3><p>最后说说日志中的另一块问题，说大点就是全链路跟踪，简单点来说就是在日志中打印出traceId，使整个系统串联起来。随着业务越来越复杂，日志的追踪也变得越来越难，一个web服务可能经历很多流转，所以把日志串联起来就显得至关重要，其实全链路监控也是依托这个实现的。</p>
+<p>先看一些分布式追踪系统的概念，如果英语好的同学可以看一下Google的论文<a href="https://ai.google/research/pubs/pub36356" target="_blank" rel="external">Dapper</a></p>
+<p><img src="https://user-images.githubusercontent.com/13915081/49266708-28b2a900-f492-11e8-9a41-066b38513547.png" alt="trace-id"></p>
+<p>上图就是一个日志追踪系统（zipkin）的直观视图，里面有如下几个重要概念：</p>
+<ul>
+<li>span: 工作基本单元，一个traces过程中会有很多个span。它一般被两个64bit的ID组合而成，前一个标识该span在哪个trace中，后一个标识该span。（初始的span被称为root span,它的ID和trace的ID相同）</li>
+<li>trace: 一系列树状的span</li>
+<li>annotation: 用于记录当前事件，比如在Zipkin中会用它标识哪些是client，哪些是server，请是从哪开始的，从哪里结束的。<ul>
+<li>cs: client sent</li>
+<li>sr: server received</li>
+<li>ss: server sent </li>
+<li>cr: client received</li>
+</ul>
+</li>
+</ul>
+<p>上图中每个颜色标明一个span（A to G）</p>
+<p>spring使用sleuth+zipkin来实现这种追踪监控，功能强大，扩展性也比较强。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+        
+    
+        
+            
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://songbingjia.cn/2018/10/03/java11新特性-A-No-Op-Garbage-Collector/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1086,7 +1600,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1108,7 +1622,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -1157,7 +1671,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
