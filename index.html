@@ -338,7 +338,7 @@
               
                 
                 <a class="post-title-link" href="/2019/02/26/ServiceMesh简介/" itemprop="url">
-                  ServiceMesh简介
+                  ServiceMesh简介 --- 流量控制
                 </a>
               
             
@@ -364,6 +364,28 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/后端/" itemprop="url" rel="index">
+                    <span itemprop="name">后端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -392,7 +414,40 @@
       
         
           
-            
+            <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>当前容器化技术发展十分迅速，使得企业使用微服务架构变的更加简单，当前市面上流行的微服务架构有很多，比如早期的有IceGrid，最近流行的有Dubbo，Spring Cloud。这些微服务框架功能十分强大，并且社区也比较完善，但是都存在比如语言限制，代码侵入性等问题。这使得应用为了使用微服务架构需要做很多的改动。在容器化时代，容器编排工具（如k8s）也提供了一些微服务的功能，如服务注册发现，配置中心，负载均衡等。但是很多场景下无法满足用户需求，比如我希望实现一个断路器使用k8s自身就十分的困难。这时serviceMesh应运而生。</p>
+<p>service mesh（服务网格）最早出现于Linkerd项目，后加入CNCF，之后与2017年，Google联手IBM发布了第二代Service Mesh项目 Istio，这个也是我们这次的重点内容。引用Service mesh创始人对其的定义：A service mesh is a dedicated infrastructure layer for handling service-to-service communication。（service mesh是一个用于处理服务间通信的复杂基础设施）那么service mesh是如何实现服务间通信，并且有没有侵入性的呢？带着问题向下看。</p>
+<h1 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h1><p>先看一下来自官网的架构图:<br><img width="806" alt="2019-02-28 8 19 27" src="https://user-images.githubusercontent.com/13915081/53566141-58a74080-3b96-11e9-9526-120cc0c72e26.png"></p>
+<p>从架构中可以清晰的看出，service mesh其实就是在原来的服务旁边跑了一个代理，服务的出入TCP流量都会经过这个代理，这样service mesh就可以以一种非侵入的方式来实现微服务的功能了。从官网上看，这个代理可以实现Dynamic service discovery，Load balancing，TLS termination，HTTP/2 and gRPC proxies，Circuit breakers，Health checks，Staged rollouts with %-based traffic split，Fault injection，Rich metrics等功能，这些功能其实就是传统意义中的数据平面（data plane）。</p>
+<p>那么此时问题来了，代理是如何实现这些功能的，比如在一个k8s集群中，我们部署了service mesh架构，它是如何找到服务的，如何负载均衡的。显而易见，它需要从一个地方获取环境的相关配置数据。这时就引入了架构图中的下半部分控制平面（control plane）。架构图中列出的控制平面组件有Pilot，Mixer，Citadel。在讲这些组件前，先从一个直观的例子。</p>
+<p><img width="787" alt="2019-02-28 10 30 29" src="https://user-images.githubusercontent.com/13915081/53573470-80070900-3ba8-11e9-898f-84f4106314a9.png"></p>
+<p>上图中上半部分是你可以把5%的流量导到新版本，让剩下的95%依旧走老版本；下半部分是你可以设置客户端请求的user-agent字段为android的流量走老版本，user-agent字段为ios的流量走新版本。虽然这个只是service mesh功能的冰山一角，但是它可以方便的实现A/B test，滚动升级，金丝雀发布等功能。为了实现这个功能，我们引出第一个组件 — Pilot</p>
+<p><img width="603" alt="2019-02-28 10 39 46" src="https://user-images.githubusercontent.com/13915081/53574078-d0329b00-3ba9-11e9-90e3-9d3d2a81b365.png"></p>
+<p>首先在上图中Envoy（就是上文中的代理）通过Envoy API从Pilot中获取配置信息，主要是服务，路由，负载等配置。知道这个Polit的架构就很清晰了。首先Envoy API层是和Envoy对接的，把配置信息的变化发给Envoy，让其能够正确的路由。但是基础环境十分多样（k8s，mesos，虚拟机，物理机等等），如果给每一套环境配一份API，估计service mesh就变得不可用了，并且用户配置规则时也会变得极其复杂。此时计算机科学中很重要的一个思想就出现了 — 中间层。有人说过，没有一个中间层解决不了的问题，如果有，那就再加一个。在这里Abstract Model定义抽象的模型就是为了与特定基础平台解耦。而每种平台需要实现自己的adapter。比如，k8s的adapter就需要实现接口来监测kubernetes api server以获取pod注册信息，ingress资源；还需要一个地方来存储流量管理的柜子。然后这些数据会转变成Abstract Model。这样就能生成Envoy特定的配置了，实现流量控制的功能。</p>
+<h1 id="具体功能"><a href="#具体功能" class="headerlink" title="具体功能"></a>具体功能</h1><p>这一部分<a href="https://istio.io/docs/concepts/traffic-management/#ingress-and-egress" target="_blank" rel="external">官网</a>讲的很详细，可以自己看一下，这里我就简单讲一下。</p>
+<ul>
+<li><p>Ingress and egress<br>  <img width="635" alt="2019-02-28 11 14 00" src="https://user-images.githubusercontent.com/13915081/53576429-91531400-3bae-11e9-9c10-a875e3fceab7.png"><br>  Istio假设所有的出入流量都经过Envoy代理。基于它你不仅可以实现上面说的那些功能，你还可以访问外部的服务，增加错误回复机制，注入错误等。正如上图所示，入口流量可以从Ingress gateway流入，也可以从k8s ingress流入；内部服务间通过proxy访问。对于外部的服务，你可以直接通过proxy访问，也可以通过egress gateway来访问。至于gateway下面会讲到。</p>
+</li>
+<li><p>服务发现和负载均衡<br>  <img width="585" alt="2019-02-28 11 19 53" src="https://user-images.githubusercontent.com/13915081/53576753-60271380-3baf-11e9-94fc-6b4fdacc3ec9.png"><br>  首先Istio假定基础平台提供了维护服务后端实例的功能，当有新增实例时会自动注册到服务上，当实例不健康后，服务会自动删除它。这些功能k8s，mesos都已经实现了。Pilot利用这些信息提供平台无关的服务发现接口。Envoy使用这些接口实现服务发现和动态的更新负载均衡。从上图可以看到service mesh内服务间通过服务名访问。enovy根据负载均衡分发流量。当前Istos最新版本支持round robin, random, weighted least request 这三种负载方式。<br>  除此之外，Envoy还会周期性的检查应用的健康性，更具下面要降到的Handling failures机制来决定实例剔除还是加入负载均衡池。</p>
+</li>
+<li>Handling failures<br>  envoy提供了很多的错误恢复机制，比如超时机制，重试机制，控制并发机制等。具体详情请<a href="https://istio.io/docs/concepts/traffic-management/#handling-failures" target="_blank" rel="external">点击这里</a></li>
+<li>Fault injection<br>  错误注入也是envoy提供的一个很有用的功能，它的目的是模拟组件间通信错误的出现，比如当你想测试一下下游服务出现超时你的应用会有什么处理时，就可以使用这个功能，把下游系统路由设为超时。</li>
+<li><p>Rule configuration<br>  Istio流量控制配置的主要内容，在Istio中就是使用它们来实现上面说的功能的。主要有四种资源配置VirtualService, DestinationRule, ServiceEntry, Gateway。<br>  VirtualService：定义服务如何路由<br>  DestinationRule：定义路由发生时生效的一些规则<br>  ServiceEntry：提供访问Istio之外的服务的能力<br>  Gateway：配置http/TCP的负载，一般会在mesh的边缘上提供应用入口的功能</p>
+<p>  这四个概念中后两个还是很容易区分的，但是前两个有时候会让人迷惑，不知道什么时候用哪个，其实VirtualService和DestinationRule的最大区别是VirtualService影响的是选择哪个版本，而DestinationRule控制的是当路由到该版本后需要做什么。</p>
+<p>  举个简单的例子：</p>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">apiVersion: networking.istio.io/v1alpha3</div><div class="line">kind: VirtualService</div><div class="line">metadata:</div><div class="line">  name: reviews</div><div class="line">spec:</div><div class="line">  hosts:</div><div class="line">    * reviews</div><div class="line">  http:</div><div class="line">  * route:</div><div class="line">    * destination:</div><div class="line">        host: reviews</div><div class="line">        subset: v1</div><div class="line">      weight: 75</div><div class="line">    * destination:</div><div class="line">        host: reviews</div><div class="line">        subset: v2</div><div class="line">      weight: 25</div></pre></td></tr></table></figure>
+</code></pre><p>  这个VirtualService把访问review这个服务的流量 75%发送到v1版本，25%发给v2版本。</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">apiVersion: networking.istio.io/v1alpha3</div><div class="line">kind: DestinationRule</div><div class="line">metadata:</div><div class="line">  name: reviews</div><div class="line">spec:</div><div class="line">  host: reviews</div><div class="line">  trafficPolicy:</div><div class="line">    loadBalancer:</div><div class="line">      simple: RANDOM</div><div class="line">  subsets:</div><div class="line">  - name: v1</div><div class="line">    labels:</div><div class="line">      version: v1</div><div class="line">  - name: v2</div><div class="line">    labels:</div><div class="line">      version: v2</div><div class="line">    trafficPolicy:</div><div class="line">      loadBalancer:</div><div class="line">        simple: ROUND_ROBIN</div><div class="line">  - name: v3</div><div class="line">    labels:</div><div class="line">      version: v3</div></pre></td></tr></table></figure>
+<p>  这是一个DestinationRule规则，它指定路由到v1和v3版本的流量到后端服务的负载方式是默认的RANDOM；但是路由到v2版本的流量到后端服务的负载方式是ROUND_ROBIN的。</p>
+<p>  <a href="https://istio.io/docs/concepts/traffic-management/#service-entries" target="_blank" rel="external">Service entries</a>这个比较简单，自己看一下就行，主要功能就是在service mesh集群中定义一个外部的服务。</p>
+<p>  Gateways，就是流量入口，和k8s的ingress很像，不过它只支持4-6层的配置（如端口暴露，TLS配置），用户可以使用上面说的istio规则来控制http请求。只需要简单地把gateway和virtualservice绑定一下即可。比如下面这个例子：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">apiVersion: networking.istio.io/v1alpha3</div><div class="line">kind: Gateway</div><div class="line">metadata:</div><div class="line">  name: bookinfo-gateway</div><div class="line">spec:</div><div class="line">  servers:</div><div class="line">  + port:</div><div class="line">      number: 443</div><div class="line">      name: https</div><div class="line">      protocol: HTTPS</div><div class="line">    hosts:</div><div class="line">    + bookinfo.com</div><div class="line">    tls:</div><div class="line">      mode: SIMPLE</div><div class="line">      serverCertificate: /tmp/tls.crt</div><div class="line">      privateKey: /tmp/tls.key</div></pre></td></tr></table></figure>
+<p>  上面是一个gateway配置，为了配置对应的route，我们需要定义一个同样host的virtualservice，然后使用gateways属性把该vs绑定到Gateway上。</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">apiVersion: networking.istio.io/v1alpha3</div><div class="line">kind: VirtualService</div><div class="line">metadata:</div><div class="line">  name: bookinfo</div><div class="line">spec:</div><div class="line">  hosts:</div><div class="line">    + bookinfo.com</div><div class="line">  gateways:</div><div class="line">  + bookinfo-gateway # &lt;---- bind to gateway</div><div class="line">  http:</div><div class="line">  + match:</div><div class="line">    + uri:</div><div class="line">        prefix: /reviews</div><div class="line">    route:</div><div class="line">    ...</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>流量控制的大致内容就这么多，当前我们讲了一下service mesh的历史和定位，并且讲了它的第一个重要的功能流量控制和第一个核心控制平面的组件Pilot。在聊后面的组件前先出一个问题，既然流量的控制可以通过这种非侵入的方式实现，那微服务的一些别的功能呢？比如调用链跟踪，调用量统计等。</p>
+<p>最后，这些功能陆续会在我们的 <a href="http://172.31.205.50:8081" target="_blank" style="color:red">应用托管平台Pitaya</a>上出现，欢迎大家使用。</p>
+
           
         
       
@@ -537,7 +592,7 @@
         
           
             <p>ceph有的<a href="http://docs.ceph.org.cn/" target="_blank" rel="external">中文网站</a> 但是更新速度比较缓慢，当前还停留在Jewel版本，所以建议还是看官网比较好。在讲官网之前，先聊一下什么是ceph，它的架构是什么样的。</p>
-<h1 id="什么是ceph"><a href="#什么是ceph" class="headerlink" title="什么是ceph"></a>什么是ceph</h1><p>摘抄一段wiki上的翻译：ceph是一个免费的软件存储平台，在一个分布式集群上实现存储，提供对象存储，块存储，文件系统三种类型的接口。ceph旨在提供无单点故障的分布式系统，并且可以扩展到 exabyte级，而且免费。</p>
+<h2 id="什么是ceph"><a href="#什么是ceph" class="headerlink" title="什么是ceph"></a>什么是ceph</h2><p>摘抄一段wiki上的翻译：ceph是一个免费的软件存储平台，在一个分布式集群上实现存储，提供对象存储，块存储，文件系统三种类型的接口。ceph旨在提供无单点故障的分布式系统，并且可以扩展到 exabyte级，而且免费。</p>
 <p>其实这个定义把ceph的几个重要特性都说了出来，首先是它基于一套底层结构支持对象存储，块存储和文件系统；其次它不存在单点问题，也不存在性能瓶颈，关于这一点后面会讲讲到；最后，也是很重要的一点，它是免费的！</p>
 <p>下面我们看一下<a href="http://docs.ceph.com/docs/master/releases/schedule/" target="_blank" rel="external">ceph的版本</a>，截止当前（2019.02.12）ceph的最新版本是13.2.4，发布日期是2019.01。其实从版本的更新时间和频率也可以侧面看出一个技术的活跃程度。最后再给出ceph社区的地址 <a href="http://ceph.org.cn/" target="_blank" rel="external">中文</a> , <a href="https://ceph.com/community/" target="_blank" rel="external">英文</a>。</p>
 <h1 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h1><p>这里只盗用一张官网的图，具体的架构官网上很清晰<a href="http://docs.ceph.org.cn/architecture/" target="_blank" rel="external">中文</a>和<a href="http://docs.ceph.com/docs/master/architecture/" target="_blank" rel="external">英文</a>版本，这两个版本我粗略看起来差不多，如果感觉英文能力没问题，建议读英文版的，毕竟比较新。<br><img src="https://user-images.githubusercontent.com/13915081/52620636-0ac8e200-2ee0-11e9-80bc-2fa435d49a3f.png" alt="image"></p>
@@ -1622,7 +1677,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
